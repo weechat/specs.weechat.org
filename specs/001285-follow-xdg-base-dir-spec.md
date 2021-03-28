@@ -73,18 +73,18 @@ WeeChat stores the following data in each directory:
 - data:
   - WeeChat log file (and crash log): `weechat*.log`
   - WeeChat upgrade files: `*.upgrade`
-  - Local plugins: `plugins/*`
-  - Logs files written by logger plugin: `logs/*`
+  - local plugins: `plugins/*`
+  - logs files written by logger plugin: `logs/*`
   - Xfer files received: `xfer/*`
-  - Scripts installed: `python/*`, `perl/*`, etc.
-  - Scripts data (depends on scripts)
+  - scripts installed: `python/*`, `perl/*`, etc.
+  - scripts data (depends on scripts)
 - cache:
-  - Scripts repository contents: `script/plugins.xml.gz`
-  - Script downloaded (temporary, during installation)
-  - Scripts cache (depends on scripts)
+  - scripts repository contents: `script/plugins.xml.gz`
+  - script downloaded (temporary, during installation)
+  - scripts cache (depends on scripts)
 - runtime:
   - FIFO pipe: `weechat_fifo`
-  - Scripts runtime (depends on scripts)
+  - scripts runtime (depends on scripts).
 
 For compatibility, all functions using WeeChat home are now using `data`
 directory, unless they explicitly mention another directory.
