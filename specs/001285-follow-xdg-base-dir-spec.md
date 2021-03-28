@@ -206,13 +206,17 @@ New info are added:
 - `weechat_cache_dir`: the cache directory
 - `weechat_runtime_dir`: the runtime directory
 
+They are available in evaluation of expressions, for example:
+
+```
+/eval -n ${info:weechat_config_dir}
+== [/home/user/.config/weechat]
+```
+
 If the legacy home directory is in use, the 4 info return the same directory.
 
-They are available in evaluation of expressions, for example:
-`${info:weechat_config_dir}`.
-
-The following scripts are using the `weechat_dir` info and must be changed if the
-desired directory is not the `data` one:
+The following scripts are using the `weechat_dir` info and must be changed if
+the desired directory is not the `data` one:
 
 Script              | Directory | Update needed
 ------------------- | --------- | -------------
