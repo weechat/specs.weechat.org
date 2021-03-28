@@ -32,7 +32,7 @@ This way the different files are properly saved in appropriate directories
 and there's no more `.weechat` directory in the user's home directory.
 
 The latest XDG Base Directory Specification can be found at:
-https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+[https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
 
 ## Out of scope
 
