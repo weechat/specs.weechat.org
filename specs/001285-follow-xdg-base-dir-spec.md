@@ -262,7 +262,7 @@ Option                       | Default value      | Directory
 ---------------------------- | ------------------ | ---------
 fifo.file.path               | `%h/weechat_fifo`  | runtime
 logger.file.path             | `%h/logs/`         | data
-relay.network.ssl\_cert\_key | `%h/ssl/relay.pem` | ?
+relay.network.ssl\_cert\_key | `%h/ssl/relay.pem` | config
 script.scripts.path          | `%h/script`        | cache
 weechat.plugin.path          | `%h/plugins`       | data
 xfer.file.download\_path     | `%h/xfer`          | data
