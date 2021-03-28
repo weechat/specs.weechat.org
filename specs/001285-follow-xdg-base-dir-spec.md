@@ -266,3 +266,9 @@ relay.network.ssl\_cert\_key | `%h/ssl/relay.pem` | config
 script.scripts.path          | `%h/script`        | cache
 weechat.plugin.path          | `%h/plugins`       | data
 xfer.file.download\_path     | `%h/xfer`          | data
+
+## References
+
+- WeeChat issue on GitHub: [https://github.com/weechat/weechat/issues/1285](https://github.com/weechat/weechat/issues/1285)
+- WeeChat task on Savannah (obsolete): [https://savannah.nongnu.org/task/?10934](https://savannah.nongnu.org/task/?10934)
+- Latest XDG Base Directory Specification: [https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
