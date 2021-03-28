@@ -62,8 +62,8 @@ The WeeChat home, internal variable `weechat_home` must be split into 4 director
   if `$XDG_DATA_HOME` is not defined or empty
 - cache: `$XDG_CACHE_HOME/weechat`, defaulting to `$HOME/.cache/weechat`
   if `$XDG_CACHE_HOME` is not defined or empty
-- runtime: `$XDG_RUNTIME_DIR/weechat`, defaulting to `$HOME/.weechat-runtime`
-  if `$XDG_RUNTIME_DIR` is not defined or empty
+- runtime: `$XDG_RUNTIME_DIR/weechat`, defaulting to the cache directory
+  if `$XDG_RUNTIME_DIR` is not defined or empty.
 
 WeeChat stores the following data in each directory:
 
