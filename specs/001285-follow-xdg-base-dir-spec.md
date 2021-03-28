@@ -216,21 +216,13 @@ desired directory is not the `data` one:
 
 Script              | Directory | Update needed
 ------------------- | --------- | -------------
-buddylist.pl        | ?         | ?
-colorize\_lines.pl  | ?         | ?
-hotlist2extern.pl   | ?         | ?
-jnotify.pl          | ?         | ?
-luanma.pl           | ?         | ?
-pop3\_mail.pl       | ?         | ?
-query\_blocker.pl   | ?         | ?
-rslap.pl            | ?         | ?
-rssagg.pl           | ?         | ?
-stalker.pl          | ?         | ?
 autoconf.py         | ?         | ?
 axolotl.py          | ?         | ?
 beinc.py            | ?         | ?
+buddylist.pl        | ?         | ?
 chanop.py           | ?         | ?
 chanstat.py         | ?         | ?
+colorize\_lines.pl  | ?         | ?
 confversion.py      | ?         | ?
 country.py          | ?         | ?
 cron.py             | ?         | ?
@@ -239,11 +231,20 @@ grep.py             | ?         | ?
 growl.py            | ?         | ?
 histman.py          | ?         | ?
 hl2file.py          | ?         | ?
+hotlist2extern.pl   | ?         | ?
+jnotify.pl          | ?         | ?
+luanma.pl           | ?         | ?
 otr.py              | ?         | ?
+pop3\_mail.pl       | ?         | ?
 purgelogs.py        | ?         | ?
+query\_blocker.pl   | ?         | ?
 queryman.py         | ?         | ?
 queue.py            | ?         | ?
+rslap.pl            | ?         | ?
+rssagg.pl           | ?         | ?
 slack.py            | ?         | ?
+stalker.pl          | ?         | ?
+substitution.rb     | ?         | ?
 triggerreply.py     | ?         | ?
 update\_notifier.py | ?         | ?
 url\_olde.py        | ?         | ?
@@ -251,7 +252,6 @@ urlserver.py        | ?         | ?
 weeget.py           | ?         | ?
 weetext.py          | ?         | ?
 zncplayback.py      | ?         | ?
-substitution.rb     | ?         | ?
 
 ### Options using WeeChat home
 
