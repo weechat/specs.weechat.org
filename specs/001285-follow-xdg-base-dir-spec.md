@@ -11,9 +11,9 @@
 
 Historically, WeeChat has always defined and used a "WeeChat home" which is
 the directory where WeeChat stores all it files (configuration, logs, etc.)
-and allows plugins/scripts to store files there as well.
+and allows plugins/scripts to store their files as well.
 
-This directory is `$HOME/.weechat` by default and can be forced by 3 ways,
+This directory is `$HOME/.weechat` by default and can be forced in 3 ways,
 by order or priority (the first one has higher priority):
 
 - at runtime, with two command line options: `-d`/`--dir` or `-t`/`--temp-dir`
