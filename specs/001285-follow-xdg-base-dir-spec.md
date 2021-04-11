@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2021-03-28
-- Last updated: 2021-03-28
+- Last updated: 2021-04-11
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
 - Status: draft
 - Target WeeChat version: to define
@@ -218,44 +218,47 @@ If the legacy home directory is in use, the 4 info return the same directory.
 The following scripts are using the `weechat_dir` info and must be changed if
 the desired directory is not the `data` one:
 
-Script              | Directory | Update needed
-------------------- | --------- | -------------
-autoconf.py         | ?         | ?
-axolotl.py          | ?         | ?
-beinc.py            | ?         | ?
-buddylist.pl        | ?         | ?
-chanop.py           | ?         | ?
-chanstat.py         | ?         | ?
-colorize\_lines.pl  | ?         | ?
-confversion.py      | ?         | ?
-country.py          | ?         | ?
-cron.py             | ?         | ?
-crypt.py            | ?         | ?
-grep.py             | ?         | ?
-growl.py            | ?         | ?
-histman.py          | ?         | ?
-hl2file.py          | ?         | ?
-hotlist2extern.pl   | ?         | ?
-jnotify.pl          | ?         | ?
-luanma.pl           | ?         | ?
-otr.py              | ?         | ?
-pop3\_mail.pl       | ?         | ?
-purgelogs.py        | ?         | ?
-query\_blocker.pl   | ?         | ?
-queryman.py         | ?         | ?
-queue.py            | ?         | ?
-rslap.pl            | ?         | ?
-rssagg.pl           | ?         | ?
-slack.py            | ?         | ?
-stalker.pl          | ?         | ?
-substitution.rb     | ?         | ?
-triggerreply.py     | ?         | ?
-update\_notifier.py | ?         | ?
-url\_olde.py        | ?         | ?
-urlserver.py        | ?         | ?
-weeget.py           | ?         | ?
-weetext.py          | ?         | ?
-zncplayback.py      | ?         | ?
+Script              | Directory      | Update needed
+------------------- | -------------- | -------------
+autoconf.py         | config         | **Yes**
+axolotl.py          | data           | No
+beinc.py            | config         | **Yes**
+buddylist.pl        | config         | **Yes**
+chanop.py           | data           | No
+chanstat.py         | data           | No
+colorize\_lines.pl  | config         | **Yes**
+confversion.py      | config         | **Yes**
+country.py          | cache          | **Yes**
+cron.py             | config         | **Yes**
+crypt.py            | data           | No
+grep.py             | data           | No
+growl.py            | data           | No
+histman.py          | data           | No
+hl2file.py          | data           | No
+hotlist2extern.pl   | data           | No
+jnotify.pl          | config         | **Yes**
+luanma.pl           | config         | **Yes**
+otr.py              | data           | No
+pop3\_mail.pl       | config         | **Yes**
+purgelogs.py        | data           | No
+query\_blocker.pl   | config         | **Yes**
+queryman.py         | data           | No
+queue.py            | data           | No
+rslap.pl            | data           | No
+rssagg.pl           | config + cache | **Yes**
+slack.py            | data           | No
+stalker.pl          | data           | No
+substitution.rb     | config         | **Yes**
+triggerreply.py     | data           | No
+update\_notifier.py | cache          | **Yes**
+url\_olde.py        | data           | No
+urlserver.py        | data           | No
+weetext.py          | data           | No
+zncplayback.py      | data           | No
+
+Note: all these scripts should be updated anyway, even if using the data
+directory, to replace info `weechat_dir` with the new one (with a condition on
+the WeeChat version).
 
 ### Options using WeeChat home
 
