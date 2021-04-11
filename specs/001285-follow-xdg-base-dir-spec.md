@@ -126,7 +126,7 @@ an empty string instead of `$HOME/.weechat`:
 The following environment variables are used by WeeChat, there are no changes:
 
 - `WEECHAT_HOME`: force a WeeChat home
-- `WEECHAT_ExTRA_LIBDIR`: directory with plugins
+- `WEECHAT_EXTRA_LIBDIR`: directory with plugins
 
 ### Command line options
 
