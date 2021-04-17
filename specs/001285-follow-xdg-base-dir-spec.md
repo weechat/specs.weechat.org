@@ -154,19 +154,26 @@ to the same directory:
 - `-t` / `--temp-dir`: forces WeeChat to use a temporary home directory, deleted
   upon exit.
 
-### Functions using WeeChat home
+### Impacted functions
+
+#### string_eval_expression
+
+The 4 directories are replaced by default in evaluation of all strings:
+
+- `${weechat_config_dir}`: config directory
+- `${weechat_data_dir}`: data directory
+- `${weechat_cache_dir}`: cache directory
+- `${weechat_runtime_dir}`: runtime directory.
+
+Note: if such variable name is also given in the hashtable `pointers` or `extra_vars`,
+this variable is used in priority (the WeeChat directory is not used).
 
 #### string_eval_path_home
 
 This function replaces, among others, `%h` by the WeeChat home. This `%h`
 becomes deprecated and should not be used any more because its name is ambigous.
 
-Instead, four new variables are available in the evaluation of path:
-
-- `${config}`: config directory
-- `${data}`: data directory
-- `${cache}`: cache directory
-- `${runtime}`: runtime directory.
+Instead, the 4 new variables added in `string_eval_expression` must be used.
 
 For compatibility, if the `%h` is still used (for example in the value of an option),
 the directory can be forced with the hashtable `options`, using a key
@@ -191,13 +198,12 @@ slack.py          | data      | No
 This function creates a directory in the WeeChat home.
 By default, the directory is now created in the `data` directory.
 
-Support of other directories is supported in the `directory` argument, using
-one of these prefixes:
+Support of other directories is supported in the `directory` argument:
 
-- `${config}`: config directory
-- `${data}`: data directory
-- `${cache}`: cache directory
-- `${runtime}`: runtime directory.
+- `${weechat_config_dir}`: config directory
+- `${weechat_data_dir}`: data directory
+- `${weechat_cache_dir}`: cache directory
+- `${weechat_runtime_dir}`: runtime directory.
 
 Note: the syntax looks similar to an evaluated expression, but the path is
 **NOT** evaluated.
@@ -208,10 +214,10 @@ Examples:
 
 ```C
 weechat_mkdir_home ("test", 0755);  /* data directory by default */
-weechat_mkdir_home ("${config}/test", 0755);
-weechat_mkdir_home ("${data}/test", 0755);
-weechat_mkdir_home ("${cache}/test", 0755);
-weechat_mkdir_home ("${runtime}/test", 0755);
+weechat_mkdir_home ("${weechat_config_dir}/test", 0755);
+weechat_mkdir_home ("${weechat_data_dir}/test", 0755);
+weechat_mkdir_home ("${weechat_cache_dir}/test", 0755);
+weechat_mkdir_home ("${weechat_runtime_dir}/test", 0755);
 ```
 
 The following scripts are calling this function and must be changed if the
@@ -298,21 +304,21 @@ The following options are referencing WeeChat home with `%h`:
 - when using/evaluating the option value, any remaining `%h` is forced to the
   new directory.
 
-Option                           | Old default value                    | New default value         | Forced directory
--------------------------------- | ------------------------------------ | ------------------------- | ----------------
-fifo.file.path                   | `%h/weechat_fifo`                    | `${runtime}/weechat_fifo` | runtime
-irc.server\_default.sasl\_key    | (empty string)                       | (unchanged)               | config
-irc.server.\*.sasl\_key          | (null)                               | (unchanged)               | config
-irc.server\_default.ssl\_cert    | (empty string)                       | (unchanged)               | config
-irc.server.\*.ssl\_cert          | (null)                               | (unchanged)               | config
-logger.file.path                 | `%h/logs/`                           | `${data}/logs/`           | data
-relay.network.ssl\_cert\_key     | `%h/ssl/relay.pem`                   | `${config}/ssl/relay.pem` | config
-relay.port.\*                    | (option not defined)                 | (unchanged)               | runtime
-script.scripts.path              | `%h/script`                          | `${cache}/script`         | cache
-weechat.network.gnutls\_ca\_file | `/etc/ssl/certs/ca-certificates.crt` | (unchanged)               | config
-weechat.plugin.path              | `%h/plugins`                         | `${data}/plugins`         | data
-xfer.file.download\_path         | `%h/xfer`                            | `${data}/xfer`            | data
-xfer.file.upload\_path           | `~`                                  | (unchanged)               | data
+Option                           | Old default value                    | New default value                     | Forced directory
+-------------------------------- | ------------------------------------ | ------------------------------------- | ----------------
+fifo.file.path                   | `%h/weechat_fifo`                    | `${weechat_runtime_dir}/weechat_fifo` | runtime
+irc.server\_default.sasl\_key    | (empty string)                       | (unchanged)                           | config
+irc.server.\*.sasl\_key          | (null)                               | (unchanged)                           | config
+irc.server\_default.ssl\_cert    | (empty string)                       | (unchanged)                           | config
+irc.server.\*.ssl\_cert          | (null)                               | (unchanged)                           | config
+logger.file.path                 | `%h/logs/`                           | `${weechat_data_dir}/logs/`           | data
+relay.network.ssl\_cert\_key     | `%h/ssl/relay.pem`                   | `${weechat_config_dir}/ssl/relay.pem` | config
+relay.port.\*                    | (option not defined)                 | (unchanged)                           | runtime
+script.scripts.path              | `%h/script`                          | `${weechat_cache_dir}/script`         | cache
+weechat.network.gnutls\_ca\_file | `/etc/ssl/certs/ca-certificates.crt` | (unchanged)                           | config
+weechat.plugin.path              | `%h/plugins`                         | `${weechat_data_dir}/plugins`         | data
+xfer.file.download\_path         | `%h/xfer`                            | `${weechat_data_dir}/xfer`            | data
+xfer.file.upload\_path           | `~`                                  | (unchanged)                           | data
 
 The following scripts are using one of these options and must be changed if
 the `%h` is replaced by a hard coded directory or if function `string_eval_path_home`
