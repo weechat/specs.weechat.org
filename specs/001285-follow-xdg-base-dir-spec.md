@@ -65,17 +65,21 @@ The WeeChat home, internal variable `weechat_home` must be split into 4 director
 - runtime: `$XDG_RUNTIME_DIR/weechat`, defaulting to the cache directory
   if `$XDG_RUNTIME_DIR` is not defined or empty.
 
-WeeChat stores the following data in each directory:
+The following data is stored by WeeChat or the user in each directory:
 
 - config:
   - configuration files: `*.conf`
+  - IRC: ECC private keys for SASL mechanism "ecdsa-nist256p-challenge"
+  - IRC: SSL certificate files used to automatically identify with a nick
+  - relay: SSL certificates and private keys (for serving clients with SSL)
+  - certificate authorities
   - scripts configuration (depends on scripts)
 - data:
   - WeeChat log file (and crash log): `weechat*.log`
   - WeeChat upgrade files: `*.upgrade`
   - local plugins: `plugins/*`
   - logs files written by logger plugin: `logs/*`
-  - Xfer files received: `xfer/*`
+  - xfer files received: `xfer/*`
   - scripts installed: `python/*`, `perl/*`, etc.
   - scripts data (depends on scripts)
 - cache:
@@ -84,6 +88,7 @@ WeeChat stores the following data in each directory:
   - scripts cache (depends on scripts)
 - runtime:
   - FIFO pipe: `weechat_fifo`
+  - relay UNIX sockets
   - scripts runtime (depends on scripts).
 
 For compatibility, all functions using WeeChat home are now using `data`
