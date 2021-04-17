@@ -26,7 +26,11 @@ Purpose of this specification is to describe how to "smoothly" follow the
 XDG specifications, without breaking changes for the existing WeeChat installations.
 
 The main goal is to separate the different type of data in 4 directories:
-config, data, cache, runtime.
+
+- config directory
+- data directory
+- cache directory
+- runtime directory.
 
 This way the different files are properly saved in appropriate directories
 and there's no more `.weechat` directory in the user's home directory.
@@ -50,11 +54,14 @@ mind, to make it easier to happen soon.
 Variables `$XDG_CONFIG_DIRS` and `$XDG_DATA_DIRS` (as defined in the
 XDG Base Directory Specification) are not yet used by this first implementation.
 
+These variables may be used later, when WeeChat will be able to read configuration
+and load scripts from system directories.
+
 ## Implementation
 
 ### WeeChat home
 
-The WeeChat home, internal variable `weechat_home` must be split into 4 directories:
+The WeeChat home (internal variable `weechat_home`) must be split into 4 directories:
 
 - config: `$XDG_CONFIG_HOME/weechat`, defaulting to `$HOME/.config/weechat`
   if `$XDG_CONFIG_HOME` is not defined or empty
@@ -92,7 +99,7 @@ The following data is stored by WeeChat or the user in each directory:
   - scripts runtime (depends on scripts).
 
 For compatibility, all functions using WeeChat home are now using `data`
-directory, unless they explicitly mention another directory.
+directory by default, unless the caller explicitly mention another directory.
 
 ### Determining WeeChat directories
 
@@ -101,16 +108,22 @@ with the following step:
 
 1. If a command-line argument is given ('`-d`, `--dir`, `-t` or `--temp-dir`),
    use it as WeeChat home (for the 4 directories).
-1. If the environment variable `WEECHAT_HOME` is defined,
+2. If the environment variable `WEECHAT_HOME` is defined,
    use it as WeeChat home (for the 4 directories).
-1. If the compilation option with WeeChat home is set,
+3. If the compilation option with WeeChat home is set,
    use it as WeeChat home (for the 4 directories).
-1. If `weechat.conf` exists in XDG `config` directory,
+4. If `weechat.conf` exists in XDG `config` directory,
    use XDG directories.
-1. If `weechat.conf` exists in WeeChat home (`$HOME/.weechat` by default),
+5. If `weechat.conf` exists in WeeChat home (`$HOME/.weechat` by default),
    use it as WeeChat home (for the 4 directories).
-1. By default, if no config is found anywhere,
+6. By default, if no config is found anywhere,
    use XDG directories.
+
+In steps 4 and 6, XDG directories are used, so the 4 directories are different.\
+In the other steps, the same directory is used to store everything.
+
+When no home is forced and WeeChat is executed for the first time, the XDG
+directories are used by default (step 6).
 
 Once the directories have been determined, as usual on startup, the directories
 are created if not existing, and default configuration files are created if
@@ -131,7 +144,7 @@ an empty string instead of `$HOME/.weechat`:
 The following environment variables are used by WeeChat, there are no changes:
 
 - `WEECHAT_HOME`: force a WeeChat home
-- `WEECHAT_EXTRA_LIBDIR`: directory with plugins
+- `WEECHAT_EXTRA_LIBDIR`: directory with plugins.
 
 ### Command line options
 
@@ -141,7 +154,7 @@ to the same directory:
 
 - `-d` / `--dir`: forces WeeChat home
 - `-t` / `--temp-dir`: forces WeeChat to use a temporary home directory, deleted
-  upon exit
+  upon exit.
 
 ### Functions using WeeChat home
 
@@ -220,10 +233,10 @@ It is marked as `deprecated` in the API documentation and must not be used any m
 
 New info are added:
 
-- `weechat_config_dir`: the config directory
-- `weechat_data_dir`: the data directory
-- `weechat_cache_dir`: the cache directory
-- `weechat_runtime_dir`: the runtime directory
+- `weechat_config_dir`: config directory
+- `weechat_data_dir`: data directory
+- `weechat_cache_dir`: cache directory
+- `weechat_runtime_dir`: runtime directory.
 
 They are available in evaluation of expressions, for example:
 
