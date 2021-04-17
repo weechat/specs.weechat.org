@@ -276,17 +276,36 @@ the WeeChat version).
 
 ### Options using WeeChat home
 
-The following options are referencing WeeChat home with `%h`, they are updated
-to use the new directory:
+The following options are referencing WeeChat home with `%h`:
 
-Option                       | Default value      | Directory
----------------------------- | ------------------ | ---------
-fifo.file.path               | `%h/weechat_fifo`  | runtime
-logger.file.path             | `%h/logs/`         | data
-relay.network.ssl\_cert\_key | `%h/ssl/relay.pem` | config
-script.scripts.path          | `%h/script`        | cache
-weechat.plugin.path          | `%h/plugins`       | data
-xfer.file.download\_path     | `%h/xfer`          | data
+- if the default value uses `%h`, it is changed to use the new directory
+- when using/evaluating the option value, any remaining `%h` is forced to the
+  new directory.
+
+Option                           | Old default value                    | New default value         | Forced directory
+-------------------------------- | ------------------------------------ | ------------------------- | ----------------
+fifo.file.path                   | `%h/weechat_fifo`                    | `${runtime}/weechat_fifo` | runtime
+irc.server\_default.sasl\_key    | (empty string)                       | (unchanged)               | config
+irc.server.\*.sasl\_key          | (null)                               | (unchanged)               | config
+irc.server\_default.ssl\_cert    | (empty string)                       | (unchanged)               | config
+irc.server.\*.ssl\_cert          | (null)                               | (unchanged)               | config
+logger.file.path                 | `%h/logs/`                           | `${data}/logs/`           | data
+relay.network.ssl\_cert\_key     | `%h/ssl/relay.pem`                   | `${config}/ssl/relay.pem` | config
+relay.port.\*                    | (option not defined)                 | (unchanged)               | runtime
+script.scripts.path              | `%h/script`                          | `${cache}/script`         | cache
+weechat.network.gnutls\_ca\_file | `/etc/ssl/certs/ca-certificates.crt` | (unchanged)               | config
+weechat.plugin.path              | `%h/plugins`                         | `${data}/plugins`         | data
+xfer.file.download\_path         | `%h/xfer`                            | `${data}/xfer`            | data
+xfer.file.upload\_path           | `~`                                  | (unchanged)               | data
+
+The following scripts are using one of these options and must be changed if
+the `%h` is replaced by a hard coded directory or if function `string_eval_path_home`
+is called on them:
+
+Script         | Option used      | Update needed
+-------------- | ---------------- | -------------
+grep.py        | logger.file.path | **Yes**
+purgelogs.py   | logger.file.path | **Yes**
 
 ## References
 
