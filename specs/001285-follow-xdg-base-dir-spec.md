@@ -351,6 +351,7 @@ The changes must be implemented in this order:
 
 ## References
 
+- Source of this specification: [https://github.com/weechat/specs.weechat.org/blob/main/specs/001285-follow-xdg-base-dir-spec.md](https://github.com/weechat/specs.weechat.org/blob/main/specs/001285-follow-xdg-base-dir-spec.md)
 - WeeChat issue on GitHub: [https://github.com/weechat/weechat/issues/1285](https://github.com/weechat/weechat/issues/1285)
 - WeeChat task on Savannah (obsolete): [https://savannah.nongnu.org/task/?10934](https://savannah.nongnu.org/task/?10934)
 - Latest XDG Base Directory Specification: [https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
