@@ -325,6 +325,25 @@ Script         | Option used      | Update needed
 grep.py        | logger.file.path | **Yes**
 purgelogs.py   | logger.file.path | **Yes**
 
+## Planning
+
+The changes must be implemented in this order:
+
+1. evaluate option `weechat.network.gnutls_ca_file`
+2. evaluate option `weechat.plugin.path`
+3. evaluate options `irc.server_default.sasl_key` and `irc.server.*.sasl_key`
+4. evaluate options `irc.server_default.ssl_cert` and `irc.server.*.ssl_cert`
+5. evaluate option `relay.network.ssl_cert_key`
+6. split home into 4 directories:
+   1. replace variable `weechat_home` with 4 variables
+   2. add 4 info with new directories
+   3. update function `string_eval_path_home`
+   4. update function `mkdir_home`
+   5. remove use of info `weechat_dir` in C plugins
+   6. force appropriate directory in calls to `string_eval_path_home`
+   7. remove use of `%h` in options: change default values, update help
+7. update all scripts
+
 ## References
 
 - WeeChat issue on GitHub: [https://github.com/weechat/weechat/issues/1285](https://github.com/weechat/weechat/issues/1285)
