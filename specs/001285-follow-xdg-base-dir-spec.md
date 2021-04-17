@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2021-03-28
-- Last updated: 2021-04-11
+- Last updated: 2021-04-17
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
 - Status: draft
 - Target WeeChat version: to define
@@ -142,22 +142,24 @@ to the same directory:
 
 #### string_eval_path_home
 
-This function replaces, among others, `%h` by the WeeChat home.
-Now that we have 4 different directories, the `%h` may be replaced by one of
-these directories:
+This function replaces, among others, `%h` by the WeeChat home. This `%h`
+becomes deprecated and should not be used any more because its name is ambigous.
 
-- config directory
-- data directory
-- cache directory
-- runtime directory
+Instead, four new variables are available in the evaluation of path:
 
-The hashtable options is used to specify another directory if needed, with a key
-`directory` and one of these values:
+- `${config}`: config directory
+- `${data}`: data directory
+- `${cache}`: cache directory
+- `${runtime}`: runtime directory.
+
+For compatibility, if the `%h` is still used (for example in the value of an option),
+the directory can be forced with the hashtable `options`, using a key
+`directory` which can have one of these values:
 
 - `config`
 - `data` (default if the key is not present)
 - `cache`
-- `runtime`
+- `runtime`.
 
 The following scripts are calling this function and must be changed if the
 desired directory is not the `data` one:
