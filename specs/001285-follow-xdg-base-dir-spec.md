@@ -4,8 +4,8 @@
 - Created on: 2021-03-28
 - Last updated: 2021-04-17
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
-- Status: draft
-- Target WeeChat version: to define
+- Status: development in progress
+- Target WeeChat version: 3.2
 
 ## Context
 
