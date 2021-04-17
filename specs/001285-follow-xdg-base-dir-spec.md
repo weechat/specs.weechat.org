@@ -176,14 +176,26 @@ This function creates a directory in the WeeChat home.
 By default, the directory is now created in the `data` directory.
 
 Support of other directories is supported in the `directory` argument, using
-a prefix between curly brackets:
+one of these prefixes:
+
+- `${config}`: config directory
+- `${data}`: data directory
+- `${cache}`: cache directory
+- `${runtime}`: runtime directory.
+
+Note: the syntax looks similar to an evaluated expression, but the path is
+**NOT** evaluated.
+
+If no prefix is present, the `data` directory is used.
+
+Examples:
 
 ```C
 weechat_mkdir_home ("test", 0755);  /* data directory by default */
-weechat_mkdir_home ("{config}/test", 0755);
-weechat_mkdir_home ("{data}/test", 0755);
-weechat_mkdir_home ("{cache}/test", 0755);
-weechat_mkdir_home ("{runtime}/test", 0755);
+weechat_mkdir_home ("${config}/test", 0755);
+weechat_mkdir_home ("${data}/test", 0755);
+weechat_mkdir_home ("${cache}/test", 0755);
+weechat_mkdir_home ("${runtime}/test", 0755);
 ```
 
 The following scripts are calling this function and must be changed if the
