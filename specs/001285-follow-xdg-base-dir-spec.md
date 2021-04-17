@@ -63,14 +63,12 @@ and load scripts from system directories.
 
 The WeeChat home (internal variable `weechat_home`) must be split into 4 directories:
 
-- config: `$XDG_CONFIG_HOME/weechat`, defaulting to `$HOME/.config/weechat`
-  if `$XDG_CONFIG_HOME` is not defined or empty
-- data: `$XDG_DATA_HOME/weechat`, defaulting to `$HOME/.local/share/weechat`
-  if `$XDG_DATA_HOME` is not defined or empty
-- cache: `$XDG_CACHE_HOME/weechat`, defaulting to `$HOME/.cache/weechat`
-  if `$XDG_CACHE_HOME` is not defined or empty
-- runtime: `$XDG_RUNTIME_DIR/weechat`, defaulting to the cache directory
-  if `$XDG_RUNTIME_DIR` is not defined or empty.
+Directory | Default                    | Fallback
+--------- | -------------------------- | ------------------------------------------------------------------------
+config    | `$XDG_CONFIG_HOME/weechat` | `$HOME/.config/weechat` if `$XDG_CONFIG_HOME` is not defined or empty
+data      | `$XDG_DATA_HOME/weechat`   | `$HOME/.local/share/weechat` if `$XDG_DATA_HOME` is not defined or empty
+cache     | `$XDG_CACHE_HOME/weechat`  | `$HOME/.cache/weechat` if `$XDG_CACHE_HOME` is not defined or empty
+runtime   | `$XDG_RUNTIME_DIR/weechat` | same as cache directory if `$XDG_RUNTIME_DIR` is not defined or empty
 
 The following data is stored by WeeChat or the user in each directory:
 
