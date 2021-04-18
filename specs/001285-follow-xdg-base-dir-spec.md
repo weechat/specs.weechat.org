@@ -61,14 +61,17 @@ and load scripts from system directories.
 
 ### WeeChat home
 
-The WeeChat home (internal variable `weechat_home`) must be split into 4 directories:
+The WeeChat home (internal variable `weechat_home`) must be split into 4 variables:
 
-Directory | Default                    | Fallback
---------- | -------------------------- | ------------------------------------------------------------------------
-config    | `$XDG_CONFIG_HOME/weechat` | `$HOME/.config/weechat` if `$XDG_CONFIG_HOME` is not defined or empty
-data      | `$XDG_DATA_HOME/weechat`   | `$HOME/.local/share/weechat` if `$XDG_DATA_HOME` is not defined or empty
-cache     | `$XDG_CACHE_HOME/weechat`  | `$HOME/.cache/weechat` if `$XDG_CACHE_HOME` is not defined or empty
-runtime   | `$XDG_RUNTIME_DIR/weechat` | same as cache directory if `$XDG_RUNTIME_DIR` is not defined or empty
+Variable              | Default value              | Fallback value
+--------------------- | -------------------------- | ------------------------------------------------------------------------
+`weechat_config_dir`  | `$XDG_CONFIG_HOME/weechat` | `$HOME/.config/weechat` if `$XDG_CONFIG_HOME` is not defined or empty
+`weechat_data_dir`    | `$XDG_DATA_HOME/weechat`   | `$HOME/.local/share/weechat` if `$XDG_DATA_HOME` is not defined or empty
+`weechat_cache_dir`   | `$XDG_CACHE_HOME/weechat`  | `$HOME/.cache/weechat` if `$XDG_CACHE_HOME` is not defined or empty
+`weechat_runtime_dir` | `$XDG_RUNTIME_DIR/weechat` | same as cache directory if `$XDG_RUNTIME_DIR` is not defined or empty
+
+These directories can be forced by the user in different ways, see the next chapters
+for more information.
 
 The following data is stored by WeeChat or the user in each directory:
 
