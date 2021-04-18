@@ -155,13 +155,11 @@ with the next step:
    use it as WeeChat home (one or 4 directories).
 4. If `weechat.conf` exists in XDG `config` directory,
    use XDG directories.
-5. If `weechat.conf` exists in WeeChat home (`$HOME/.weechat` by default),
-   use it as WeeChat home (for the 4 directories).
+5. If `weechat.conf` exists in directory `$HOME/.weechat`,
+   use it as WeeChat home (for the 4 directories);
+   this is for compatibility with old releases not supporting XDG directories.
 6. By default, if no config is found anywhere,
    use XDG directories.
-
-In steps 4 and 6, XDG directories are used, so the 4 directories are different.\
-In the other steps, the same directory is used to store everything.
 
 When no home is forced and WeeChat is executed for the first time, the XDG
 directories are used by default (step 6).
