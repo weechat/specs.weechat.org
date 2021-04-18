@@ -16,7 +16,7 @@ and allows plugins/scripts to store their files as well.
 This directory is `$HOME/.weechat` by default and can be forced in 3 ways,
 by order or priority (the first one has higher priority):
 
-- at runtime, with two command line options: `-d`/`--dir` or `-t`/`--temp-dir`
+- at runtime, with two command line options: `-d` / `--dir` or `-t` / `--temp-dir`
 - at runtime, with environment variable `WEECHAT_HOME`
 - at compilation time, so that WeeChat uses another directory by default.
 
