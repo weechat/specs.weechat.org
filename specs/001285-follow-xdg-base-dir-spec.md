@@ -320,6 +320,140 @@ home.
 The 4 directories are now given in the `--dir` option (in this order: config,
 data, cache, runtime).
 
+#### completion_list_add_filename_cb
+
+There is a fallback on `weechat_home` which must be changed to `weechat_data_dir`.
+
+#### config_file_read_internal
+
+The directory `weechat_home` must be replaced by `weechat_config_dir`.
+
+#### config_file_write_internal
+
+The directory `weechat_home` must be replaced by `weechat_config_dir`.
+
+#### debug_sigsegv_cb
+
+The directory `weechat_home` must be replaced by `weechat_data_dir`.
+
+#### debug_directories
+
+The function must be updated to display the 4 different directories.
+
+The current output of command `/debug dirs` in WeeChat is:
+
+```
+Directories:
+  home: /home/user/.weechat
+        (default: ~/.weechat)
+  lib: /usr/lib/x86_64-linux-gnu/weechat
+  lib (extra): -
+  share: /usr/share/weechat
+  locale: /usr/share/locale
+```
+
+With XDG directories, the new output must be:
+
+```
+Directories:
+  home:
+    config: /home/user/.config/weechat
+    data: /home/user/.local/share/weechat
+    cache: /home/user/.cache/weechat
+    runtime: /run/user/1000/weechat
+  lib: /usr/lib/x86_64-linux-gnu/weechat
+  lib (extra): -
+  share: /usr/share/weechat
+  locale: /usr/share/locale
+```
+
+With a single forced home directory, for example `--dir ~/.weechat-dev`:
+
+```
+Directories:
+  home:
+    config: /home/user/.weechat-dev
+    data: /home/user/.weechat-dev
+    cache: /home/user/.weechat-dev
+    runtime: /home/user/.weechat-dev
+  lib: /usr/lib/x86_64-linux-gnu/weechat
+  lib (extra): -
+  share: /usr/share/weechat
+  locale: /usr/share/locale
+```
+
+With a temporary home directory, using `--temp-dir`:
+
+```
+Directories:
+  home:
+    config: /tmp/weechat_temp_2RWTXJ (TEMPORARY, deleted on exit)
+    data: /tmp/weechat_temp_2RWTXJ (TEMPORARY, deleted on exit)
+    cache: /tmp/weechat_temp_2RWTXJ (TEMPORARY, deleted on exit)
+    runtime: /tmp/weechat_temp_2RWTXJ (TEMPORARY, deleted on exit)
+  lib: /usr/lib/x86_64-linux-gnu/weechat
+  lib (extra): -
+  share: /usr/share/weechat
+  locale: /usr/share/locale
+```
+
+#### log_open
+
+The directory `weechat_home` must be replaced by `weechat_data_dir`.
+
+#### log_crash_rename
+
+The directory `weechat_home` must be replaced by `weechat_data_dir`.
+
+#### upgrade_file_new
+
+The directory `weechat_home` must be replaced by `weechat_data_dir`.
+
+#### upgrade_weechat_end
+
+The directory `weechat_home` must be replaced by `weechat_data_dir`.
+
+#### util_search_full_lib_name_ext
+
+The directory `weechat_home` must be replaced by `weechat_data_dir`.
+
+#### plugin_script_auto_load
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### plugin_script_search_path
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### plugin_script_action_install
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### plugin_script_action_autoload
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### weechat_python_load
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### script_completion_scripts_files_cb
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### script_repo_get_filename_loaded
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### script_repo_update_status
+
+The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### spell_warning_aspell_config
+
+The string `%h` must be replaced by `${weechat_config_dir}` in the call
+to function `weechat_string_eval_path_home`.
+
 ### Options using WeeChat home
 
 The following options are referencing WeeChat home with `%h`:
