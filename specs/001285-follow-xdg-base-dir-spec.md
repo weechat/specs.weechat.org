@@ -140,7 +140,7 @@ The two command line options are used to force directories:
 Note: forcing 4 different directories with `-d` / `--dir` is not recommended,
 it is used internally by the `/upgrade` command to be sure the new binary
 executed uses exactly the same directories
-(see [function command_upgrade](#command-upgrade)).
+(see impacts on [function command_upgrade](#command_upgrade)).
 
 ### Determining WeeChat directories
 
