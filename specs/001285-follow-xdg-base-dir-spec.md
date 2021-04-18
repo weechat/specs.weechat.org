@@ -171,7 +171,7 @@ this variable is used in priority (the WeeChat directory is not used).
 #### string_eval_path_home
 
 This function replaces, among others, `%h` by the WeeChat home. This `%h`
-becomes deprecated and should not be used any more because its name is ambigous.
+becomes deprecated and should not be used any more because its name is ambiguous.
 
 Instead, the 4 new variables added in `string_eval_expression` must be used.
 
