@@ -99,17 +99,57 @@ The following data is stored by WeeChat or the user in each directory:
 For compatibility, all functions using WeeChat home are now using `data`
 directory by default, unless the caller explicitly mention another directory.
 
+### Compilation options
+
+The WeeChat home can be forced at compilation time, now the default value is
+an empty string instead of `~/.weechat`:
+
+- CMake:
+  - `-DWEECHAT_HOME=xxx`
+- autotools:
+  - environment variable `WEECHAT_HOME`
+
+In addition, the value can now be either one directory (to use it for the 4
+directories) or 4 directories separated by colons, to force a separate value
+for each directory, in this order: config, data, cache, runtime.
+
+Note: forcing 4 different directories is not recommended, better let WeeChat
+automatically find them according to XDG environment variables
+(see [Determining WeeChat directories](#determining-weechat-directories)).
+
+### Environment variables
+
+The following environment variables are used by WeeChat:
+
+- `WEECHAT_HOME`: force WeeChat home; it can be either one or 4 directories
+  separated by colons (in this order: config, data, cache, runtime)
+- `WEECHAT_EXTRA_LIBDIR`: directory with plugins (no changes).
+
+### Command line options
+
+The two command line options are used to force directories:
+
+- `-d` / `--dir`: force WeeChat home; it can be either one or 4 directories
+  separated by colons (in this order: config, data, cache, runtime)
+- `-t` / `--temp-dir`: force WeeChat to use a temporary home directory, deleted
+  upon exit.
+
+Note: forcing 4 different directories with `-d` / `--dir` is not recommended,
+it is used internally by the `/upgrade` command to be sure the new binary
+executed uses exactly the same directories
+(see [function command_upgrade](#command-upgrade)).
+
 ### Determining WeeChat directories
 
 The new behavior is described below, for each step not verified, we continue
-with the following step:
+with the next step:
 
 1. If a command-line argument is given ('`-d`, `--dir`, `-t` or `--temp-dir`),
-   use it as WeeChat home (for the 4 directories).
+   use it as WeeChat home (one or 4 directories for `-d` / `--dir`).
 2. If the environment variable `WEECHAT_HOME` is defined,
-   use it as WeeChat home (for the 4 directories).
+   use it as WeeChat home (one or 4 directories).
 3. If the compilation option with WeeChat home is set,
-   use it as WeeChat home (for the 4 directories).
+   use it as WeeChat home (one or 4 directories).
 4. If `weechat.conf` exists in XDG `config` directory,
    use XDG directories.
 5. If `weechat.conf` exists in WeeChat home (`$HOME/.weechat` by default),
@@ -126,33 +166,6 @@ directories are used by default (step 6).
 Once the directories have been determined, as usual on startup, the directories
 are created if not existing, and default configuration files are created if
 they are not found.
-
-### Compilation options
-
-The WeeChat home can be forced at compilation time, now the default value is
-an empty string instead of `$HOME/.weechat`:
-
-- CMake:
-  - `-DWEECHAT_HOME=xxx`
-- autotools:
-  - environment variable `WEECHAT_HOME`
-
-### Environment variables
-
-The following environment variables are used by WeeChat, there are no changes:
-
-- `WEECHAT_HOME`: force a WeeChat home
-- `WEECHAT_EXTRA_LIBDIR`: directory with plugins.
-
-### Command line options
-
-The two command line options are kept unchanged, if they are used, the XDG
-directories are completely ignored and the 4 new directories variables point
-to the same directory:
-
-- `-d` / `--dir`: forces WeeChat home
-- `-t` / `--temp-dir`: forces WeeChat to use a temporary home directory, deleted
-  upon exit.
 
 ### Impacted functions
 
@@ -296,6 +309,14 @@ Note: all these scripts should be updated anyway, even if using the data
 directory, to replace info `weechat_dir` with the new one (with a condition on
 the WeeChat version).
 
+#### command_upgrade
+
+The `/upgrade` command uses `--dir` command line argument to force the WeeChat
+home.
+
+The 4 directories are now given in the `--dir` option (in this order: config,
+data, cache, runtime).
+
 ### Options using WeeChat home
 
 The following options are referencing WeeChat home with `%h`:
@@ -340,14 +361,14 @@ The changes must be implemented in this order:
 5. evaluate option `relay.network.ssl_cert_key`
 6. set default WeeChat home to empty string in CMake and autotools
 7. split home into 4 directories:
-   1. split variable `weechat_home` into 4 different variables
-   2. replace the 4 directories in `string_eval_expression`
-   3. add 4 info with new directories
-   4. update function `string_eval_path_home`
-   5. update function `mkdir_home`
-   6. remove use of info `weechat_dir` in C plugins
-   7. force appropriate directory in calls to `string_eval_path_home`
-   8. remove use of `%h` in options: change default values, update help
+   1. split variable `weechat_home` into 4 different variables:
+      - allow 4 directories in forced home (compilation, `-d` / `--dir`, environment variable)
+      - replace the 4 directories in `string_eval_expression`
+      - add 4 info with new directories
+   2. update all impacted functions
+   3. remove use of info `weechat_dir` in C plugins
+   4. force appropriate directory in calls to `string_eval_path_home`
+   5. remove use of `%h` in options: change default values, update help
 8. update all scripts
 
 ## References
