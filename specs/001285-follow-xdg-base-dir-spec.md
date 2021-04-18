@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2021-03-28
-- Last updated: 2021-04-17
+- Last updated: 2021-04-18
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
 - Status: development in progress
 - Target WeeChat version: 3.2
@@ -338,7 +338,8 @@ The changes must be implemented in this order:
 3. evaluate options `irc.server_default.sasl_key` and `irc.server.*.sasl_key`
 4. evaluate options `irc.server_default.ssl_cert` and `irc.server.*.ssl_cert`
 5. evaluate option `relay.network.ssl_cert_key`
-6. split home into 4 directories:
+6. set default WeeChat home to empty string in CMake and autotools
+7. split home into 4 directories:
    1. split variable `weechat_home` into 4 different variables
    2. replace the 4 directories in `string_eval_expression`
    3. add 4 info with new directories
@@ -347,7 +348,7 @@ The changes must be implemented in this order:
    6. remove use of info `weechat_dir` in C plugins
    7. force appropriate directory in calls to `string_eval_path_home`
    8. remove use of `%h` in options: change default values, update help
-7. update all scripts
+8. update all scripts
 
 ## References
 
