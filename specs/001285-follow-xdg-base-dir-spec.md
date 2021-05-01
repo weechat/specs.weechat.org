@@ -170,7 +170,7 @@ Once the directories have been determined, as usual on startup, the directories
 are created if not existing, and default configuration files are created if
 they are not found.
 
-### Impacted functions
+### Impacted functions in core
 
 #### string_eval_expression
 
@@ -417,9 +417,31 @@ The directory `weechat_home` must be replaced by `weechat_data_dir`.
 
 The directory `weechat_home` must be replaced by `weechat_data_dir`.
 
+#### completion_list_add_plugins_installed_cb
+
+The call to `string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `data`.
+
+#### network_set_gnutls_ca_file
+
+The call to `string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `config`.
+
+#### plugin_auto_load
+
+The call to `string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `data`.
+
+### Impacted functions in plugins
+
 #### plugin_script_auto_load
 
 The info `weechat_dir` must be replaced by `weechat_data_dir`.
+
+#### plugin_script_create_dirs
+
+The string `${weechat_data_dir}` must be added before the directory in the calls
+to function `weechat_mkdir_home`.
 
 #### plugin_script_search_path
 
@@ -433,26 +455,96 @@ The info `weechat_dir` must be replaced by `weechat_data_dir`.
 
 The info `weechat_dir` must be replaced by `weechat_data_dir`.
 
-#### weechat_python_load
+#### fifo: fifo_create
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `config`.
+
+#### irc: irc_sasl_get_key_content
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `config`.
+
+#### irc: irc_server_gnutls_callback
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `config`.
+
+#### logger: logger_get_file_path
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `data`.
+
+#### python: weechat_python_load
 
 The info `weechat_dir` must be replaced by `weechat_data_dir`.
 
-#### script_completion_scripts_files_cb
+#### relay: relay_network_set_ssl_cert_key
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `config`.
+
+#### relay: relay_server_new
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `runtime`.
+
+#### relay: relay_server_update_path
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `runtime`.
+
+#### script: script_action_schedule
+
+The string `${weechat_cache_dir}` must be added before the directory in the call
+to function `weechat_mkdir_home`.
+
+#### script: weechat_plugin_init
+
+The string `${weechat_cache_dir}` must be added before the directory in the call
+to function `weechat_mkdir_home`.
+
+#### script: script_completion_scripts_files_cb
 
 The info `weechat_dir` must be replaced by `weechat_data_dir`.
 
-#### script_repo_get_filename_loaded
+#### script: script_config_get_xml_filename
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `cache`.
+
+#### script: script_config_get_script_download_filename
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `cache`.
+
+#### script: script_repo_get_filename_loaded
 
 The info `weechat_dir` must be replaced by `weechat_data_dir`.
 
-#### script_repo_update_status
+#### script: script_repo_update_status
 
 The info `weechat_dir` must be replaced by `weechat_data_dir`.
 
-#### spell_warning_aspell_config
+#### spell: spell_warning_aspell_config
 
 The string `%h` must be replaced by `${weechat_config_dir}` in the call
 to function `weechat_string_eval_path_home`.
+
+#### xfer: xfer_file_find_filename
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `data`.
+
+#### xfer: xfer_create_directories
+
+The calls to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `data`.
+
+#### xfer: xfer_add_cb
+
+The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
+containing a key `directory` set to value `data`.
 
 ### Options using WeeChat home
 
