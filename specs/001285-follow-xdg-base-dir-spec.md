@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2021-03-28
-- Last updated: 2021-04-18
+- Last updated: 2021-05-01
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
 - Status: development in progress
 - Target WeeChat version: 3.2
@@ -147,7 +147,7 @@ executed uses exactly the same directories
 The new behavior is described below, for each step not verified, we continue
 with the next step:
 
-1. If a command-line argument is given ('`-d`, `--dir`, `-t` or `--temp-dir`),
+1. If a command-line argument is given (`-d` / `--dir` or `-t` / `--temp-dir`),
    use it as WeeChat home (one or 4 directories for `-d` / `--dir`).
 2. If the environment variable `WEECHAT_HOME` is defined,
    use it as WeeChat home (one or 4 directories).
