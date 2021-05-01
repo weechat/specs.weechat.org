@@ -147,22 +147,24 @@ executed uses exactly the same directories
 The new behavior is described below, for each step not verified, we continue
 with the next step:
 
-1. If a command-line argument is given (`-d` / `--dir` or `-t` / `--temp-dir`),
-   use it as WeeChat home (one or 4 directories for `-d` / `--dir`).
-2. If the environment variable `WEECHAT_HOME` is defined,
+1. If a command-line argument `-t` / `--temp-dir` is given,
+   create a temporary directory and use it as WeeChat home for the 4 directories.
+2. If a command-line argument `-d` / `--dir` is given,
    use it as WeeChat home (one or 4 directories).
-3. If the compilation option with WeeChat home is set,
+3. If the environment variable `WEECHAT_HOME` is defined,
    use it as WeeChat home (one or 4 directories).
-4. If `weechat.conf` exists in XDG `config` directory,
+4. If the compilation option with WeeChat home is set,
+   use it as WeeChat home (one or 4 directories).
+5. If `weechat.conf` exists in XDG `config` directory,
    use XDG directories.
-5. If `weechat.conf` exists in directory `$HOME/.weechat`,
+6. If `weechat.conf` exists in directory `$HOME/.weechat`,
    use it as WeeChat home (for the 4 directories);
    this is for compatibility with old releases not supporting XDG directories.
-6. By default, if no config is found anywhere,
+7. By default, if no config is found anywhere,
    use XDG directories.
 
 When no home is forced and WeeChat is executed for the first time, the XDG
-directories are used by default (step 6).
+directories are used by default (last step).
 
 Once the directories have been determined, as usual on startup, the directories
 are created if not existing, and default configuration files are created if
