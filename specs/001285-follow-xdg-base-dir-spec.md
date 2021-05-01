@@ -589,14 +589,13 @@ The changes must be implemented in this order:
 4. evaluate options `irc.server_default.ssl_cert` and `irc.server.*.ssl_cert`
 5. evaluate option `relay.network.ssl_cert_key`
 6. set default WeeChat home to empty string in CMake and autotools
-7. add the 4 new variables with directories: set them on startup, display them in `/debug dirs`, do not use them for now
-8. use the 4 directories, remove variable `weechat_home`:
-   1. allow 4 directories in forced home (compilation option, `-d` / `--dir`, environment variable `WEECHAT_HOME`)
-   2. replace the 4 directories in `string_eval_expression`
-   3. add 4 info with new directories
-   4. update all impacted functions
-   5. remove use of info `weechat_dir` in C plugins
-   6. force appropriate directory in calls to `string_eval_path_home`
+7. add the 4 new variables with directories, remove variable `weechat_home`:
+   1. find and set the 4 directories on startup
+   2. allow 4 directories in forced home (`-d` / `--dir`, environment variable `WEECHAT_HOME`, compilation option)
+   3. display the 4 directories in `/debug dirs`
+   4. replace the 4 directories in `string_eval_expression`
+   5. add 4 info with new directories
+   6. update all impacted functions
    7. remove use of `%h` in options: change default values, update help
 9. update all scripts
 
