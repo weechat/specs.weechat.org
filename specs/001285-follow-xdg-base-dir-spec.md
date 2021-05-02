@@ -596,7 +596,7 @@ The changes must be implemented in this order:
    4. replace the 4 directories in `string_eval_expression`
    5. add 4 info with new directories
    6. update all impacted functions
-   7. remove use of `%h` in options: change default values, update help
+8. remove use of `%h` in options: change default values, update help
 9. update all scripts
 
 ## References
