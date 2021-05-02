@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2021-03-28
-- Last updated: 2021-05-01
+- Last updated: 2021-05-02
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
 - Status: development in progress
 - Target WeeChat version: 3.2
@@ -458,7 +458,7 @@ The info `weechat_dir` must be replaced by `weechat_data_dir`.
 #### fifo: fifo_create
 
 The call to `weechat_string_eval_path_home` must be made with a hashtable `options`
-containing a key `directory` set to value `config`.
+containing a key `directory` set to value `runtime`.
 
 #### irc: irc_sasl_get_key_content
 
