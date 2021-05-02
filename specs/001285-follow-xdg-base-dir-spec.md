@@ -561,7 +561,7 @@ irc.server\_default.sasl\_key    | (empty string)                       | (uncha
 irc.server.\*.sasl\_key          | (null)                               | (unchanged)                           | config
 irc.server\_default.ssl\_cert    | (empty string)                       | (unchanged)                           | config
 irc.server.\*.ssl\_cert          | (null)                               | (unchanged)                           | config
-logger.file.path                 | `%h/logs/`                           | `${weechat_data_dir}/logs/`           | data
+logger.file.path                 | `%h/logs/`                           | `${weechat_data_dir}/logs`            | data
 relay.network.ssl\_cert\_key     | `%h/ssl/relay.pem`                   | `${weechat_config_dir}/ssl/relay.pem` | config
 relay.port.\*                    | (option not defined)                 | (unchanged)                           | runtime
 script.scripts.path              | `%h/script`                          | `${weechat_cache_dir}/script`         | cache
