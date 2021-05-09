@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2021-03-28
-- Last updated: 2021-05-02
+- Last updated: 2021-05-09
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
 - Status: development in progress
 - Target WeeChat version: 3.2
@@ -554,21 +554,25 @@ The following options are referencing WeeChat home with `%h`:
 - when using/evaluating the option value, any remaining `%h` is forced to the
   new directory.
 
-Option                           | Old default value                    | New default value                     | Forced directory
--------------------------------- | ------------------------------------ | ------------------------------------- | ----------------
-fifo.file.path                   | `%h/weechat_fifo`                    | `${weechat_runtime_dir}/weechat_fifo` | runtime
-irc.server\_default.sasl\_key    | (empty string)                       | (unchanged)                           | config
-irc.server.\*.sasl\_key          | (null)                               | (unchanged)                           | config
-irc.server\_default.ssl\_cert    | (empty string)                       | (unchanged)                           | config
-irc.server.\*.ssl\_cert          | (null)                               | (unchanged)                           | config
-logger.file.path                 | `%h/logs/`                           | `${weechat_data_dir}/logs`            | data
-relay.network.ssl\_cert\_key     | `%h/ssl/relay.pem`                   | `${weechat_config_dir}/ssl/relay.pem` | config
-relay.port.\*                    | (option not defined)                 | (unchanged)                           | runtime
-script.scripts.path              | `%h/script`                          | `${weechat_cache_dir}/script`         | cache
-weechat.network.gnutls\_ca\_file | `/etc/ssl/certs/ca-certificates.crt` | (unchanged)                           | config
-weechat.plugin.path              | `%h/plugins`                         | `${weechat_data_dir}/plugins`         | data
-xfer.file.download\_path         | `%h/xfer`                            | `${weechat_data_dir}/xfer`            | data
-xfer.file.upload\_path           | `~`                                  | (unchanged)                           | data
+Option                           | Old default value                    | New default value                                 | Forced directory
+-------------------------------- | ------------------------------------ | ------------------------------------------------- | ----------------
+fifo.file.path                   | `%h/weechat_fifo`                    | `${weechat_runtime_dir}/weechat_fifo_${info:pid}` | runtime
+irc.server\_default.sasl\_key    | (empty string)                       | (unchanged)                                       | config
+irc.server.\*.sasl\_key          | (null)                               | (unchanged)                                       | config
+irc.server\_default.ssl\_cert    | (empty string)                       | (unchanged)                                       | config
+irc.server.\*.ssl\_cert          | (null)                               | (unchanged)                                       | config
+logger.file.path                 | `%h/logs/`                           | `${weechat_data_dir}/logs`                        | data
+relay.network.ssl\_cert\_key     | `%h/ssl/relay.pem`                   | `${weechat_config_dir}/ssl/relay.pem`             | config
+relay.port.\*                    | (option not defined)                 | (unchanged)                                       | runtime
+script.scripts.path              | `%h/script`                          | `${weechat_cache_dir}/script`                     | cache
+weechat.network.gnutls\_ca\_file | `/etc/ssl/certs/ca-certificates.crt` | (unchanged)                                       | config
+weechat.plugin.path              | `%h/plugins`                         | `${weechat_data_dir}/plugins`                     | data
+xfer.file.download\_path         | `%h/xfer`                            | `${weechat_data_dir}/xfer`                        | data
+xfer.file.upload\_path           | `~`                                  | (unchanged)                                       | data
+
+Note: in addition to the directory, the FIFO file path is changed to include
+the WeeChat PID, because the runtime directory can be shared between several
+WeeChat instances running at the same time.
 
 The following scripts are using one of these options and must be changed if
 the `%h` is replaced by a hard coded directory or if function `string_eval_path_home`
@@ -597,7 +601,8 @@ The changes must be implemented in this order:
    5. add 4 info with new directories
    6. update all impacted functions
 8. remove use of `%h` in options: change default values, update help
-9. update all scripts
+9. add WeeChat PID in default value of option `fifo.file.path`
+10. update all scripts
 
 ## References
 
