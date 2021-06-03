@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2021-03-28
-- Last updated: 2021-05-11
+- Last updated: 2021-06-03
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)
 - Status: implemented
 - Target WeeChat version: 3.2
@@ -99,7 +99,7 @@ The following data is stored by WeeChat or the user in each directory:
   - relay UNIX sockets
   - scripts runtime (depends on scripts).
 
-For compatibility, all functions using WeeChat home are now using `data`
+For compatibility, all functions using WeeChat home are now using the `data`
 directory by default, unless the caller explicitly mention another directory.
 
 ### Compilation options
@@ -134,8 +134,8 @@ The two command line options are used to force directories:
 
 - `-d` / `--dir`: force WeeChat home; it can be either one or 4 directories
   separated by colons (in this order: config, data, cache, runtime)
-- `-t` / `--temp-dir`: force WeeChat to use a temporary home directory, deleted
-  upon exit.
+- `-t` / `--temp-dir`: force WeeChat to use a single temporary home directory,
+  deleted upon exit.
 
 Note: forcing 4 different directories with `-d` / `--dir` is not recommended,
 it is used internally by the `/upgrade` command to be sure the new binary
