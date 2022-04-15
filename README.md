@@ -7,3 +7,4 @@ in the WeeChat code.
 Specifications, by date, from older to newer:
 
 - [Follow XDG Base Directory Specifications](specs/001285-follow-xdg-base-dir-spec.md)
+- [Spacer item in bars](specs/001700-bar-spacer.md)
