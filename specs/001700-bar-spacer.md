@@ -219,7 +219,7 @@ The following algorithm is used to compute the size of spacers:
           1. Set size 0 for all `spacer` items.
      4. Else:
           1. Compute the size of a spacer, as integer ≥ 0:\
-             `spacer_size` = `bar_width` - `display_length_without_spacers`) / `num_spacers`
+             `spacer_size` = (`bar_width` - `display_length_without_spacers`) / `num_spacers`
           2. Compute display length with spacers:\
              `display_length_with_spacers` = `display_length_without_spacers` + (`num_spacers` * `spacer_size`)
           3. If `display_length_with_spacers` < `bar_width`:
