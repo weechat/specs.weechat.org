@@ -15,7 +15,7 @@ or add extra dynamic spaces between items.
 ## Goals
 
 Purpose of this specification is to introduce an alignment mechanism for bars
-using two new bar items called `spacer` and `spacer1`.
+using a new bar item called `spacer`.
 
 ## Out of scope
 
@@ -23,33 +23,21 @@ Buffers are out of scope, alignment is only for bars.
 
 ## Implementation
 
-### New bar items
+### New bar item
 
-Two new bar items are added:
-
-* `spacer` which has a min size of 0 (nothing displayed)
-* `spacer1` which has a min size of 1 (one space); it must be used inside items
-  to be sure at least one space is displayed; basically `spacer1` is just
-  a space followed by a `spacer` which has a min size of 0.
-
-The items `spacer` and `spacer1` can be used multiple times in the same bar.
-
+A new bar item called `spacer` is added.\
+It can be used multiple times in the same bar, and is displayed with 0 to N
+spaces on screen.\
 WeeChat uses the same size (or almost) for all spacers in the bar. The chosen
 size is the highest possible so that bar items uses full bar width
 (see [Algorithm](#algorithm)).
 
 When the bar is not large enough for all items (not counting the spacers),
-the size is set to 0 for `spacer` items and 1 for `spacer1` items
-(see [Wide items](#wide-items)).
-
-The `spacer` and `spacer1` items can be separated from other items by a comma
-or `+` (glued items), this doesn't matter: WeeChat never adds extra spaces
-around the spacer.
+spacers are not displayed (see [Wide items](#wide-items)).
 
 ### Restrictions
 
-Using bar items `spacer` and `spacer1` is allowed only in bars that meet **all**
-these conditions:
+Using bar item `spacer` is allowed only in bars that meet **all** these conditions:
 
 * type: `window` or `root`
 * position: `top` or `bottom`
@@ -132,15 +120,14 @@ Multiple consecutive spacers can be used, so that it uses more space, for exampl
 
 ### Combination
 
-As the bar items `spacer` and `spacer1` can be used multiple times in the same bar,
-you can combine left, center and right alignment.
+You can combine left, center and right alignment by using spacer at the beginning,
+between items and at the end.
 
-Example with 2 spacers, using `spacer1` to be sure at least one space is displayed,
-even when the bar width is too small (see [Wide items](#wide-items)):
+Example with 2 spacers:
 
 ````
  bar width = 62
- items = [time],spacer1,buffer_number+:+buffer_name,spacer1,[buffer_last_number]
+ items = [time],spacer,buffer_number+:+buffer_name,spacer,[buffer_last_number]
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │[12:34]                     3:#weechat                     [9]│
@@ -151,18 +138,18 @@ Example with 3 spacers:
 
 ````
  bar width = 62
- items = [time],spacer1,[buffer_plugin],spacer1,buffer_number+:+buffer_name,spacer1,[buffer_last_number]
+ items = [time],spacer,[buffer_plugin],spacer,buffer_number+:+buffer_name,spacer,[buffer_last_number]
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │[12:34]          [irc/libera]          3:#weechat          [9]│
 └──────────────────────────────────────────────────────────────┘
 ````
 
-Example with 5 spacers, mixing `spacer` (beginning/end) and `spacer1` (inside items):
+Example with 5 spacers:
 
 ````
  bar width = 62
- items = spacer,[time],spacer1,[buffer_plugin],spacer1,buffer_number+:+buffer_name,spacer1,[buffer_last_number],spacer
+ items = spacer,[time],spacer,[buffer_plugin],spacer,buffer_number+:+buffer_name,spacer,[buffer_last_number],spacer
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │      [12:34]      [irc/libera]      3:#weechat      [9]      │
@@ -172,33 +159,31 @@ Example with 5 spacers, mixing `spacer` (beginning/end) and `spacer1` (inside it
 ### Wide items
 
 If the displayed length of items without spacers is equal or greater than
-bar width, WeeChat sets size 0 for all `spacer` items and size 1 for all `spacer1`
-items.
+bar width, WeeChat doesn't display any spacer.
 
-Example with enough space in bar, all spacers are displayed:
+Example with enough space in bar, the 3 spacers are displayed:
 
 ```
  bar width = 62
- items = spacer,[time],spacer1,buffer_number+:+buffer_name,[buffer_last_number],spacer
+ items = spacer,[time],spacer,buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │             [12:34]              3:#weechat [9]              │
 └──────────────────────────────────────────────────────────────┘
 ```
 
-When displayed length is equal or greater than bar width, `spacer` items are not
-displayed and `spacer1` is displayed with one space (between time and buffer number):
+When displayed length is equal or greater than bar width, spacers are not displayed:
 
 ````
  bar width = 22
- items = spacer,[time],spacer1,buffer_number+:+buffer_name,[buffer_last_number],spacer
+ items = spacer,[time],spacer,buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
 ┌──────────────────────┐
 │[12:34] 3:#weechat [9]│
 └──────────────────────┘
 
  bar width = 18
- items = spacer,[time],spacer1,buffer_number+:+buffer_name,[buffer_last_number],spacer
+ items = spacer,[time],spacer,buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
 ┌──────────────────┐
 │[12:34] 3:#weech>>│
@@ -219,26 +204,23 @@ The variables are used in the following algorithm:
 This algorithm is used to compute the size of spacers:
 
 1. If the bar does not meet conditions to use `spacer` item (see [Restrictions](#restrictions)),
-   `spacer` items are ignored and `spacer1` are displayed with one space.
+   remove all spacers.
 2. Else:
      1. Count the number of spacers in the bar (`num_spacers`).
-     2. Compute the total displayed length of the items assuming `spacer` have
-        a size of 0 and `spacer` a size of 1 (`display_length_without_spacers`).
-     3. If `display_length_without_spacers` ≥ `bar_width`, then:
-          1. Set size 0 for all `spacer` items.
-          2. Set size 1 for all `spacer1` items.
+     2. Compute the total displayed length of the items, ignoring spacers
+        (`display_length_without_spacers`).
+     3. If `display_length_without_spacers` ≥ `bar_width`, then remove all spacers.
      4. Else:
           1. Compute the size of a spacer, as integer ≥ 0:\
              `spacer_size` = (`bar_width` - `display_length_without_spacers`) / `num_spacers`
           2. Compute display length with spacers:\
              `display_length_with_spacers` = `display_length_without_spacers` + (`num_spacers` * `spacer_size`)
-          3. If `display_length_with_spacers` < `bar_width`:
-               1. Loop on spacers until `display_length_with_spacers` ≥ `bar_width` and for each spacer:
-                    1. Add `1` to spacer size.
-                    2. Add `1` to `display_length_with_spacers`.
-     5. Replace each spacer by the computed number of spaces.
-
-Once the size of each spacer is computed, the bar can be displayed on screen.
+          3. If `display_length_with_spacers` < `bar_width`, loop on spacers
+             until `display_length_with_spacers` ≥ `bar_width` and for each spacer:
+               1. Add `1` to spacer size.
+               2. Add `1` to `display_length_with_spacers`.
+          4. Replace each spacer by the computed number of spaces.
+3. Display the bar.
 
 ## References
 
