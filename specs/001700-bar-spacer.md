@@ -198,6 +198,7 @@ The variables are used in the following algorithm:
 * `num_spacers`: number of `spacer` items in the bar (option `weechat.bar.xxx.items`)
 * `display_length_without_spacers`: the length (in chars) of items displayed
   on screen without the `spacer` items
+* `spacer_size`: the computed size of a spacer
 * `display_length_with_spacers`: the length (in chars) of items displayed
   on screen including the `spacer` items
 
