@@ -39,10 +39,10 @@ spacers are not displayed (see [Wide items](#wide-items)).
 
 Using bar item `spacer` is allowed only in bars that meet **all** these conditions:
 
-* type: `window` or `root`
-* position: `top` or `bottom`
-* filling: `horizontal`
-* size (height): 1
+- type: `window` or `root`
+- position: `top` or `bottom`
+- filling: `horizontal`
+- size (height): 1
 
 A bar size of `0` (automatic) or any value higher than 1 is not supported.\
 Consequently, the default bars `status` and `title` support alignment but **not**
@@ -55,26 +55,26 @@ of items is useless.
 
 Example without any spacer (recommended for left alignment):
 
-````
+```text
  bar width = 62
  items = [time],buffer_number+:+buffer_name,[buffer_last_number]
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │[12:34] 3:#weechat [9]                                        │
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 Example with a useless trailing spacer (**NOT RECOMMENDED** as this is slower
 to display, WeeChat has to compute the size of spacer, which is useless here):
 
-````
+```text
  bar width = 62
  items = [time],buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │[12:34] 3:#weechat [9]                                        │
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 ### Right alignment
 
@@ -82,14 +82,14 @@ Adding a `spacer` before items makes them right-aligned.
 
 Example:
 
-````
+```text
  bar width = 62
  items = spacer,[time],buffer_number+:+buffer_name,[buffer_last_number]
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │                                        [12:34] 3:#weechat [9]│
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 ### Centering
 
@@ -97,26 +97,26 @@ Adding a `spacer` before and after items makes them centered.
 
 Example:
 
-````
+```text
  bar width = 62
  items = spacer,[time],buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │                    [12:34] 3:#weechat [9]                    │
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 Multiple consecutive spacers can be used, so that it uses more space, for example
 3 spacers on the left, a single on the right:
 
-````
+```text
  bar width = 62
  items = spacer,spacer,spacer,[time],buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │                              [12:34] 3:#weechat [9]          │
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 ### Combination
 
@@ -125,36 +125,36 @@ between items and at the end.
 
 Example with 2 spacers:
 
-````
+```text
  bar width = 62
  items = [time],spacer,buffer_number+:+buffer_name,spacer,[buffer_last_number]
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │[12:34]                     3:#weechat                     [9]│
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 Example with 3 spacers:
 
-````
+```text
  bar width = 62
  items = [time],spacer,[buffer_plugin],spacer,buffer_number+:+buffer_name,spacer,[buffer_last_number]
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │[12:34]          [irc/libera]          3:#weechat          [9]│
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 Example with 5 spacers:
 
-````
+```text
  bar width = 62
  items = spacer,[time],spacer,[buffer_plugin],spacer,buffer_number+:+buffer_name,spacer,[buffer_last_number],spacer
  ▼
 ┌──────────────────────────────────────────────────────────────┐
 │      [12:34]      [irc/libera]      3:#weechat      [9]      │
 └──────────────────────────────────────────────────────────────┘
-````
+```
 
 ### Wide items
 
@@ -163,7 +163,7 @@ bar width, WeeChat doesn't display any spacer.
 
 Example with enough space in bar, the 3 spacers are displayed:
 
-```
+```text
  bar width = 62
  items = spacer,[time],spacer,buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
@@ -174,7 +174,7 @@ Example with enough space in bar, the 3 spacers are displayed:
 
 When displayed length is equal or greater than bar width, spacers are not displayed:
 
-````
+```text
  bar width = 22
  items = spacer,[time],spacer,buffer_number+:+buffer_name,[buffer_last_number],spacer
  ▼
@@ -188,18 +188,18 @@ When displayed length is equal or greater than bar width, spacers are not displa
 ┌──────────────────┐
 │[12:34] 3:#weech>>│
 └──────────────────┘
-````
+```
 
 ### Algorithm
 
 The variables are used in the following algorithm:
 
-* `bar_width`: width of bar (in chars)
-* `num_spacers`: number of `spacer` items in the bar (option `weechat.bar.xxx.items`)
-* `display_length_without_spacers`: the length (in chars) of items displayed
+- `bar_width`: width of bar (in chars)
+- `num_spacers`: number of `spacer` items in the bar (option `weechat.bar.xxx.items`)
+- `display_length_without_spacers`: the length (in chars) of items displayed
   on screen without the `spacer` items
-* `spacer_size`: the computed size of a spacer
-* `display_length_with_spacers`: the length (in chars) of items displayed
+- `spacer_size`: the computed size of a spacer
+- `display_length_with_spacers`: the length (in chars) of items displayed
   on screen including the `spacer` items
 
 This algorithm is used to compute the size of spacers:

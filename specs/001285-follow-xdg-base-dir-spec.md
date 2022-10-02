@@ -260,7 +260,7 @@ New info are added:
 
 They are available in evaluation of expressions, for example:
 
-```
+```text
 /eval -n ${info:weechat_config_dir}
 == [/home/user/.config/weechat]
 ```
@@ -342,7 +342,7 @@ The function must be updated to display the 4 different directories.
 
 The current output of command `/debug dirs` in WeeChat is:
 
-```
+```text
 Directories:
   home: /home/user/.weechat
         (default: ~/.weechat)
@@ -354,7 +354,7 @@ Directories:
 
 With XDG directories, the new output must be:
 
-```
+```text
 Directories:
   home:
     config: /home/user/.config/weechat
@@ -369,7 +369,7 @@ Directories:
 
 With a single forced home directory, for example `--dir ~/.weechat-dev`:
 
-```
+```text
 Directories:
   home:
     config: /home/user/.weechat-dev
@@ -384,7 +384,7 @@ Directories:
 
 With a temporary home directory, using `--temp-dir`:
 
-```
+```text
 Directories:
   home:
     config: /tmp/weechat_temp_2RWTXJ (TEMPORARY, deleted on exit)
