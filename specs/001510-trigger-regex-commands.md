@@ -32,7 +32,7 @@ Parameters:
 
 - `string`: the string
 - `chars1`: chars to translate
-- `chars2`: replacement chars (must have the same number of UTF-8 chars than `chars1`)
+- `chars2`: replacement chars (must contain the same number of UTF-8 chars than `chars1`)
 
 Returns:
 
@@ -124,8 +124,9 @@ Note: a separator like `/` is better for readability anyway:
 
 A new command `y` is added for chars translations.
 
-It takes two string: each char in the first string is replaced by the char
-in the second string (at the same place).
+It takes two strings: each char in the first string is replaced by the char
+in the second string (at the same place).\
+The two strings must contain the same number of UTF-8 chars.
 
 Examples:
 
