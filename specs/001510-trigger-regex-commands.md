@@ -79,6 +79,10 @@ The first char of the regex is used to know the command.
 If the first char is a letter (lower or upper case, in range a-z and A-Z),
 this is used as the command, and the next char is the regex separator.
 
+If the regex starts with a letter that is not a supported command (for now
+different from `s` and `y`), it is kept but ignored (a warning is displayed
+when a trigger with such regex is created).
+
 If the first char is not a letter, it is used as regex separator, and the
 command is regex replacement.
 
