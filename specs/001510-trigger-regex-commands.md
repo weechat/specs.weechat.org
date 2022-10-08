@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2022-10-02
-- Last updated: 2022-10-02
+- Last updated: 2022-10-08
 - Issue: [#1510](https://github.com/weechat/weechat/issues/1510)
 - Status: draft
 - Target WeeChat version: 3.8
@@ -140,9 +140,6 @@ y/abc/ABC/
 
 # rotate arrows clockwise
 y/←↑→↓/↑→↓←/
-
-# rotate a bar clockwise
-y___│/\─│/─\___/─\│/─\│___
 
 # convert all letters to lower case
 y/${chars:upper}/${chars:lower}/
