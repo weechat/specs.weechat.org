@@ -64,12 +64,23 @@ format is added to evaluated strings: `${chars:xxx}`, where `xxx` is one of:
 Examples:
 
 ```text
-${chars:digit} = 0123456789
-${chars:a-h} = abcdefgh
-${chars:J-V} = JKLMNOPQRSTUV
-${chars:é-é} = é
-${chars:←-↓} = ←↑→↓
-${chars:▁-▏} = ▁▂▃▄▅▆▇█▉▊▋▌▍▎▏
+>> ${chars:digit}
+== 0123456789
+
+>> ${chars:a-h}
+== abcdefgh
+
+${chars:J-V}
+== JKLMNOPQRSTUV
+
+${chars:é-é}
+== é
+
+${chars:←-↓}
+== ←↑→↓
+
+${chars:▁-▏}
+== ▁▂▃▄▅▆▇█▉▊▋▌▍▎▏
 ```
 
 ### New trigger regex format
