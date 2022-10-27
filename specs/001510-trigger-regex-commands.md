@@ -141,8 +141,8 @@ A new command `y` is added for chars translations.
 
 It takes two strings: each char in the first string is replaced by the char
 in the second string (at the same place).\
-The two strings must contain the same number of UTF-8 chars and are evaluated
-when the trigger runs.
+The two strings are evaluated when the trigger runs, and once evaluated, they
+must contain the same number of UTF-8 chars.
 
 Examples:
 
