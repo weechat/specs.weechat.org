@@ -2,9 +2,9 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2022-10-02
-- Last updated: 2022-10-08
+- Last updated: 2022-10-27
 - Issue: [#1510](https://github.com/weechat/weechat/issues/1510)
-- Status: draft
+- Status: in progress
 - Target WeeChat version: 3.8
 
 ## Context
