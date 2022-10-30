@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2022-10-02
-- Last updated: 2022-10-27
+- Last updated: 2022-10-30
 - Issue: [#1510](https://github.com/weechat/weechat/issues/1510)
 - Status: in progress
 - Target WeeChat version: 3.8
@@ -91,7 +91,11 @@ If the first char is a letter (lower or upper case, in range a-z and A-Z),
 this is used as the command, and the next char is the regex separator.
 
 If the regex starts with a letter that is not a supported command (for now
-different from `s` and `y`), it is kept but ignored (a warning is displayed
+different from `s` and `y`), an error is displayed and the trigger is not created.
+
+That means if you upgrade from an older version of WeeChat, be sure all your
+triggers are valid, otherwise they'll be automatically ignored and then removed.
+
 when a trigger with such regex is created).
 
 If the first char is not a letter, it is used as regex separator, and the
