@@ -225,5 +225,4 @@ This algorithm is used to compute the size of spacers:
 
 ## References
 
-- Source of this specification: [https://github.com/weechat/specs.weechat.org/blob/main/specs/001700-bar-spacer.md](https://github.com/weechat/specs.weechat.org/blob/main/specs/001700-bar-spacer.md)
-- WeeChat issue on GitHub: [https://github.com/weechat/weechat/issues/1700](https://github.com/weechat/weechat/issues/1700)
+- Source of this specification: [https://github.com/weechat/specs.weechat.org/blob/main/specs/2022-001-bar-spacer.md](https://github.com/weechat/specs.weechat.org/blob/main/specs/2022-001-bar-spacer.md)

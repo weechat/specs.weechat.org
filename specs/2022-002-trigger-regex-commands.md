@@ -164,5 +164,4 @@ y/${chars:a-z}${chars:A-Z}/${chars:b-z}a${chars:B-Z}A/
 
 ## References
 
-- Source of this specification: [https://github.com/weechat/specs.weechat.org/blob/main/specs/001510-trigger-regex-commands.md](https://github.com/weechat/specs.weechat.org/blob/main/specs/001510-trigger-regex-commands.md)
-- WeeChat issue on GitHub: [https://github.com/weechat/weechat/issues/1510](https://github.com/weechat/weechat/issues/1510)
+- Source of this specification: [https://github.com/weechat/specs.weechat.org/blob/main/specs/2022-002-trigger-regex-commands.md](https://github.com/weechat/specs.weechat.org/blob/main/specs/2022-002-trigger-regex-commands.md)
