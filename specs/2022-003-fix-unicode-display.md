@@ -88,7 +88,7 @@ Unicode debug (with option `weechat.look.tab_width` set to `4`):
   " " (U+001F, 31, 0x1F): 1 / 1, 1 / -1, 1, 1
 ```
 
-Current and bew behavior (chars other than spaces are displayed with reverse video attribute):
+Current and new behavior (chars other than spaces are displayed with reverse video attribute):
 
 Char                                | Old: chat     | Old: bars     | New: chat + bars
 ----------------------------------- | ------------- | ------------- | --------------------
@@ -142,7 +142,7 @@ Unicode debug:
 " " (U+007F, 127, 0x7F): 1 / 1, 1 / -1, 1, 1
 ```
 
-Current and bew behavior:
+Current and new behavior:
 
 Char                 | Old: chat | Old: bars | New: chat + bars
 -------------------- | --------- | --------- | ----------------
@@ -156,7 +156,7 @@ Unicode debug:
 " " (U+0092, 146, 0xC2 0x92): 2 / 1, 1 / -1, 1, 1
 ```
 
-Current and bew behavior:
+Current and new behavior:
 
 Char                          | Old: chat | Old: bars | New: chat + bars
 ----------------------------- | --------- | --------- | ----------------
@@ -174,7 +174,7 @@ This char is supposed to be displayed (`wcwidth` == 1), but as WeeChat
 does not use it to break lines, it must be treated as a special character
 and not displayed at all.
 
-Current and bew behavior:
+Current and new behavior:
 
 Char                      | Old: chat | Old: bars | New: chat + bars
 ------------------------- | --------- | --------- | ----------------
@@ -196,7 +196,7 @@ display issues, so it must be treated as a special character and not displayed a
 
 For more information, see issue [#1770](https://github.com/weechat/weechat/issues/1770).
 
-Current and bew behavior:
+Current and new behavior:
 
 Char                            | Old: chat | Old: bars | New: chat + bars
 ------------------------------- | --------- | --------- | ----------------
@@ -215,7 +215,7 @@ For example U+0085 (133, next line), unicode debug:
 " " (U+0085, 133, 0xC2 0x85): 2 / 1, 1 / -1, 1, 1
 ```
 
-Current and bew behavior:
+Current and new behavior:
 
 Char                    | Old: chat | Old: bars | New: chat + bars
 ----------------------- | --------- | --------- | ----------------
