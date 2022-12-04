@@ -6,7 +6,7 @@ in the WeeChat code.
 
 Specifications:
 
-Source link                                                                     | Description
+Link                                                                            | Description
 ------------------------------------------------------------------------------- | ----------------------------------------
 [2021-001-follow-xdg-base-dir-spec](specs/2021-001-follow-xdg-base-dir-spec.md) | Follow XDG Base Directory Specifications
 [2022-001-bar-spacer](specs/2022-001-bar-spacer.md)                             | Spacer item in bars
