@@ -139,6 +139,8 @@ Notes:
   - Bug in bars: a single letter "🅸" is displayed, but the number of spaces
     configured in option `weechat.look.tab_width` is used to compute item length
     on screen, resulting in display issues.
+  - Bug in bars: the reverse video is applied and disabled even if it was already
+    enabled, and then it is disabled after the char while it should not be.
 - U+0019 to U+001C:
   - WeeChat internal color codes and are never displayed as-is.
 
