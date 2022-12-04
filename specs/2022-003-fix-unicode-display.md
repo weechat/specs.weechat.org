@@ -343,8 +343,8 @@ needs one column to be displayed, because we display them as a space.
 
 The new behavior for non printable chars:
 
-- chars U+0001 (1) to U+001F (31), except U+0009 (Tabulation): return 1
 - char U+0009 (9, Tabulation): return value of option `weechat.look.tab_width`
+- chars U+0001 (1) to U+001F (31), except U+0009 (Tabulation): return 1
 - char U+00AD (173, soft hyphen): return -1 (consider it's non printable char, and it is not displayed)
 - char U+200B (8203, zero width space): return -1 (consider it's non printable char, and it is not displayed)
 - any other non printable char: return -1
