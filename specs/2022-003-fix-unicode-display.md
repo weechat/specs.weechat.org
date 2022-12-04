@@ -109,7 +109,7 @@ U+0005 (5,  enquiry)                | 1 space       | `E`           | `E`
 U+0006 (6,  acknowledge)            | 1 space       | `F`           | `F`
 U+0007 (7,  bell)                   | 1 space       | `G`           | `G`
 U+0008 (8,  backspace)              | 1 space       | `H`           | `H`
-U+0009 (9,  horizontal tab)         | N spaces      | `I`           | `I`
+U+0009 (9,  horizontal tab)         | N spaces      | `I`           | N spaces
 U+000A (10, NL line feed, new line) | New line      | Item sep.     | New line / item sep.
 U+000B (11, vertical tab)           | 1 space       | `K`           | `K`
 U+000C (12, NP form feed, new page) | 1 space       | `L`           | `L`
