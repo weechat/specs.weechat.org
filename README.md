@@ -15,5 +15,5 @@ Specifications, by identifier, from older to newer:
 
 Copyright © 2021-2022 [Sébastien Helleu](https://github.com/flashcode)
 
-WeeChat specifications are distributed under the CC BY-NC-SA 4.0 license.
+WeeChat specifications are distributed under the CC BY-NC-SA 4.0 license.\
 See the [LICENSE](LICENSE) file for more information.
