@@ -144,6 +144,48 @@ Notes:
 - U+0019 to U+001C:
   - WeeChat internal color codes and are never displayed as-is.
 
+Expected unicode debug after changes:
+
+```test
+/debug unicode ${chars:${\u0001}-${\u001F}}
+
+Unicode: "char" (hex codepoint, codepoint, UTF-8 sequence): strlen / utf8_strlen, gui_chat_strlen / wcwidth, utf8_char_size_screen, utf8_strlen_screen, gui_chat_strlen_screen:
+  "A" (U+0001, 1, 0x01): 1 / 1, 1 / -1, 1, 1, 1
+  "B" (U+0002, 2, 0x02): 1 / 1, 1 / -1, 1, 1, 1
+  "C" (U+0003, 3, 0x03): 1 / 1, 1 / -1, 1, 1, 1
+  "D" (U+0004, 4, 0x04): 1 / 1, 1 / -1, 1, 1, 1
+  "E" (U+0005, 5, 0x05): 1 / 1, 1 / -1, 1, 1, 1
+  "F" (U+0006, 6, 0x06): 1 / 1, 1 / -1, 1, 1, 1
+  "G" (U+0007, 7, 0x07): 1 / 1, 1 / -1, 1, 1, 1
+  "H" (U+0008, 8, 0x08): 1 / 1, 1 / -1, 1, 1, 1
+  "    " (U+0009, 9, 0x09): 1 / 1, 1 / -1, 4, 4, 4
+  "
+" (U+000A, 10, 0x0A): 1 / 1, 1 / -1, 1, 1, 1
+  "K" (U+000B, 11, 0x0B): 1 / 1, 1 / -1, 1, 1, 1
+  "L" (U+000C, 12, 0x0C): 1 / 1, 1 / -1, 1, 1, 1
+  "M" (U+000D, 13, 0x0D): 1 / 1, 1 / -1, 1, 1, 1
+  "N" (U+000E, 14, 0x0E): 1 / 1, 1 / -1, 1, 1, 1
+  "O" (U+000F, 15, 0x0F): 1 / 1, 1 / -1, 1, 1, 1
+  "P" (U+0010, 16, 0x10): 1 / 1, 1 / -1, 1, 1, 1
+  "Q" (U+0011, 17, 0x11): 1 / 1, 1 / -1, 1, 1, 1
+  "R" (U+0012, 18, 0x12): 1 / 1, 1 / -1, 1, 1, 1
+  "S" (U+0013, 19, 0x13): 1 / 1, 1 / -1, 1, 1, 1
+  "T" (U+0014, 20, 0x14): 1 / 1, 1 / -1, 1, 1, 1
+  "U" (U+0015, 21, 0x15): 1 / 1, 1 / -1, 1, 1, 1
+  "V" (U+0016, 22, 0x16): 1 / 1, 1 / -1, 1, 1, 1
+  "W" (U+0017, 23, 0x17): 1 / 1, 1 / -1, 1, 1, 1
+  "X" (U+0018, 24, 0x18): 1 / 1, 1 / -1, 1, 1, 1
+  "" (U+0019, 25, 0x19): 1 / 1, 0 / -1, 1, 1, 0
+  "" (U+001A, 26, 0x1A): 1 / 1, 0 / -1, 1, 1, 0
+  "" (U+001B, 27, 0x1B): 1 / 1, 0 / -1, 1, 1, 0
+  "" (U+001C, 28, 0x1C): 1 / 1, 0 / -1, 1, 1, 0
+  "]" (U+001D, 29, 0x1D): 1 / 1, 1 / -1, 1, 1, 1
+  "^" (U+001E, 30, 0x1E): 1 / 1, 1 / -1, 1, 1, 1
+  "_" (U+001F, 31, 0x1F): 1 / 1, 1 / -1, 1, 1, 1
+```
+
+Note: the letters and symbols between double quotes are displayed with reverse video attribute.
+
 ### Char U+007F (127, delete)
 
 Unicode debug:
@@ -161,6 +203,15 @@ Char                 | Old: chat | Old: bars | New: chat + bars
 -------------------- | --------- | --------- | ----------------
 U+007F (127, delete) | 1 space   | 1 space   | Not displayed
 
+Expected unicode debug after changes:
+
+```text
+/debug unicode ${\u007F}
+
+Unicode: "char" (hex codepoint, codepoint, UTF-8 sequence): strlen / utf8_strlen, gui_chat_strlen / wcwidth, utf8_char_size_screen, utf8_strlen_screen, gui_chat_strlen_screen:
+  "" (U+007F, 127, 0x7F): 1 / 1, 1 / -1, -1, 0, 0
+```
+
 ### Char U+0092 (146, private use two)
 
 Unicode debug:
@@ -177,6 +228,15 @@ Current and new behavior:
 Char                          | Old: chat | Old: bars | New: chat + bars
 ----------------------------- | --------- | --------- | ----------------
 U+0092 (146, private use two) | 1 space   | 1 space   | Not displayed
+
+Expected unicode debug after changes:
+
+```text
+/debug unicode ${\u0092}
+
+Unicode: "char" (hex codepoint, codepoint, UTF-8 sequence): strlen / utf8_strlen, gui_chat_strlen / wcwidth, utf8_char_size_screen, utf8_strlen_screen, gui_chat_strlen_screen:
+  "" (U+0092, 146, 0xC2 0x92): 2 / 1, 1 / -1, -1, 0, 0
+```
 
 ### Char U+00AD (173, soft hyphen)
 
@@ -201,6 +261,15 @@ U+00AD (173, soft hyphen) | Hyphen    | Hyphen    | Not displayed
 
 Note: the hyphen displayed can also be a space or not displayed, according
 to the terminal and font used.
+
+Expected unicode debug after changes:
+
+```text
+/debug unicode ${\u00AD}
+
+Unicode: "char" (hex codepoint, codepoint, UTF-8 sequence): strlen / utf8_strlen, gui_chat_strlen / wcwidth, utf8_char_size_screen, utf8_strlen_screen, gui_chat_strlen_screen:
+  "" (U+00AD, 173, 0xC2 0xAD): 2 / 1, 1 / 1, -1, 0, 0
+```
 
 ### Char U+200B (8203, zero width space)
 
@@ -227,6 +296,15 @@ U+200B (8203, zero width space) | 1 space   | 1 space   | Not displayed
 Note: the space may not be displayed or cause display issues, according
 to the terminal and font used.
 
+Expected unicode debug after changes:
+
+```text
+/debug unicode ${\u200B}
+
+Unicode: "char" (hex codepoint, codepoint, UTF-8 sequence): strlen / utf8_strlen, gui_chat_strlen / wcwidth, utf8_char_size_screen, utf8_strlen_screen, gui_chat_strlen_screen:
+  "" (U+200B, 8203, 0xE2 0x80 0x8B): 3 / 1, 1 / 0, -1, 0, 0
+```
+
 ### Other non printable chars
 
 All other non printable chars (when `wcwidth` == -1) must not be displayed.
@@ -245,6 +323,15 @@ Current and new behavior:
 Char                    | Old: chat | Old: bars | New: chat + bars
 ----------------------- | --------- | --------- | ----------------
 U+0085 (133, next line) | Space     | Space     | Not displayed
+
+Expected unicode debug after changes:
+
+```text
+/debug unicode ${\u0085}
+
+Unicode: "char" (hex codepoint, codepoint, UTF-8 sequence): strlen / utf8_strlen, gui_chat_strlen / wcwidth, utf8_char_size_screen, utf8_strlen_screen, gui_chat_strlen_screen:
+  "" (U+0085, 133, 0xC2 0x85): 2 / 1, 1 / -1, -1, 0, 0
+```
 
 ## Functions
 
