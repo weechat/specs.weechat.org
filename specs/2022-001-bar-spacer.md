@@ -1,6 +1,7 @@
 # Spacer item in bars
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
+- License: CC BY-NC-SA 4.0
 - Created on: 2022-04-09
 - Last updated: 2022-04-18
 - Issue: [#1700](https://github.com/weechat/weechat/issues/1700)

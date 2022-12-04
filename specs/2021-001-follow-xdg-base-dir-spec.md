@@ -1,6 +1,7 @@
 # Follow XDG Base Directory Specifications
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
+- License: CC BY-NC-SA 4.0
 - Created on: 2021-03-28
 - Last updated: 2021-06-03
 - Issue: [#1285](https://github.com/weechat/weechat/issues/1285)

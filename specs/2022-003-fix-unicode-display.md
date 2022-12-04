@@ -1,6 +1,7 @@
 # Fix unicode display
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
+- License: CC BY-NC-SA 4.0
 - Created on: 2022-11-27
 - Last updated: 2022-12-04
 - Issues:

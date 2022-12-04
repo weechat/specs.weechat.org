@@ -1,6 +1,7 @@
 # Trigger regex commands
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
+- License: CC BY-NC-SA 4.0
 - Created on: 2022-10-02
 - Last updated: 2022-11-06
 - Issue: [#1510](https://github.com/weechat/weechat/issues/1510)
