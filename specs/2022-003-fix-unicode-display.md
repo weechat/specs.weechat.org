@@ -2,7 +2,7 @@
 
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - Created on: 2022-11-27
-- Last updated: 2022-12-03
+- Last updated: 2022-12-04
 - Issues:
   - [#1659](https://github.com/weechat/weechat/issues/1659): soft-hyphens (U+00AD)
   - [#1669](https://github.com/weechat/weechat/issues/1669),
@@ -22,7 +22,7 @@ and fix display bugs:
 
 - display chars the same way in chat and bars
 - replace tabulations by spaces (everywhere)
-- display low chars with a letter in reverse video (everywhere)
+- display low chars with a letter or symbol with reverse video attribute (everywhere)
 - do not display soft hyphens
 - do not display zero width spaces
 - do not display non-printable chars
