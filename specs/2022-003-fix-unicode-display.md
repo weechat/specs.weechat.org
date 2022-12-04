@@ -377,6 +377,18 @@ Function is removed.
 This function skips WeeChat color codes, this is the only difference with
 the function `utf8_strlen_screen`.
 
+## Planning
+
+The changes must be implemented in this order:
+
+1. add output of `utf8_char_size_screen` in command `/debug unicode`
+2. fix and optimize function `utf8_strlen_screen`
+3. add API function `utf8_strncpy`
+4. expand tabulations as spaces in bars
+5. display chars < 32 with letter/symbol and reverse video attribute in chat
+6. do not display non printable chars (chat + bars), including specific ones
+   (soft hyphens, zero width spaces)
+
 ## References
 
 - Source of this specification: [https://github.com/weechat/specs.weechat.org/blob/main/specs/2022-003-fix-unicode-display.md](https://github.com/weechat/specs.weechat.org/blob/main/specs/2022-003-fix-unicode-display.md)
