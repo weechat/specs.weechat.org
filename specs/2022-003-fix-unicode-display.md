@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2022-11-27
-- Last updated: 2022-12-04
+- Last updated: 2022-12-10
 - Issues:
   - [#1659](https://github.com/weechat/weechat/issues/1659): soft-hyphens (U+00AD)
   - [#1669](https://github.com/weechat/weechat/issues/1669),
@@ -37,6 +37,7 @@ Some other bugs with unicode chars are not covered by this specification:
 - [#793](https://github.com/weechat/weechat/issues/793): wrong color with unicode chars on wrapped line
 - [#946](https://github.com/weechat/weechat/issues/946): ignore zero width spaces for buffer search
 - [#947](https://github.com/weechat/weechat/issues/947): escape zero width spaces in raw log
+- [#1857](https://github.com/weechat/weechat/issues/1857): unicode chars with zero-width joiner are displayed as separate chars
 
 ## Unicode display
 
