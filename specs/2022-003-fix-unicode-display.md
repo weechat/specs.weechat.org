@@ -8,7 +8,7 @@
   - [#1659](https://github.com/weechat/weechat/issues/1659): soft-hyphens (U+00AD)
   - [#1669](https://github.com/weechat/weechat/issues/1669),
     [#1770](https://github.com/weechat/weechat/issues/1770): zero width spaces (U+200B)
-- Status: draft
+- Status: in progress
 - Target WeeChat version: 3.8
 
 ## Context
