@@ -93,7 +93,7 @@ These identifiers are currently case insensitive and must become case sensitive:
 
 ### String comparison functions
 
-The following string comparison functions must be replaced in WeeChat core to be case sensitive:
+When a comparison needs to be case sensitive instead of case insensitive, the call to the function must be replaced with another, in WeeChat core:
 
 Function                     | Replacement
 ---------------------------- | ---------------------------------------
@@ -105,7 +105,7 @@ Function                     | Replacement
 `string_match`               | Same function with `case_sensitive` = 1
 `string_match_list`          | Same function with `case_sensitive` = 1
 
-The following string comparison functions must be replaced in WeeChat plugins to be case sensitive:
+When a comparison needs to be case sensitive instead of case insensitive, the call to the function must be replaced with another, in WeeChat plugins:
 
 Function                      | Replacement
 ----------------------------- | ---------------------------------------
