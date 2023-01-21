@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2022-12-21
-- Last updated: 2023-01-15
+- Last updated: 2023-01-21
 - Issue: [#1872](https://github.com/weechat/weechat/issues/1872): case sensitive identifiers
 - Status: draft
 - Target WeeChat version: 3.9
@@ -29,6 +29,7 @@ These identifiers must stay case insensitive:
 - nick completions
 - nicklist: groups and nicks
 - fset filters
+- weelist data (used to keep list sorted)
 - irc channel name
 - irc nicks
 - relay: IRC commands relayed
@@ -52,7 +53,6 @@ These identifiers are currently case insensitive and must become case sensitive:
 - completion items
 - completions (except nick completions)
 - infolist variable name
-- weelist data (used to keep list sorted)
 - weelist position (beginning/end/sort)
 - proxy options
 - proxy types
@@ -66,7 +66,8 @@ These identifiers are currently case insensitive and must become case sensitive:
 - bar conditions ("active", "inactive", "nicklist")
 - bar names
 - buffer types ("formatted", "free")
-- buffer notify (none, highlight, etc.)
+- buffer notify levels (none, highlight, etc.)
+- buffer match list
 - user buffer input (`q` to close)
 - function gui_color_get_custom (parameter `color_name`, example: `bold`, `reset`, etc.)
 - filter names
@@ -180,10 +181,10 @@ Partial completion is not converted to lower case any more, this fixes the issue
 
 That means when partial completion is enabled (`/set weechat.completion.partial_completion_other on`), the result is the following:
 
-Nicks in channel                 | Input text   | Old completion    | New completion
--------------------------------- | ------------ | ----------------- | ----------------
-`{Andrew}` and `{Andrew}_Mobile` | `{a` or `{A` | `{andrew}`        | `{Andrew}`
-`NickName` and `NickToto`        | `ni` or `Ni` | `nick`            | `Nick`
+Nicks in channel                 | Input text   | Old completion | New completion
+-------------------------------- | ------------ | -------------- | --------------
+`{Andrew}` and `{Andrew}_Mobile` | `{a` or `{A` | `{andrew}`     | `{Andrew}`
+`NickName` and `NickToto`        | `ni` or `Ni` | `nick`         | `Nick`
 
 ### Info, info_hashtable, infolist
 
@@ -268,6 +269,52 @@ The functions used to set object properties are updated to be case sensitive for
 - gui_window_get_integer
 - gui_window_get_pointer
 
+### Curl constants and options
+
+Curl constants and options are made case sensitive.
+
+Functions to update:
+
+- weeurl_search_constant
+- weeurl_search_option
+
+### Hashtables
+
+Hashtable types are made case sensitive.
+
+Functions to update:
+
+- hashtable_get_type
+
+### Weelist
+
+Weelist positions are made case sensitive.
+
+Functions to update:
+
+- weelist_insert
+
+### Proxies
+
+Proxy options and types are made case sensitive.
+
+Functions to update:
+
+- proxy_search_option
+- proxy_search_type
+
+### Buffers
+
+Buffer types and notify levels are made case sensitive.
+
+API function `buffer_match_list` is made case sensitive.
+
+Functions to update:
+
+- gui_buffer_search_type
+- gui_buffer_search_notify
+- gui_buffer_match_list
+
 ## Planning
 
 The changes must be implemented in this order:
@@ -280,7 +327,12 @@ The changes must be implemented in this order:
 6. Make case sensitive: bars, bar items
 7. Make case sensitive: plugins
 8. Make case sensitive: functions to get/set properties
-9. [TO BE COMPLETED]
+9. Make case sensitive: Curl constants and options
+10. Make case sensitive: hashtable types
+11. Make case sensitive: weelist position
+12. Make case sensitive: proxy options and types
+13. Make case sensitive: buffer types and notify levels, API function buffer_match_list
+14. [TO BE COMPLETED]
 
 ## References
 
