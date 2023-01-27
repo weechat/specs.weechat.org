@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2022-12-21
-- Last updated: 2023-01-21
+- Last updated: 2023-01-27
 - Issue: [#1872](https://github.com/weechat/weechat/issues/1872): case sensitive identifiers
 - Status: draft
 - Target WeeChat version: 3.9
@@ -26,12 +26,20 @@ Changes proposed in this specification will also fix the following issues:
 
 These identifiers must stay case insensitive:
 
+- hook config (check if option is matching hook mask)
+- hooks hsignal and signal (check if signal is matching hook signal masks)
+- hook line (check if buffer is matching hook mask)
+- hook modifier name
+- hook print (check if prefix or message displayed is contained in hook message)
+- system signal name ("kill", "term", "usr1", etc.)
 - nick completions
 - nicklist: groups and nicks
 - fset filters
 - weelist data (used to keep list sorted)
-- irc channel name
-- irc nicks
+- IRC channel name
+- IRC nicks
+- IRC CTCP names
+- IRC capabilities
 - relay: IRC commands relayed
 - relay: IRC commands ignored
 
@@ -43,7 +51,6 @@ These identifiers are currently case insensitive and must become case sensitive:
 - commands
 - commands parameters
 - hook command_run
-- hook config
 - hook info
 - hook info_hashtable
 - infolist names
@@ -71,22 +78,23 @@ These identifiers are currently case insensitive and must become case sensitive:
 - user buffer input (`q` to close)
 - function gui_color_get_custom (parameter `color_name`, example: `bold`, `reset`, etc.)
 - filter names
-- hotlist priorities (low/message/private/highlight)
-- key contexts (default/search/cursor/mouse)
+- hotlist priorities ("low", "message", "private", "highlight")
+- key contexts ("default", "search", "cursor", "mouse")
 - notify tags in line ("notify_none", "notify_message", etc.)
 - alias name
-- irc server name
-- irc raw buffer input (`q` to close)
+- IRC server name
+- IRC raw buffer input (`q` to close)
+- IRC raw filters
 - API function prefix (parameter `prefix`, example: `error`, `network`, etc.)
 - script name
 - plugin name (eg: `irc` vs `Irc`)
 - relay buffer input (`q` to close, etc.)
 - relay compression (off/zlib/zstd)
+- trigger names
 - trigger options
 - trigger types
 - trigger return codes
 - trigger post actions
-- trigger names
 - xfer buffer input (`q` to close, etc.)
 - xfer types
 - xfer protocols (none/dcc)
@@ -315,24 +323,151 @@ Functions to update:
 - gui_buffer_search_notify
 - gui_buffer_match_list
 
+### Input actions in buffers
+
+Input actions (like "q" to close buffer) are made case sensitive.
+
+Functions to update:
+
+- secure_buffer_input_cb
+- gui_color_buffer_input_cb
+- gui_buffer_user_input_cb
+- irc_input_data
+- relay_buffer_input_cb
+- xfer_buffer_input_cb
+
+### Colors
+
+Color names (like `blue`, `red`, etc.) and color attributes (`bold`, `underline`, etc.) are made case sensitive.
+
+Functions to update:
+
+- gui_color_search
+- gui_color_get_custom
+
+### Filters
+
+Filter names are made case sensitive.
+
+Functions to update:
+
+- gui_filter_find_pos
+
+### Hotlist priorities
+
+Hotlist priorities ("low", "message", "private", "highlight") are made case sensitive.
+
+Functions to update:
+
+- gui_hotlist_search_priority
+
+### Key contexts
+
+Key contexts ("default", "search", "cursor", "mouse") are made case sensitive.
+
+Functions to update:
+
+- gui_key_search_context
+
+### Notify tags in line
+
+Notify tags in line ("notify_none", "notify_message", etc.) are made case sensitive.
+
+Functions to update:
+
+- gui_line_set_notify_level
+
+### IRC servers
+
+IRC server names are made case sensitive.
+
+Functions to update:
+
+- irc_command_exec_all_servers
+- irc_command_server
+- irc_ignore_search
+- irc_ignore_check_server
+- irc_info_infolist_irc_server_cb
+- irc_info_infolist_irc_notify_cb
+- irc_server_casesearch (function removed)
+
+### IRC raw filters
+
+Filters on IRC raw buffer (except command name with `m:xxx`) are made case sensitive
+
+Functions to update:
+
+- irc_raw_message_match_filter
+
+### API function "prefix"
+
+The prefix parameter in "prefix" API function is made case sensitive.
+
+Functions to update:
+
+- plugin_api_prefix
+
+### Scripts
+
+Script names are made case sensitive.
+
+Functions to update:
+
+- plugin_script_search
+- plugin_script_find_pos
+
+### Triggers
+
+Trigger names, options, types, return codes and post actions are made case sensitive.
+
+Functions to update:
+
+- trigger_command_trigger
+- trigger_search_option
+- trigger_search_hook_type
+- trigger_search_return_code
+- trigger_search_post_action
+- trigger_search
+
+### Xfer
+
+Xfer types and protocols are made case sensitive.
+
+Functions to update:
+
+- xfer_search_type
+- xfer_search_protocol
+
 ## Planning
 
 The changes must be implemented in this order:
 
-1. Make case sensitive: configuration files, sections, options
-2. Make case sensitive: aliases
-3. Convert default aliases to lower case
-4. Make case sensitive: commands, commands parameters, hook "command_run", aliases and completions (except nick)
-5. Make case sensitive: info, info_hashtable, infolist
-6. Make case sensitive: bars, bar items
-7. Make case sensitive: plugins
-8. Make case sensitive: functions to get/set properties
-9. Make case sensitive: Curl constants and options
-10. Make case sensitive: hashtable types
-11. Make case sensitive: weelist position
-12. Make case sensitive: proxy options and types
-13. Make case sensitive: buffer types and notify levels, API function buffer_match_list
-14. [TO BE COMPLETED]
+1. Make case sensitive:
+    - configuration files, sections, options
+    - aliases
+2. Convert default aliases to lower case
+3. Make case sensitive:
+    - commands, commands parameters, hook "command_run", aliases and completions (except nick)
+    - info, info_hashtable, infolist
+    - bars, bar items
+    - plugins
+    - functions to get/set properties
+    - Curl constants and options
+    - hashtable types
+    - weelist position
+    - proxy options and types
+    - buffer types and notify levels, API function buffer_match_list
+    - input actions in buffers
+    - color names and attributes
+    - filter names
+    - hotlist priorities
+    - notify tags in line
+    - IRC server names
+    - IRC raw filters
+    - API function "prefix"
+    - script names
+    - trigger names, options, types, return codes and post actions
+    - xfer types and protocols
 
 ## References
 
