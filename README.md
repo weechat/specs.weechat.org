@@ -6,13 +6,13 @@ in the WeeChat code.
 
 Specifications:
 
-Link                                                                                | Description
------------------------------------------------------------------------------------ | --------------------------------------------
-[2021-001-follow-xdg-base-dir-spec](specs/2021-001-follow-xdg-base-dir-spec.md)     | Follow XDG Base Directory Specifications
-[2022-001-bar-spacer](specs/2022-001-bar-spacer.md)                                 | Spacer item in bars
-[2022-002-trigger-regex-commands](specs/2022-002-trigger-regex-commands.md)         | Trigger regex commands
-[2022-003-fix-unicode-display](specs/2022-003-fix-unicode-display.md)               | Fix unicode display
-[2023-001-case-sensitive-identifiers](specs/2023-001-case-sensitive-identifiers.md) | Make most WeeChat identifiers case sensitive
+Specification                                                                                | WeeChat version
+-------------------------------------------------------------------------------------------- | ---------------
+[Follow XDG Base Directory Specifications](specs/2021-001-follow-xdg-base-dir-spec.md)       | 3.2
+[Spacer item in bars](specs/2022-001-bar-spacer.md)                                          | 3.6
+[Trigger regex commands](specs/2022-002-trigger-regex-commands.md)                           | 3.8
+[Fix unicode display](specs/2022-003-fix-unicode-display.md)                                 | 3.8
+[Make most WeeChat identifiers case sensitive](specs/2023-001-case-sensitive-identifiers.md) | 3.9
 
 Specifications are visible on the GitHub pages: [https://specs.weechat.org](https://specs.weechat.org).
 
