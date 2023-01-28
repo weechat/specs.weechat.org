@@ -31,6 +31,7 @@ These identifiers must stay case insensitive:
 - hook line (check if buffer is matching hook mask)
 - hook modifier name
 - hook print (check if prefix or message displayed is contained in hook message)
+- buffer matching condition in filters
 - system signal name ("kill", "term", "usr1", etc.)
 - nick completions
 - nicklist: groups and nicks
@@ -42,6 +43,7 @@ These identifiers must stay case insensitive:
 - IRC capabilities
 - relay: IRC commands relayed
 - relay: IRC commands ignored
+- filters on trigger monitor buffer
 
 ## Changes
 
@@ -306,10 +308,13 @@ Functions to update:
 
 Proxy options and types are made case sensitive.
 
+Proxy names are made case sensitive in read of infolist "proxy".
+
 Functions to update:
 
 - proxy_search_option
 - proxy_search_type
+- plugin_api_infolist_proxy_cb
 
 ### Buffers
 
@@ -317,11 +322,14 @@ Buffer types and notify levels are made case sensitive.
 
 API function `buffer_match_list` is made case sensitive.
 
+Buffer names are made case sensitive in read of infolist "buffer".
+
 Functions to update:
 
 - gui_buffer_search_type
 - gui_buffer_search_notify
 - gui_buffer_match_list
+- plugin_api_infolist_buffer_cb
 
 ### Input actions in buffers
 
@@ -455,8 +463,8 @@ The changes must be implemented in this order:
     - Curl constants and options
     - hashtable types
     - weelist position
-    - proxy options and types
-    - buffer types and notify levels, API function buffer_match_list
+    - proxy options and types, proxy name in infolist "proxy"
+    - buffer types and notify levels, API function buffer_match_list, buffer name in infolist "buffer"
     - input actions in buffers
     - color names and attributes
     - filter names
