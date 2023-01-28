@@ -5,7 +5,7 @@
 - Created on: 2022-12-21
 - Last updated: 2023-01-27
 - Issue: [#1872](https://github.com/weechat/weechat/issues/1872): case sensitive identifiers
-- Status: draft
+- Status: implemented
 - Target WeeChat version: 3.9
 
 ## Context
