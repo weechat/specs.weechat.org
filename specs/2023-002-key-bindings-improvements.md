@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-02-11
+- Last updated: 2023-02-14
 - Issue: [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
 - Status: draft
 - Target WeeChat version: TBD
@@ -37,7 +37,8 @@ They may be improved in future by allowing easily the user to add, change or del
 A keyboard debug mode is added with command `/key debug`: it displays on each key pressed:
 
 - raw key code
-- expanded name
+- key name
+- key name using alias
 - command bound if key is found
 - indication whether text must be inserted into input
 
@@ -45,48 +46,26 @@ During this debug mode, no signal nor command is actually executed.
 
 The key `q` is used to quit this mode.
 
-Example of debug messages for some keys (before this specification is implemented):
+Example of debug messages for some keys:
 
 ```text
 # key: ctrl + r
-debug: "🅰r" -> "ctrl-r" -> "/input search_text_here"
+debug: "🅰r" -> ctrl-r -> ctrl-r -> "/input search_text_here""
 
 # key: arrow up
-debug: "🅰[[A" -> "meta2-A" -> "/input history_previous"
+debug: "🅰[[A" -> meta2-A -> up -> "/input history_previous"
 
 # key: alt + arrow up
-debug: "🅰[[1;3A" -> "meta2-1;3A" -> "/buffer -1"
+debug: "🅰[[1;3A" -> meta2-1;3A -> meta-up -> "/buffer -1"
 
 # key: alt + w then alt + arrow left
-debug: "🅰[w🅰[[1;3D" -> "meta-wmeta2-1;3D" -> "/window left"
+debug: "🅰[w🅰[[1;3D" -> meta-w,meta2-1;3D -> meta-w,meta-left -> "/window left"
 
 # key: alt + e
-debug: "🅰[e" -> "meta-e" (no key)
+debug: "🅰[e" -> meta-e -> meta-e (no key) -> ignored
 
 # key: a
-debug: "a" -> "a" (no key) -> insert into input
-```
-
-Example of debug messages for the same keys after complete implementation of this specification:
-
-```text
-# key: ctrl + r
-debug: "🅰r" -> "ctrl-r" -> "/input search_text_here"
-
-# key: arrow up
-debug: "🅰[[A" -> "up" -> "/input history_previous"
-
-# key: alt + arrow up
-debug: "🅰[[1;3A" -> "meta-up" -> "/buffer -1"
-
-# key: alt + w then alt + arrow left
-debug: "🅰[w🅰[[1;3D" -> "meta-w,meta-left" -> "/window left"
-
-# key: alt + e
-debug: "🅰[e" -> "meta-e" (no key)
-
-# key: a
-debug: "a" -> "a" (no key) -> insert into input
+debug: "a" -> a -> a (no key) -> insert into input
 ```
 
 ### Human readable keys
@@ -102,7 +81,7 @@ Raw key          | Key name      | Comment
 `ctrl-j`         | `return`      |
 `ctrl-m`         | `return`      |
 `ctrl-i`         | `tab`         |
-`meta2-Z`        | `s-tab`       |
+`meta2-Z`        | `shift-tab`   |
 `ctrl-h`         | `backspace`   |
 `ctrl-?`         | `backspace`   |
 `meta2-H`        | `home`        |
@@ -120,7 +99,7 @@ Raw key          | Key name      | Comment
 `meta-meta2-8~`  | `meta-end`    | urxvt
 `meta2-1;3F`     | `meta-end`    |
 `meta2-2~`       | `insert`      |
-`meta2-3~`       [ `delete`      |
+`meta2-3~`       | `delete`      |
 `meta2-A`        | `up`          |
 `meta2-B`        | `down`        |
 `meta2-C`        | `right`       |
@@ -207,7 +186,7 @@ Old default key(s)                                 | New default key     | Comma
 `ctrl-m`<br>`ctrl-j`                               | `return`            | `/input return`
 `meta-ctrl-m`                                      | `meta-return`       | `/input insert \n`
 `ctrl-i`                                           | `tab`               | `/input complete_next`
-`meta2-Z`                                          | `s-tab`             | `/input complete_previous`
+`meta2-Z`                                          | `shift-tab`         | `/input complete_previous`
 `ctrl-r`                                           | `ctrl-r`            | `/input search_text_here`
 `ctrl-h`<br>`ctrl-?`                               | `backspace`         | `/input delete_previous_char`
 `ctrl-_`                                           | `ctrl-_`            | `/input undo`
@@ -430,8 +409,6 @@ A function is added to convert a legacy key code to the new one:
 - convert any comma used as char into `comma` (for example: `meta-,` → `meta-comma`)
 - convert name to human readable name (for example: `meta2-1;3D` → `meta-left`)
 
-// When creating a key which has a legacy name, WeeChat first converts it to its internal code (using legacy function `gui_key_get_internal_code`), then converts it back to its name using key aliases (using function `gui_key_get_expanded_name`).
-
 Example of conversion:
 
 Legacy key           | New key          | Description
@@ -441,17 +418,20 @@ Legacy key           | New key          | Description
 `meta-A`             | `meta-A`         | Alt + shift + `a` (= Alt + `A`)
 `ctrl-cb`            | `ctrl-c,b`       | Ctrl + `c` then `b`
 `meta2-D`            | `left`           | Left arrow
-`meta2-Z`            | `s-tab`          | Shift + `Tab`
+`meta2-Z`            | `shift-tab`      | Shift + `Tab`
 `ctrl-m`             | `return`         | Return
 `ctrl-j`             | `return`         | Return
 `meta-wmeta-meta2-A` | `meta-w,meta-up` | Alt + `w` then Alt + up arrow
 
-When upgrading WeeChat from an old release (with old keys), WeeChat automatically converts legacy keys, and they are then saved later with the new name.
+When upgrading WeeChat from an old release (with old keys), WeeChat checks if a key `return` is defined in config.
+If not, that means all keys are legacy keys, and they are all converted to new keys, using aliases.
+
+The key `return` can not be removed and the command must contain `/input return`.
 
 Multiple legacy names may point to the same new name, for example `ctrl-m` and `ctrl-j` point to new key `return`.
 In this case, only one key `return` is created with the latest key read.
 
-That means before upgrade there are in weechat.conf:
+That means before upgrade there are such keys in weechat.conf (partial extract):
 
 ```text
 [keys]
@@ -462,7 +442,7 @@ meta-wmeta-meta2-A = "/window up"
 (…)
 ```
 
-And after upgrade:
+And after upgrade, the keys are now:
 
 ```text
 [keys]
@@ -477,8 +457,9 @@ meta-w,meta-up = "/window up"
 The changes must be implemented in this order:
 
 1. Add keyboard debug mode
-2. Add function to get expanded key name (human readable)
-3. (…)
+2. Add function to get expanded raw key code to key name with and without alias
+3. Add function to convert a legacy key name to a key name with alias
+4. (…)
 
 ## References
 
