@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-02-14
+- Last updated: 2023-02-20
 - Issue: [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
 - Status: draft
 - Target WeeChat version: TBD
@@ -423,10 +423,59 @@ Legacy key           | New key          | Description
 `ctrl-j`             | `return`         | Return
 `meta-wmeta-meta2-A` | `meta-w,meta-up` | Alt + `w` then Alt + up arrow
 
-When upgrading WeeChat from an old release (with old keys), WeeChat checks if a key `return` is defined in config.
-If not, that means all keys are legacy keys, and they are all converted to new keys, using aliases.
+#### Configuration file version
 
-The key `return` can not be removed and the command must contain `/input return`.
+A version is added in configuration files to track incompatible changes, like the new key format being introduced.
+
+A new function `config_file_set_version` is added and must be called after `config_file_new`.\
+The prototype is the following:
+
+```C
+int config_file_set_version (
+    struct t_config_file *config_file,
+    int version,
+    struct t_hashtable *(*callback_update)(const void *pointer,
+                                           void *data,
+                                           struct t_config_file *config_file,
+                                           int version_read,
+                                           struct t_hashtable *data_read),
+    const void *callback_update_pointer,
+    void *callback_update_data);
+```
+
+It returns 1 if OK, 0 if error.
+
+The function sets the configuration version and the callback inside `config_file`.
+Callback is optional and can be NULL.
+
+Then when the file is read from disk, WeeChat looks for a new option called `config_version` which is an integer and must be located before the first config section.
+
+This is used to set the `version` in the `config_file` structure.
+If missing, default version is `1`.
+
+When a section or an option is read, the callback is called if the version read is less than the config version.
+
+The parameters given to the callback are:
+
+Parameter           | Type      | Description
+------------------- | --------- | ---------------------------------------------------------------------------------
+`pointer`           | Pointer   | Pointer given to function `config_file_set_version`
+`data`              | Pointer   | Data given to function `config_file_set_version` (freed when the config is freed)
+`config_file`       | Pointer   | Pointer to configuration file being read
+`version_read`      | Integer   | Version read in file (defaults to `1` if not found)
+`data_read`         | Hashtable | Data read from file (see below).
+
+The hashtable `data_read` can have the following keys (keys and values are strings):
+
+Key                 | Availability    | Value
+------------------- | --------------- | -------------------------------------------------------------
+`config`            | Always set      | Name of configuration file, without extension (eg: `weechat`)
+`section`           | Always set      | Name of section being read
+`option`            | For option only | Name of the option
+`value`             | For option only | Value of the option (if not NULL)
+`value_null`        | For option only | Option has NULL value (value is always `1`)
+
+When upgrading WeeChat from an old release (with old keys), WeeChat converts all keys to the new format.
 
 Multiple legacy names may point to the same new name, for example `ctrl-m` and `ctrl-j` point to new key `return`.
 In this case, only one key `return` is created with the latest key read.
@@ -434,7 +483,7 @@ In this case, only one key `return` is created with the latest key read.
 That means before upgrade there are such keys in weechat.conf (partial extract):
 
 ```text
-[keys]
+[key]
 ctrl-j = "/input return"
 ctrl-m = "/input return"
 meta-ctrl-m = "/input insert \n"
@@ -445,7 +494,7 @@ meta-wmeta-meta2-A = "/window up"
 And after upgrade, the keys are now:
 
 ```text
-[keys]
+[key]
 return = "/input return"
 meta-return = "/input insert \n"
 meta-w,meta-up = "/window up"
@@ -459,7 +508,10 @@ The changes must be implemented in this order:
 1. Add keyboard debug mode
 2. Add function to get expanded raw key code to key name with and without alias
 3. Add function to convert a legacy key name to a key name with alias
-4. (…)
+4. Display new key name in output of `/key`
+5. Add configuration file version
+6. Convert all legacy keys to new format when reading configuration, use new format everywhere
+7. (…)
 
 ## References
 
