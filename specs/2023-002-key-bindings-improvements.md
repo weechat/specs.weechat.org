@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-02-20
+- Last updated: 2023-02-21
 - Issue: [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
 - Status: draft
 - Target WeeChat version: TBD
@@ -450,10 +450,10 @@ Callback is optional and can be NULL.
 
 Then when the file is read from disk, WeeChat looks for a new option called `config_version` which is an integer and must be located before the first config section.
 
-This is used to set the `version` in the `config_file` structure.
+This is used to set the `version_read` in the `config_file` structure.
 If missing, default version is `1`.
 
-When a section or an option is read, the callback is called if the version read is less than the config version.
+When a section or an option is read, the callback is called if the `version_read` is less than the config `version`.
 
 The parameters given to the callback are:
 
