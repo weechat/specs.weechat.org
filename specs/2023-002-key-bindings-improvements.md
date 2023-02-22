@@ -6,7 +6,7 @@
 - Last updated: 2023-02-22
 - Issue: [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
 - Status: draft
-- Target WeeChat version: TBD
+- Target WeeChat version: 3.9
 
 ## Context
 
