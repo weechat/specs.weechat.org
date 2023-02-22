@@ -803,7 +803,9 @@ The changes must be implemented in this order:
 5. Add configuration file version
 6. Convert all legacy keys to new format when reading configuration, use new format everywhere
 7. Make keys standard options, so they can be managed with `/set` and `/fset` commands
-8. (…)
+8. Fix broken affected scripts
+9. Update other affected scripts to use new key format
+10. (…)
 
 ## References
 
