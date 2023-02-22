@@ -771,6 +771,27 @@ Legacy key converted: "meta2-C" => "right"
 Legacy key converted: "meta2-D" => "left"
 ```
 
+### Affected scripts
+
+The following scripts are binding keys with the legacy format that need to be updated:
+
+Script         | Script broken? | Reason
+-------------- | -------------- | ---------------------------------------------------------------
+coords.pl      | **Yes**        | Incompatible keys like "` `" (space)
+floodit.py     | No             | Legacy keys still compatible like `meta2-C` should be converted
+grep_filter.py | **Yes**        | Incompatible keys like `ctrl-G`: not part of this specification but since WeeChat 3.9, key is `ctrl-g` (lower case)
+listbuffer.py  | **Yes**        | Incompatible keys like `ctrl-L`: not part of this specification but since WeeChat 3.9, key is `ctrl-l` (lower case)
+mastermind.pl  | No             | Legacy keys still compatible like `meta2-A` should be converted
+menu.pl        | **Yes**        | Incompatible keys like "` `" (space)
+minesweeper.py | **Yes**        | Incompatible keys like "`meta- `" (meta-space)
+multiline.pl   | **Yes**        | Incompatible keys like "` `" (space)
+pastebuf.lua   | No             | Legacy keys still compatible like `meta2-A` should be converted
+rssagg.pl      | No             | Legacy keys still compatible like `meta2-A` should be converted
+snake.pl       | No             | Legacy keys still compatible like `meta2-A` should be converted
+spell_menu.pl  | **Yes**        | Incompatible keys like "` `" (space)
+urlgrab.py     | **Yes**        | Incompatible keys like `ctrl-R`: not part of this specification but since WeeChat 3.9, key is `ctrl-r` (lower case)
+urlselect.lua  | **Yes**        | Incompatible keys like `ctrl-P`: not part of this specification but since WeeChat 3.9, key is `ctrl-p` (lower case)
+
 ## Planning
 
 The changes must be implemented in this order:
