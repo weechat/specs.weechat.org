@@ -171,8 +171,6 @@ Raw key          | Key name      | Comment
 `meta-meta2-23~` | `meta-f11`    |
 `meta2-24;3~`    | `meta-f12`    |
 `meta-meta2-24~` | `meta-f12`    |
-`meta2-200~`     | `paste_start` |
-`meta2-201~`     | `paste_stop`  |
 
 ### New default keys
 
@@ -290,8 +288,8 @@ Old default key(s)                                 | New default key     | Comma
 `meta-/`                                           | `meta-/`            | `/buffer jump last_displayed`
 `meta-l`                                           | `meta-l`            | `/window bare`
 `meta-m`                                           | `meta-m`            | `/mute mouse toggle`
-`meta2-200~`                                       | `paste_start`       | `/input paste_start`
-`meta2-201~`                                       | `paste_stop`        | `/input paste_stop`
+`meta2-200~`                                       | Key removed         | N/A
+`meta2-201~`                                       | Key removed         | N/A
 `meta-j01`                                         | `meta-j,0,1`        | `/buffer *1`
 `meta-j02`                                         | `meta-j,0,2`        | `/buffer *2`
 (…)                                                | (…)                 | (…)
