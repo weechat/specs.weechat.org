@@ -385,14 +385,14 @@ Example of output with `/fset weechat.key*`:
 │  weechat.key.ctrl-down  string  "/input history_global_next"               │
 │  weechat.key.ctrl-e     string  "/input move_end_of_line"                  │
 │  weechat.key.ctrl-f     string  "/input move_next_char"                    │
+│  weechat.key.ctrl-f1    string  "//bar scroll buflist * -100%"             │
 │  weechat.key.ctrl-f11   string  "/bar scroll nicklist * -100%"             │
 │  weechat.key.ctrl-f12   string  "/bar scroll nicklist * +100%"             │
+│  weechat.key.ctrl-f2    string  "/bar scroll buflist * +100%"              │
 │  weechat.key.ctrl-k     string  "/input delete_end_of_line"                │
 │  weechat.key.ctrl-l     string  "/window refresh"                          │
 │  weechat.key.ctrl-left  string  "/input move_previous_word"                │
 │  weechat.key.ctrl-n     string  "/buffer +1"                               │
-│  weechat.key.ctrl-p     string  "/buffer -1"                               │
-│  weechat.key.ctrl-r     string  "/input search_text_here"                  │
 │ [20:54] [2] [fset] 2:fset                                                  │
 └────────────────────────────────────────────────────────────────────────────┘
 ```
