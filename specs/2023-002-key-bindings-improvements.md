@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-02-21
+- Last updated: 2023-02-22
 - Issue: [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
 - Status: draft
 - Target WeeChat version: TBD
@@ -511,7 +511,8 @@ The changes must be implemented in this order:
 4. Display new key name in output of `/key`
 5. Add configuration file version
 6. Convert all legacy keys to new format when reading configuration, use new format everywhere
-7. (…)
+7. Make keys standard options, so they can be managed with `/set` and `/fset` commands
+8. (…)
 
 ## References
 
