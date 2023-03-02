@@ -3,8 +3,10 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-02-22
-- Issue: [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
+- Last updated: 2023-03-02
+- Issues:
+  - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
+  - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
 - Status: draft
 - Target WeeChat version: 3.9
 
@@ -22,6 +24,7 @@ Purpose of this specification is to make easier the binding of keys:
 
 - use human readable key bindings (eg: `meta-left` instead of `meta2-1;3D`)
 - use comma to separate keys in combos (eg: `meta-w,meta-up` instead of `meta-wmeta-meta2-A`)
+- convert control keys to lower keys (eg: `ctrl-a` instead of `ctrl-A`)
 - make keys normal options, to they are shown and can be updated with `/set` and `/fset` commands
 
 ## Out of scope
@@ -181,34 +184,34 @@ Default keys in context "default", WeeChat core:
 
 Old default key(s)                                 | New default key     | Command
 -------------------------------------------------- | ------------------- | ----------------------------------------
-`ctrl-m`<br>`ctrl-j`                               | `return`            | `/input return`
-`meta-ctrl-m`                                      | `meta-return`       | `/input insert \n`
-`ctrl-i`                                           | `tab`               | `/input complete_next`
+`ctrl-M`<br>`ctrl-J`                               | `return`            | `/input return`
+`meta-ctrl-M`                                      | `meta-return`       | `/input insert \n`
+`ctrl-I`                                           | `tab`               | `/input complete_next`
 `meta2-Z`                                          | `shift-tab`         | `/input complete_previous`
-`ctrl-r`                                           | `ctrl-r`            | `/input search_text_here`
-`ctrl-h`<br>`ctrl-?`                               | `backspace`         | `/input delete_previous_char`
+`ctrl-R`                                           | `ctrl-r`            | `/input search_text_here`
+`ctrl-H`<br>`ctrl-?`                               | `backspace`         | `/input delete_previous_char`
 `ctrl-_`                                           | `ctrl-_`            | `/input undo`
 `meta-_`                                           | `meta-_`            | `/input redo`
 `meta2-3~`                                         | `delete`            | `/input delete_next_char`
-`ctrl-d`                                           | `ctrl-d`            | `/input delete_next_char`
-`ctrl-w`                                           | `ctrl-w`            | `/input delete_previous_word_whitespace`
+`ctrl-D`                                           | `ctrl-d`            | `/input delete_next_char`
+`ctrl-W`                                           | `ctrl-w`            | `/input delete_previous_word_whitespace`
 `meta-ctrl-?`                                      | `meta-backspace`    | `/input delete_previous_word`
-`ctrl-x`                                           | `ctrl-x`            | `/buffer switch`
+`ctrl-X`                                           | `ctrl-x`            | `/buffer switch`
 `meta-x`                                           | `meta-x`            | `/buffer zoom`
 `meta-d`                                           | `meta-d`            | `/input delete_next_word`
-`ctrl-k`                                           | `ctrl-k`            | `/input delete_end_of_line`
+`ctrl-K`                                           | `ctrl-k`            | `/input delete_end_of_line`
 `meta-r`                                           | `meta-r`            | `/input delete_line`
-`ctrl-t`                                           | `ctrl-t`            | `/input transpose_chars`
-`ctrl-u`                                           | `ctrl-u`            | `/input delete_beginning_of_line`
-`ctrl-y`                                           | `ctrl-y`            | `/input clipboard_paste`
+`ctrl-T`                                           | `ctrl-t`            | `/input transpose_chars`
+`ctrl-U`                                           | `ctrl-u`            | `/input delete_beginning_of_line`
+`ctrl-Y`                                           | `ctrl-y`            | `/input clipboard_paste`
 `meta2-1~`<br>`meta2-H`<br>`meta2-7~`<br>`meta-OH` | `home`              | `/input move_beginning_of_line`
-`ctrl-a`                                           | `ctrl-a`            | `/input move_beginning_of_line`
+`ctrl-A`                                           | `ctrl-a`            | `/input move_beginning_of_line`
 `meta2-4~`<br>`meta2-F`<br>`meta2-8~`<br>`meta-OF` | `end`               | `/input move_end_of_line`
-`ctrl-e`                                           | `ctrl-e`            | `/input move_end_of_line`
+`ctrl-E`                                           | `ctrl-e`            | `/input move_end_of_line`
 `meta2-D`                                          | `left`              | `/input move_previous_char`
-`ctrl-b`                                           | `ctrl-b`            | `/input move_previous_char`
+`ctrl-B`                                           | `ctrl-b`            | `/input move_previous_char`
 `meta2-C`                                          | `right`             | `/input move_next_char`
-`ctrl-f`                                           | `ctrl-f`            | `/input move_next_char`
+`ctrl-F`                                           | `ctrl-f`            | `/input move_next_char`
 `meta-b`                                           | `meta-b`            | `/input move_previous_word`
 `meta-Od`<br>`meta-OD`<br>`meta2-1;5D`             | `ctrl-left`         | `/input move_previous_word`
 `meta-f`                                           | `meta-f`            | `/input move_next_word`
@@ -229,21 +232,21 @@ Old default key(s)                                 | New default key     | Comma
 `meta-k`                                           | `meta-k`            | `/input grab_key_command`
 `meta-s`                                           | `meta-s`            | `/mute spell toggle`
 `meta-u`                                           | `meta-u`            | `/window scroll_unread`
-`ctrl-sctrl-u`                                     | `ctrl-s,ctrl-u`     | `/allbuf /buffer set unread`
-`ctrl-cb`                                          | `ctrl-c,b`          | `/input insert \x02`
-`ctrl-cc`                                          | `ctrl-c,c`          | `/input insert \x03`
-`ctrl-ci`                                          | `ctrl-c,i`          | `/input insert \x1D`
-`ctrl-co`                                          | `ctrl-c,o`          | `/input insert \x0F`
-`ctrl-cv`                                          | `ctrl-c,v`          | `/input insert \x16`
-`ctrl-c_`                                          | `ctrl-c,_`          | `/input insert \x1F`
+`ctrl-Sctrl-U`                                     | `ctrl-s,ctrl-u`     | `/allbuf /buffer set unread`
+`ctrl-Cb`                                          | `ctrl-c,b`          | `/input insert \x02`
+`ctrl-Cc`                                          | `ctrl-c,c`          | `/input insert \x03`
+`ctrl-Ci`                                          | `ctrl-c,i`          | `/input insert \x1D`
+`ctrl-Co`                                          | `ctrl-c,o`          | `/input insert \x0F`
+`ctrl-Cv`                                          | `ctrl-c,v`          | `/input insert \x16`
+`ctrl-C_`                                          | `ctrl-c,_`          | `/input insert \x1F`
 `meta-meta2-C`<br>`meta2-1;3C`                     | `meta-right`        | `/buffer +1`
 `meta-meta2-B`<br>`meta2-1;3B`                     | `meta-down`         | `/buffer +1`
 `meta2-17~`                                        | `f6`                | `/buffer +1`
-`ctrl-n`                                           | `ctrl-n`            | `/buffer +1`
+`ctrl-N`                                           | `ctrl-n`            | `/buffer +1`
 `meta-meta2-D`<br>`meta2-1;3D`                     | `meta-left`         | `/buffer -1`
 `meta-meta2-A`<br>`meta2-1;3A`                     | `meta-up`           | `/buffer -1`
 `meta2-15~`<br>`meta2-[E`                          | `f5`                | `/buffer -1`
-`ctrl-p`                                           | `ctrl-p`            | `/buffer -1`
+`ctrl-P`                                           | `ctrl-p`            | `/buffer -1`
 `meta2-5~`<br>`meta2-I`                            | `pgup`              | `/window page_up`
 `meta2-6~`<br>`meta2-G`                            | `pgdn`              | `/window page_down`
 `meta-meta2-5~`<br>`meta2-5;3~`                    | `meta-pgup`         | `/window scroll_up`
@@ -261,7 +264,7 @@ Old default key(s)                                 | New default key     | Comma
 `meta2-24^`<br>`meta2-24;5~`                       | `ctrl-f12`          | `/bar scroll nicklist * +100%`
 `meta2-23;3~`<br>`meta-meta2-23~`                  | `meta-f11`          | `/bar scroll nicklist * b`
 `meta2-24;3~`<br>`meta-meta2-24~`                  | `meta-f12`          | `/bar scroll nicklist * e`
-`ctrl-l`                                           | `ctrl-l`            | `/window refresh`
+`ctrl-L`                                           | `ctrl-l`            | `/window refresh`
 `meta2-18~`                                        | `f7`                | `/window -1`
 `meta2-19~`                                        | `f8`                | `/window +1`
 `meta-wmeta-meta2-A`<br>`meta-wmeta2-1;3A`         | `meta-w,meta-up`    | `/window up`
@@ -312,12 +315,12 @@ Default keys in context "search":
 
 Old default key(s) | New default key | Command
 ------------------ | --------------- | ----------------------------
-`ctrl-m`           | `ctrl-m`        | `/input search_stop_here`
-`ctrl-j`           | `ctrl-j`        | `/input search_stop_here`
-`ctrl-q`           | `ctrl-q`        | `/input search_stop`
+`ctrl-M`           | `ctrl-m`        | `/input search_stop_here`
+`ctrl-J`           | `ctrl-j`        | `/input search_stop_here`
+`ctrl-Q`           | `ctrl-q`        | `/input search_stop`
 `meta-c`           | `meta-c`        | `/input search_switch_case`
-`ctrl-r`           | `ctrl-r`        | `/input search_switch_regex`
-`ctrl-i`           | `ctrl-i`        | `/input search_switch_where`
+`ctrl-R`           | `ctrl-r`        | `/input search_switch_regex`
+`ctrl-I`           | `ctrl-i`        | `/input search_switch_where`
 `meta2-A`          | `up`            | `/input search_previous`
 `meta2-B`          | `down`          | `/input search_next`
 
@@ -325,8 +328,8 @@ Default keys in context "cursor":
 
 Old default key(s)             | New default key            | Command
 ------------------------------ | -------------------------- | -------------------------------------------------------
-`ctrl-m`                       | `ctrl-m`                   | `/cursor stop`
-`ctrl-j`                       | `ctrl-j`                   | `/cursor stop`
+`ctrl-M`                       | `ctrl-m`                   | `/cursor stop`
+`ctrl-J`                       | `ctrl-j`                   | `/cursor stop`
 `meta2-A`                      | `up`                       | `/cursor move up`
 `meta2-B`                      | `down`                     | `/cursor move down`
 `meta2-D`                      | `left`                     | `/cursor move left`
@@ -414,11 +417,11 @@ Legacy key           | New key          | Description
 `a`                  | `a`              | Letter `a`
 `meta-a`             | `meta-a`         | Alt + `a`
 `meta-A`             | `meta-A`         | Alt + shift + `a` (= Alt + `A`)
-`ctrl-cb`            | `ctrl-c,b`       | Ctrl + `c` then `b`
+`ctrl-Cb`            | `ctrl-c,b`       | Ctrl + `c` then `b`
 `meta2-D`            | `left`           | Left arrow
 `meta2-Z`            | `shift-tab`      | Shift + `Tab`
-`ctrl-m`             | `return`         | Return
-`ctrl-j`             | `return`         | Return
+`ctrl-M`             | `return`         | Return
+`ctrl-J`             | `return`         | Return
 `meta-wmeta-meta2-A` | `meta-w,meta-up` | Alt + `w` then Alt + up arrow
 
 #### Configuration file version
@@ -775,37 +778,40 @@ Legacy key converted: "meta2-D" => "left"
 
 The following scripts are binding keys with the legacy format that need to be updated:
 
-Script         | Script broken? | Reason
--------------- | -------------- | ---------------------------------------------------------------
-coords.pl      | **Yes**        | Incompatible keys like "` `" (space)
-floodit.py     | No             | Legacy keys still compatible like `meta2-C` should be converted
-grep_filter.py | **Yes**        | Incompatible keys like `ctrl-G`: not part of this specification but since WeeChat 3.9, key is `ctrl-g` (lower case)
-listbuffer.py  | **Yes**        | Incompatible keys like `ctrl-L`: not part of this specification but since WeeChat 3.9, key is `ctrl-l` (lower case)
-mastermind.pl  | No             | Legacy keys still compatible like `meta2-A` should be converted
-menu.pl        | **Yes**        | Incompatible keys like "` `" (space)
-minesweeper.py | **Yes**        | Incompatible keys like "`meta- `" (meta-space)
-multiline.pl   | **Yes**        | Incompatible keys like "` `" (space)
-pastebuf.lua   | No             | Legacy keys still compatible like `meta2-A` should be converted
-rssagg.pl      | No             | Legacy keys still compatible like `meta2-A` should be converted
-snake.pl       | No             | Legacy keys still compatible like `meta2-A` should be converted
-spell_menu.pl  | **Yes**        | Incompatible keys like "` `" (space)
-urlgrab.py     | **Yes**        | Incompatible keys like `ctrl-R`: not part of this specification but since WeeChat 3.9, key is `ctrl-r` (lower case)
-urlselect.lua  | **Yes**        | Incompatible keys like `ctrl-P`: not part of this specification but since WeeChat 3.9, key is `ctrl-p` (lower case)
+Script         | Reason
+-------------- | ------------------------------------------------------
+coords.pl      | Legacy keys like "` `" (space), `ctrl-A` and `meta2-A`
+floodit.py     | Legacy keys like `meta2-C`
+grep_filter.py | Legacy key: `ctrl-G`
+listbuffer.py  | Legacy keys like `ctrl-L`, `meta2-A` and `meta-ctrl-J`
+mastermind.pl  | Legacy keys like `meta2-A` and `meta-ctrl-M`
+menu.pl        | Legacy keys like "` `" (space), `ctrl-H` and `meta2-A`
+minesweeper.py | Legacy keys like `meta- ` (meta-space) and `meta2-A`
+multiline.pl   | Legacy keys like "` `" (space), `ctrl-H` and `meta2-A`
+pastebuf.lua   | Legacy keys like `meta2-A`
+rssagg.pl      | Legacy keys like `meta2-A`
+snake.pl       | Legacy keys like `meta2-A`
+spell_menu.pl  | Legacy keys like "` `" (space) and `meta2-A`
+urlgrab.py     | Legacy keys like `ctrl-R`, `meta2-A` and `meta-ctrl-J`
+urlselect.lua  | Legacy keys like `ctrl-B` and `meta2-A`
+
+Note: as WeeChat automatically converts these keys on-the-fly, the scripts are not broken by the changes introduced by this specification.
 
 ## Planning
 
 The changes must be implemented in this order:
 
-1. Add keyboard debug mode
-2. Add function to get expanded raw key code to key name with and without alias
-3. Add function to convert a legacy key name to a key name with alias
-4. Display new key name in output of `/key`
-5. Add configuration file version
-6. Convert all legacy keys to new format when reading configuration, use new format everywhere
-7. Make keys standard options, so they can be managed with `/set` and `/fset` commands
-8. Fix broken affected scripts
-9. Update other affected scripts to use new key format
-10. (…)
+1. Convert control keys to lower case
+2. Add keyboard debug mode
+3. Add function to get expanded raw key code to key name with and without alias
+4. Add function to convert a legacy key name to a key name with alias
+5. Display new key name in output of `/key`
+6. Add configuration file version
+7. Convert all legacy keys to new format when reading configuration, use new format everywhere
+8. Make keys standard options, so they can be managed with `/set` and `/fset` commands
+9. Fix broken affected scripts
+10. Update other affected scripts to use new key format
+11. (…)
 
 ## References
 
