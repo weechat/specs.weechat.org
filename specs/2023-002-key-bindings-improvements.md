@@ -7,7 +7,7 @@
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
-- Status: draft
+- Status: in progress
 - Target WeeChat version: 3.9
 
 ## Context
