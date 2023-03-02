@@ -26,6 +26,7 @@ Purpose of this specification is to make easier the binding of keys:
 - use comma to separate keys in combos (eg: `meta-w,meta-up` instead of `meta-wmeta-meta2-A`)
 - convert control keys to lower keys (eg: `ctrl-a` instead of `ctrl-A`)
 - make keys normal options, to they are shown and can be updated with `/set` and `/fset` commands
+- make command `/key` without arguments open the fset buffer with all keys
 
 ## Out of scope
 
@@ -356,6 +357,8 @@ and deleted with `/set` and `/fset` commands.
 
 The recommended way to create new keys is still `/key` as it controls the validity of key name.
 
+When the command `/key` is called without arguments, the fset buffer with all keys is displayed (filter `weechat.key*`).
+
 New options:
 
 Options                | Description
@@ -365,7 +368,7 @@ Options                | Description
 `weechat.key_cursor.*` | Keys for context "cursor" (`/cursor`)
 `weechat.key_mouse.*`  | Keys for context "mouse" (mouse buttons / wheel)
 
-Example of output with `/fset weechat.key*`:
+Example of output with `/key` or `/fset weechat.key*`:
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────┐
@@ -809,9 +812,9 @@ The changes must be implemented in this order:
 6. Add configuration file version
 7. Convert all legacy keys to new format when reading configuration, use new format everywhere
 8. Make keys standard options, so they can be managed with `/set` and `/fset` commands
-9. Fix broken affected scripts
-10. Update other affected scripts to use new key format
-11. (…)
+9. Make command `/key` without arguments open the fset buffer with all keys
+10. Fix broken affected scripts
+11. Update other affected scripts to use new key format
 
 ## References
 
