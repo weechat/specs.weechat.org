@@ -181,6 +181,9 @@ Raw key          | Key name      | Comment
 The following tables show the new default keys for each context; this default
 key is created by default in configuration and is returned by `alt+k`.
 
+A new key `meta-K` (alt + upper K) is added and bound to `/input grab_raw_key_command`: it displays a raw code and its associated command.\
+The raw code is still supported by WeeChat and can be used as well even if it's not recommended (it should be used only as a workaround in case of problem with the new name).
+
 Default keys in context "default", WeeChat core:
 
 Old default key(s)                                 | New default key     | Command
