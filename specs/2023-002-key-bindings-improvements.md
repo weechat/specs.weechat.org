@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-03-02
+- Last updated: 2023-03-07
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
@@ -777,9 +777,11 @@ Legacy key converted: "meta2-C" => "right"
 Legacy key converted: "meta2-D" => "left"
 ```
 
-### Affected scripts
+### Scripts using legacy keys
 
-The following scripts are binding keys with the legacy format that need to be updated:
+Some [official scripts](https://github.com/weechat/scripts) are using legacy keys but they are not broken because either the keys are converted to the new format on the fly (keys with space or ctrl + upper case letter), or the raw key is still accepted (example: `meta2-A`), so there's no urgency to update these scripts.
+
+List of scripts using legacy keys:
 
 Script         | Reason
 -------------- | ------------------------------------------------------
@@ -798,7 +800,23 @@ spell_menu.pl  | Legacy keys like "` `" (space) and `meta2-A`
 urlgrab.py     | Legacy keys like `ctrl-R`, `meta2-A` and `meta-ctrl-J`
 urlselect.lua  | Legacy keys like `ctrl-B` and `meta2-A`
 
-Note: as WeeChat automatically converts these keys on-the-fly, the scripts are not broken by the changes introduced by this specification.
+Some other scripts, not part of official scripts, could be broken if they use key combos without the comma, for example: `meta-c1` (`meta-c` then `1`) instead of `meta-c,1`.
+
+The fix would be something like this in Python:
+
+```python
+version = weechat.info_get("version_number", "") or 0
+if int(version) >= 0x03090000:
+    # new keys (WeeChat ≥ 3.9)
+    weechat.buffer_set(buffer, "key_bind_meta-c,1", "/test1")
+    weechat.buffer_set(buffer, "key_bind_meta-c,2", "/test2")
+    weechat.buffer_set(buffer, "key_bind_meta-c,3", "/test3")
+else:
+    # legacy keys (WeeChat < 3.9)
+    weechat.buffer_set(buffer, "key_bind_meta-c1", "/test1")
+    weechat.buffer_set(buffer, "key_bind_meta-c2", "/test2")
+    weechat.buffer_set(buffer, "key_bind_meta-c3", "/test3")
+```
 
 ## Planning
 
@@ -813,8 +831,7 @@ The changes must be implemented in this order:
 7. Convert all legacy keys to new format when reading configuration, use new format everywhere
 8. Make keys standard options, so they can be managed with `/set` and `/fset` commands
 9. Make command `/key` without arguments open the fset buffer with all keys
-10. Fix broken affected scripts
-11. Update other affected scripts to use new key format
+10. Fix scripts using legacy keys (optional, no urgency)
 
 ## References
 
