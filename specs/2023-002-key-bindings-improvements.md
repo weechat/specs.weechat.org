@@ -25,7 +25,7 @@ Purpose of this specification is to make easier the binding of keys:
 - use human readable key bindings (eg: `meta-left` instead of `meta2-1;3D`)
 - use comma to separate keys in combos (eg: `meta-w,meta-up` instead of `meta-wmeta-meta2-A`)
 - convert control keys to lower keys (eg: `ctrl-a` instead of `ctrl-A`)
-- make keys normal options, to they are shown and can be updated with `/set` and `/fset` commands
+- make keys normal options, so they are shown and can be updated with `/set` and `/fset` commands
 - make command `/key` without arguments open the fset buffer with all keys
 
 ## Out of scope
