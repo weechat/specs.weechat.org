@@ -38,7 +38,7 @@ They may be improved in future by allowing easily the user to add, change or del
 
 ### Keyboard debug mode
 
-A keyboard debug mode is added with command `/key debug` which displays on each key pressed:
+A keyboard debug mode is added with command `/debug key` which displays on each key pressed:
 
 - raw key code
 - key name
