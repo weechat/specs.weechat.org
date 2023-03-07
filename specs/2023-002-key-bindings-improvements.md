@@ -30,7 +30,7 @@ Purpose of this specification is to make easier the binding of keys:
 
 ## Out of scope
 
-Keys specific to buffers (like on `/fset` buffer) are not covered by this specification.
+Keys specific to buffers (like on `/script` buffer) are not covered by this specification.
 
 They may be improved in future by allowing easily the user to add, change or delete keys on specific buffers, and save these keys in configuration file.
 
