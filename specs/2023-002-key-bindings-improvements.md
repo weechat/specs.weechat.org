@@ -38,7 +38,7 @@ They may be improved in future by allowing easily the user to add, change or del
 
 ### Keyboard debug mode
 
-A keyboard debug mode is added with command `/key debug`: it displays on each key pressed:
+A keyboard debug mode is added with command `/key debug` which displays on each key pressed:
 
 - raw key code
 - key name
@@ -362,7 +362,7 @@ The recommended way to create new keys is still `/key` as it controls the validi
 
 When the command `/key` is called without arguments, the fset buffer with all keys is displayed (filter `weechat.key*`).
 
-New options:
+The new options are:
 
 Options                | Description
 ---------------------- | ------------------------------------------------
@@ -412,7 +412,7 @@ Example of output with `/key` or `/fset weechat.key*`:
 
 A function is added to convert a legacy key code to the new one:
 
-- add commas between keys in a combo (for example: `ctrl-cb` → `ctrl-c,b`)
+- add commas between keys in a combo (for example: `ctrl-Cb` → `ctrl-c,b`)
 - convert any comma used as char into `comma` (for example: `meta-,` → `meta-comma`)
 - convert name to human readable name (for example: `meta2-1;3D` → `meta-left`)
 
@@ -484,16 +484,16 @@ Key                 | Availability    | Value
 
 When upgrading WeeChat from an old release (with old keys), WeeChat converts all keys to the new format.
 
-Multiple legacy names may point to the same new name, for example `ctrl-m` and `ctrl-j` point to new key `return`.
+Multiple legacy names may point to the same new name, for example `ctrl-M` and `ctrl-J` both point to new key `return`.
 In this case, only one key `return` is created with the latest key read.
 
 That means before upgrade there are such keys in weechat.conf (partial extract):
 
 ```text
 [key]
-ctrl-j = "/input return"
-ctrl-m = "/input return"
-meta-ctrl-m = "/input insert \n"
+ctrl-J = "/input return"
+ctrl-M = "/input return"
+meta-ctrl-M = "/input insert \n"
 meta-wmeta-meta2-A = "/window up"
 (…)
 ```
