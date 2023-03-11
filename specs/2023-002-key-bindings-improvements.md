@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-03-07
+- Last updated: 2023-03-12
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
@@ -57,13 +57,13 @@ Example of debug messages for some keys:
 debug: "🅰r" -> ctrl-r -> ctrl-r -> "/input search_text_here""
 
 # key: arrow up
-debug: "🅰[[A" -> meta2-A -> up -> "/input history_previous"
+debug: "🅰[[A" -> meta-[A -> up -> "/input history_previous"
 
 # key: alt + arrow up
-debug: "🅰[[1;3A" -> meta2-1;3A -> meta-up -> "/buffer -1"
+debug: "🅰[[1;3A" -> meta-[1;3A -> meta-up -> "/buffer -1"
 
 # key: alt + w then alt + arrow left
-debug: "🅰[w🅰[[1;3D" -> meta-w,meta2-1;3D -> meta-w,meta-left -> "/window left"
+debug: "🅰[w🅰[[1;3D" -> meta-w,meta-[1;3D -> meta-w,meta-left -> "/window left"
 
 # key: alt + e
 debug: "🅰[e" -> meta-e -> meta-e (no key) -> ignored
@@ -76,6 +76,9 @@ debug: "a" -> a -> a (no key) -> insert into input
 
 A new function is added to convert a raw key code to a human readable key.
 
+The `meta2-` modifier is removed so the raw key code is kept as-is.\
+For example `meta2-A` (up) is now `meta-[A` as raw code.
+
 Here are some examples of raw keys and their human readable version that must be used to bind keys:
 
 Raw key          | Key name      | Comment
@@ -85,96 +88,96 @@ Raw key          | Key name      | Comment
 `ctrl-j`         | `return`      |
 `ctrl-m`         | `return`      |
 `ctrl-i`         | `tab`         |
-`meta2-Z`        | `shift-tab`   |
+`meta-[Z`        | `shift-tab`   |
 `ctrl-h`         | `backspace`   |
 `ctrl-?`         | `backspace`   |
-`meta2-H`        | `home`        |
-`meta2-1~`       | `home`        |
-`meta2-7~`       | `home`        | urxvt
+`meta-[H`        | `home`        |
+`meta-[1~`       | `home`        |
+`meta-[7~`       | `home`        | urxvt
 `meta-OH`        | `home`        | Added in 2011 for gnome-terminal, still needed?
-`meta-meta2-1~`  | `meta-home`   |
-`meta-meta2-7~`  | `meta-home`   | urxvt
-`meta2-1;3H`     | `meta-home`   |
-`meta2-F`        | `end`         |
-`meta2-4~`       | `end`         |
-`meta2-8~`       | `end`         | urxvt
+`meta-meta-[1~`  | `meta-home`   |
+`meta-meta-[7~`  | `meta-home`   | urxvt
+`meta-[1;3H`     | `meta-home`   |
+`meta-[F`        | `end`         |
+`meta-[4~`       | `end`         |
+`meta-[8~`       | `end`         | urxvt
 `meta-OF`        | `end`         | Added in 2011 for gnome-terminal, still needed?
-`meta-meta2-4~`  | `meta-end`    |
-`meta-meta2-8~`  | `meta-end`    | urxvt
-`meta2-1;3F`     | `meta-end`    |
-`meta2-2~`       | `insert`      |
-`meta2-3~`       | `delete`      |
-`meta2-A`        | `up`          |
-`meta2-B`        | `down`        |
-`meta2-C`        | `right`       |
-`meta2-D`        | `left`        |
+`meta-meta-[4~`  | `meta-end`    |
+`meta-meta-[8~`  | `meta-end`    | urxvt
+`meta-[1;3F`     | `meta-end`    |
+`meta-[2~`       | `insert`      |
+`meta-[3~`       | `delete`      |
+`meta-[A`        | `up`          |
+`meta-[B`        | `down`        |
+`meta-[C`        | `right`       |
+`meta-[D`        | `left`        |
 `meta-Oa`        | `ctrl-up`     | urxvt
 `meta-OA`        | `ctrl-up`     | Still needed?
-`meta2-1;5A`     | `ctrl-up`     |
+`meta-[1;5A`     | `ctrl-up`     |
 `meta-Ob`        | `ctrl-down`   | urxvt
 `meta-OB`        | `ctrl-down`   | Still needed?
-`meta2-1;5B`     | `ctrl-down`   |
+`meta-[1;5B`     | `ctrl-down`   |
 `meta-Od`        | `ctrl-left`   | urxvt
 `meta-OD`        | `ctrl-left`   | Still needed?
-`meta2-1;5D`     | `ctrl-left`   |
+`meta-[1;5D`     | `ctrl-left`   |
 `meta-Oc`        | `ctrl-right`  | urxvt
 `meta-OC`        | `ctrl-right`  | Still needed?
-`meta2-1;5C`     | `ctrl-right`  |
-`meta2-1;3A`     | `meta-up`     |
-`meta-meta2-A`   | `meta-up`     | urxvt
-`meta2-1;3B`     | `meta-down`   |
-`meta-meta2-B`   | `meta-down`   | urxvt
-`meta2-1;3C`     | `meta-right`  |
-`meta-meta2-C`   | `meta-right`  | urxvt
-`meta2-1;3D`     | `meta-left`   |
-`meta-meta2-D`   | `meta-left`   | urxvt
-`meta2-5~`       | `pgup`        |
-`meta2-I`        | `pgup`        |
-`meta2-6~`       | `pgdn`        |
-`meta2-G`        | `pgdn`        |
-`meta-meta2-5~`  | `meta-pgup`   |
-`meta2-5;3~`     | `meta-pgup`   |
-`meta-meta2-6~`  | `meta-pgdn`   |
-`meta2-6;3~`     | `meta-pgdn`   |
+`meta-[1;5C`     | `ctrl-right`  |
+`meta-[1;3A`     | `meta-up`     |
+`meta-meta-[A`   | `meta-up`     | urxvt
+`meta-[1;3B`     | `meta-down`   |
+`meta-meta-[B`   | `meta-down`   | urxvt
+`meta-[1;3C`     | `meta-right`  |
+`meta-meta-[C`   | `meta-right`  | urxvt
+`meta-[1;3D`     | `meta-left`   |
+`meta-meta-[D`   | `meta-left`   | urxvt
+`meta-[5~`       | `pgup`        |
+`meta-[I`        | `pgup`        |
+`meta-[6~`       | `pgdn`        |
+`meta-[G`        | `pgdn`        |
+`meta-meta-[5~`  | `meta-pgup`   |
+`meta-[5;3~`     | `meta-pgup`   |
+`meta-meta-[6~`  | `meta-pgdn`   |
+`meta-[6;3~`     | `meta-pgdn`   |
 `meta-OP`        | `f1`          |
-`meta2-11~`      | `f1`          | urxvt
-`meta2-[A`       | `f1`          | Linux console
+`meta-[11~`      | `f1`          | urxvt
+`meta-[[A`       | `f1`          | Linux console
 `meta-OQ`        | `f2`          |
-`meta2-12~`      | `f2`          | urxvt
-`meta2-[B`       | `f2`          | Linux console
+`meta-[12~`      | `f2`          | urxvt
+`meta-[[B`       | `f2`          | Linux console
 `meta-OR`        | `f3`          |
-`meta2-13~`      | `f3`          | urxvt
-`meta2-[C`       | `f3`          | Linux console
+`meta-[13~`      | `f3`          | urxvt
+`meta-[[C`       | `f3`          | Linux console
 `meta-OS`        | `f4`          |
-`meta2-14~`      | `f4`          | urxvt
-`meta2-[D`       | `f4`          | Linux console
-`meta2-15~`      | `f5`          |
-`meta2-[E`       | `f5`          | Linux console
-`meta2-17~`      | `f6`          |
-`meta2-18~`      | `f7`          |
-`meta2-19~`      | `f8`          |
-`meta2-20~`      | `f9`          |
-`meta2-21~`      | `f10`         |
-`meta2-23~`      | `f11`         |
-`meta2-24~`      | `f12`         |
-`meta2-11^`      | `ctrl-f1`     |
-`meta2-1;5P`     | `ctrl-f1`     |
-`meta2-12^`      | `ctrl-f2`     |
-`meta2-1;5Q`     | `ctrl-f2`     |
-`meta2-23^`      | `ctrl-f11`    |
-`meta2-23;5~`    | `ctrl-f11`    |
-`meta2-24^`      | `ctrl-f12`    |
-`meta2-24;5~`    | `ctrl-f12`    |
+`meta-[14~`      | `f4`          | urxvt
+`meta-[[D`       | `f4`          | Linux console
+`meta-[15~`      | `f5`          |
+`meta-[[E`       | `f5`          | Linux console
+`meta-[17~`      | `f6`          |
+`meta-[18~`      | `f7`          |
+`meta-[19~`      | `f8`          |
+`meta-[20~`      | `f9`          |
+`meta-[21~`      | `f10`         |
+`meta-[23~`      | `f11`         |
+`meta-[24~`      | `f12`         |
+`meta-[11^`      | `ctrl-f1`     |
+`meta-[1;5P`     | `ctrl-f1`     |
+`meta-[12^`      | `ctrl-f2`     |
+`meta-[1;5Q`     | `ctrl-f2`     |
+`meta-[23^`      | `ctrl-f11`    |
+`meta-[23;5~`    | `ctrl-f11`    |
+`meta-[24^`      | `ctrl-f12`    |
+`meta-[24;5~`    | `ctrl-f12`    |
 `meta-meta-OP`   | `meta-f1`     |
-`meta-meta2-11~` | `meta-f1`     |
-`meta2-1;3P`     | `meta-f1`     |
+`meta-meta-[11~` | `meta-f1`     |
+`meta-[1;3P`     | `meta-f1`     |
 `meta-meta-OQ`   | `meta-f2`     |
-`meta-meta2-12~` | `meta-f2`     |
-`meta2-1;3Q`     | `meta-f2`     |
-`meta2-23;3~`    | `meta-f11`    |
-`meta-meta2-23~` | `meta-f11`    |
-`meta2-24;3~`    | `meta-f12`    |
-`meta-meta2-24~` | `meta-f12`    |
+`meta-meta-[12~` | `meta-f2`     |
+`meta-[1;3Q`     | `meta-f2`     |
+`meta-[23;3~`    | `meta-f11`    |
+`meta-meta-[23~` | `meta-f11`    |
+`meta-[24;3~`    | `meta-f12`    |
+`meta-meta-[24~` | `meta-f12`    |
 
 ### New default keys
 
@@ -782,7 +785,11 @@ Legacy key converted: "meta2-D" => "left"
 
 ### Scripts using legacy keys
 
-Some [official scripts](https://github.com/weechat/scripts) are using legacy keys but they are not broken because either the keys are converted to the new format on the fly (keys with space or ctrl + upper case letter), or the raw key is still accepted (example: `meta2-A`), so there's no urgency to update these scripts.
+Some [official scripts](https://github.com/weechat/scripts) are using legacy keys but they are not broken because keys are automatically fixed when they are added:
+
+- "` `" (space) is automatically replaced with "space" (eg: `meta- ` becomes `meta-space`)
+- `ctrl-` + upper case letter is automatically converted to `ctrl-` + lower case letter (eg: `ctrl-A` becomes `ctrl-a`)
+- `meta2-` is automatically converted to `meta-[` (eg: `meta2-A` becomes `meta-[A`)
 
 List of scripts using legacy keys:
 
