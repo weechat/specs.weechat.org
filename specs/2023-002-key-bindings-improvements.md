@@ -7,6 +7,8 @@
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
+  - [task #11783](https://savannah.nongnu.org/task/?11783): add regexp search to /key list
+  - [task #10317](https://savannah.nongnu.org/task/?10317): split key sequences in /key output
 - Status: in progress
 - Target WeeChat version: 3.9
 
