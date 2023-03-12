@@ -12,7 +12,7 @@ Specification                                                                   
 [Spacer item in bars](specs/2022-001-bar-spacer.md)                                          | implemented | 3.6
 [Trigger regex commands](specs/2022-002-trigger-regex-commands.md)                           | implemented | 3.8
 [Fix unicode display](specs/2022-003-fix-unicode-display.md)                                 | implemented | 3.8
-[Make most WeeChat identifiers case sensitive](specs/2023-001-case-sensitive-identifiers.md) | implemented | 3.9
+[Case sensitive identifiers](specs/2023-001-case-sensitive-identifiers.md) | implemented | 3.9
 [Key bindings improvements](specs/2023-002-key-bindings-improvements.md)                     | in progress | 3.9
 
 Specifications are visible on the GitHub pages: [https://specs.weechat.org](https://specs.weechat.org).
