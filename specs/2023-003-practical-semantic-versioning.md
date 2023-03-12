@@ -15,10 +15,8 @@ The numbers X and Y have same meaning, they are incremented in the same way.
 
 ## Goals
 
-Purpose of this specification is to adopt a "practical" [Semantic Versioning](https://semver.org).
-
-As major breaking changes are introduced in version 3.9, the goal is to skip version 3.9 and rename it to 4.0.0.
-
+Purpose of this specification is to adopt a "practical" [Semantic Versioning](https://semver.org).\
+As major breaking changes are introduced in version 3.9, the goal is to skip version 3.9 and rename it to 4.0.0.\
 All subsequent releases will follow this "practical" semantic versioning.
 
 ## Out of scope
