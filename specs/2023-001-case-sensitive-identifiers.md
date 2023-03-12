@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2022-12-21
-- Last updated: 2023-01-27
+- Last updated: 2023-03-12
 - Issue: [#1872](https://github.com/weechat/weechat/issues/1872): case sensitive identifiers
 - Status: implemented
 - Target WeeChat version: 3.9
@@ -57,8 +57,6 @@ These identifiers are currently case insensitive and must become case sensitive:
 - hook info_hashtable
 - infolist names
 - hashtable types
-- curl constants
-- curl options
 - completion items
 - completions (except nick completions)
 - infolist variable name
@@ -279,15 +277,6 @@ The functions used to set object properties are updated to be case sensitive for
 - gui_window_get_integer
 - gui_window_get_pointer
 
-### Curl constants and options
-
-Curl constants and options are made case sensitive.
-
-Functions to update:
-
-- weeurl_search_constant
-- weeurl_search_option
-
 ### Hashtables
 
 Hashtable types are made case sensitive.
@@ -460,7 +449,6 @@ The changes must be implemented in this order:
     - bars, bar items
     - plugins
     - functions to get/set properties
-    - Curl constants and options
     - hashtable types
     - weelist position
     - proxy options and types, proxy name in infolist "proxy"
