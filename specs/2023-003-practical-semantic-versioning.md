@@ -84,7 +84,7 @@ Examples of changes that should have bumped major version number if semantic ver
 - WeeChat 2.5:
   - `aspell` plugin renamed to `spell`
 - WeeChat 2.9:
-  - new background color for inactive bars
+  - new background color for inactive bars (function bar_new updated)
   - new modifier_data for modifier "weechat_print"
 - WeeChat 3.2:
   - support of XDG directories
@@ -131,13 +131,13 @@ The version on master branch remains 4.1.0-dev or 5.0.0-dev.
 If semantic version was used, versions would have been:
 
 Version released | Would have been… | Major bumped because of…
----------------- | ---------------- | -------------------------------------------------------
-1.0              | 1.0.0            |
-1.1              | 2.0.0            | New trigger regex  format
+---------------- | ---------------- | --------------------------------------------------------
+1.0              | **1.0.0**        |
+1.1              | **2.0.0**        | New trigger regex  format
 1.2              | 2.1.0            |
 1.3              | 2.2.0            |
 1.4              | 2.3.0            |
-1.5              | 3.0.0            | New pointer in callbacks
+1.5              | **3.0.0**        | New pointer in callbacks
 1.6              | 3.1.0            |
 1.7              | 3.2.0            |
 1.8              | 3.3.0            |
@@ -147,21 +147,21 @@ Version released | Would have been… | Major bumped because of…
 2.2              | 3.7.0            |
 2.3              | 3.8.0            |
 2.4              | 3.9.0            |
-2.5              | 4.0.0            | Aspell renamed to Spell
+2.5              | **4.0.0**        | Aspell renamed to Spell
 2.6              | 4.1.0            |
 2.7              | 4.2.0            |
 2.8              | 4.3.0            |
-2.9              | 5.0.0            | Bars bg color, modifier weechat_print
+2.9              | **5.0.0**        | Bars bg color (function bar_new), modifier weechat_print
 3.0              | 5.1.0            |
 3.1              | 5.2.0            |
-3.2              | 6.0.0            | XDG directories
+3.2              | **6.0.0**        | XDG directories
 3.3              | 6.1.0            |
-3.4              | 7.0.0            | Function hdata_search
+3.4              | **7.0.0**        | Function hdata_search
 3.5              | 7.1.0            |
 3.6              | 7.2.0            |
 3.7              | 7.3.0            |
-3.8              | 8.0.0            | String / UTF-8 functions
-3.9              | 9.0.0            | Autotools removed, case sensitive identifiers, new keys
+3.8              | **8.0.0**        | String / UTF-8 functions
+3.9              | **9.0.0**        | Autotools removed, case sensitive identifiers, new keys
 
 ### Breaking changes
 
