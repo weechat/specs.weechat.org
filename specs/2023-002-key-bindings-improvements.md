@@ -407,36 +407,60 @@ Options                | Description
 Example of output with `/key` or `/fset weechat.key*`:
 
 ```text
-┌────────────────────────────────────────────────────────────────────────────┐
-│1/275 | Filter: weechat.key* | Sort: ~name | Key(input): alt+space=toggle bo│
-│weechat.key.backspace: key "backspace" in context "default" [default: ""]   │
-│                                                                            │
-│                                                                            │
-│----------------------------------------------------------------------------│
-│  weechat.key.backspace  string  "/input delete_previous_char"              │
-│  weechat.key.ctrl-_     string  "/input undo"                              │
-│  weechat.key.ctrl-a     string  "/input move_beginning_of_line"            │
-│  weechat.key.ctrl-b     string  "/input move_previous_char"                │
-│  weechat.key.ctrl-c,_   string  "/input insert \x1F"                       │
-│  weechat.key.ctrl-c,b   string  "/input insert \x02"                       │
-│  weechat.key.ctrl-c,c   string  "/input insert \x03"                       │
-│  weechat.key.ctrl-c,i   string  "/input insert \x1D"                       │
-│  weechat.key.ctrl-c,o   string  "/input insert \x0F"                       │
-│  weechat.key.ctrl-c,v   string  "/input insert \x16"                       │
-│  weechat.key.ctrl-d     string  "/input delete_next_char"                  │
-│  weechat.key.ctrl-down  string  "/input history_global_next"               │
-│  weechat.key.ctrl-e     string  "/input move_end_of_line"                  │
-│  weechat.key.ctrl-f     string  "/input move_next_char"                    │
-│  weechat.key.ctrl-f1    string  "//bar scroll buflist * -100%"             │
-│  weechat.key.ctrl-f11   string  "/bar scroll nicklist * -100%"             │
-│  weechat.key.ctrl-f12   string  "/bar scroll nicklist * +100%"             │
-│  weechat.key.ctrl-f2    string  "/bar scroll buflist * +100%"              │
-│  weechat.key.ctrl-k     string  "/input delete_end_of_line"                │
-│  weechat.key.ctrl-l     string  "/window refresh"                          │
-│  weechat.key.ctrl-left  string  "/input move_previous_word"                │
-│  weechat.key.ctrl-n     string  "/buffer +1"                               │
-│ [20:54] [2] [fset] 2:fset                                                  │
-└────────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────┐
+│1/276 | Filter: weechat.key* | Sort: ~name | Key(input): alt+space=toggle bool│
+│weechat.key.backspace: key "backspace" in context "default" [default: "/input │
+│delete_previous_char""]                                                       │
+│                                                                              │
+│------------------------------------------------------------------------------│
+│  weechat.key.backspace      string  "/input delete_previous_char"            │
+│  weechat.key.ctrl-_         string  "/input undo"                            │
+│  weechat.key.ctrl-a         string  "/input move_beginning_of_line"          │
+│  weechat.key.ctrl-b         string  "/input move_previous_char"              │
+│  weechat.key.ctrl-c,_       string  "/input insert \x1F"                     │
+│  weechat.key.ctrl-c,b       string  "/input insert \x02"                     │
+│  weechat.key.ctrl-c,c       string  "/input insert \x03"                     │
+│  weechat.key.ctrl-c,i       string  "/input insert \x1D"                     │
+│  weechat.key.ctrl-c,o       string  "/input insert \x0F"                     │
+│  weechat.key.ctrl-c,v       string  "/input insert \x16"                     │
+│  weechat.key.ctrl-d         string  "/input delete_next_char"                │
+│  weechat.key.ctrl-down      string  "/input history_global_next"             │
+│  weechat.key.ctrl-e         string  "/input move_end_of_line"                │
+│  weechat.key.ctrl-f         string  "/input move_next_char"                  │
+│  weechat.key.ctrl-f1        string  "//bar scroll buflist * -100%"           │
+│  weechat.key.ctrl-f11       string  "/bar scroll nicklist * -100%"           │
+│  weechat.key.ctrl-f12       string  "/bar scroll nicklist * +100%"           │
+│  weechat.key.ctrl-f2        string  "/bar scroll buflist * +100%"            │
+│  weechat.key.ctrl-k         string  "/input delete_end_of_line"              │
+│  weechat.key.ctrl-l         string  "/window refresh"                        │
+│  weechat.key.ctrl-left      string  "/input move_previous_word"              │
+│  weechat.key.ctrl-n         string  "/buffer +1"                             │
+│  weechat.key.ctrl-p         string  "/buffer -1"                             │
+│  weechat.key.ctrl-r         string  "/input search_text_here"                │
+│  weechat.key.ctrl-right     string  "/input move_next_word"                  │
+│  weechat.key.ctrl-s,ctrl-u  string  "/allbuf /buffer set unread"             │
+│  weechat.key.ctrl-t         string  "/input transpose_chars"                 │
+│  weechat.key.ctrl-u         string  "/input delete_beginning_of_line"        │
+│  weechat.key.ctrl-up        string  "/input history_global_previous"         │
+│  weechat.key.ctrl-w         string  "/input delete_previous_word_whitespace" │
+│  weechat.key.ctrl-x         string  "/buffer switch"                         │
+│  weechat.key.ctrl-y         string  "/input clipboard_paste"                 │
+│  weechat.key.delete         string  "/input delete_next_char"                │
+│  weechat.key.down           string  "/input history_next"                    │
+│  weechat.key.end            string  "/input move_end_of_line"                │
+│  weechat.key.f1             string  "/bar scroll buflist * -100%"            │
+│  weechat.key.f10            string  "/bar scroll title * +30%"               │
+│  weechat.key.f11            string  "/bar scroll nicklist * -100%"           │
+│  weechat.key.f12            string  "/bar scroll nicklist * +100%"           │
+│  weechat.key.f2             string  "/bar scroll buflist * +100%"            │
+│  weechat.key.f5             string  "/buffer -1"                             │
+│  weechat.key.f6             string  "/buffer +1"                             │
+│  weechat.key.f7             string  "/window -1"                             │
+│  weechat.key.f8             string  "/window +1"                             │
+│  weechat.key.f9             string  "/bar scroll title * -30%"               │
+│  weechat.key.home           string  "/input move_beginning_of_line"          │
+│ [20:54] [2] [fset] 2:fset                                                    │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Backward compatibility
