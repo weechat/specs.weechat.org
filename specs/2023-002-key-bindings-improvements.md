@@ -373,7 +373,7 @@ $ showkey -a
 Press any keys - Ctrl-D will terminate this program
 
 ^? 	127 0177 0x7f        <-- pressed: backspace
-^H 	  8 0010 0x08        <-- pressed: ctrk+backspace
+^H 	  8 0010 0x08        <-- pressed: ctrl + backspace
 ```
 
 Some terminals may have reverse keys (ie: `ctrl-?` for `ctrl` + `backspace`).
