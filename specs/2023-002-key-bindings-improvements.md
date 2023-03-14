@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-03-12
+- Last updated: 2023-03-14
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
@@ -358,6 +358,33 @@ Old default key(s)             | New default key            | Command
 `@item(buffer_nicklist):w`     | `@item(buffer_nicklist):w` | `/window ${_window_number};/whois ${nick}`
 
 There are no changes on default keys in context "mouse".
+
+### Backspace key
+
+The backspace key is a bit special (for historical reasons related to terminals), and now both raw keys `ctrl-?` and `ctrl-h` points to the new name `backspace`.
+
+If you want to bind `ctrl` + `backspace`, you have to bind either `ctrl-h` or `ctrl-?` depending on the code returned by your terminal.
+
+Example of command `showkey -a`:
+
+```text
+$ showkey -a
+
+Press any keys - Ctrl-D will terminate this program
+
+^? 	127 0177 0x7f        <-- pressed: backspace
+^H 	  8 0010 0x08        <-- pressed: ctrk+backspace
+```
+
+Some terminals may have reverse keys (ie: `ctrl-?` for `ctrl` + `backspace`).
+
+If `ctrl-h` is `ctrl` + `backspace` (as shown with `showkey` above), you could do this to delete previous word (same as `meta-backspace`):
+
+```text
+/key bind ctrl-h /input delete_previous_word
+```
+
+As raw codes have higher priority than names, this key will match before the default `backspace` key when you press `ctrl` + `backspace`.
 
 ### Keys as options
 
