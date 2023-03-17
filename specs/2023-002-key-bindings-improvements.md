@@ -133,22 +133,22 @@ Example of debug messages for some keys:
 
 ```text
 # key: ctrl + r
-debug: "🅰r" -> ctrl-r -> ctrl-r -> "/input search_text_here""
+debug: "^r" -> ctrl-r -> ctrl-r -> "/input search_text_here"
 
 # key: arrow up
-debug: "🅰[[A" -> meta-[A -> up -> "/input history_previous"
+debug: "^[[A" -> meta-[A -> up -> "/input history_previous"
 
 # key: alt + arrow up
-debug: "🅰[[1;3A" -> meta-[1;3A -> meta-up -> "/buffer -1"
+debug: "^[[1;3A" -> meta-[1;3A -> meta-up -> "/buffer -1"
 
 # key: alt + w then alt + arrow left
-debug: "🅰[w🅰[[1;3D" -> meta-w,meta-[1;3D -> meta-w,meta-left -> "/window left"
+debug: "^[w^[[1;3D" -> meta-w,meta-[1;3D -> meta-w,meta-left -> "/window left"
 
 # key: alt + e
-debug: "🅰[e" -> meta-e -> meta-e (no key) -> ignored
+debug: "^[e" -> meta-e -> meta-e  [no key binding]
 
 # key: a
-debug: "a" -> a -> a (no key) -> insert into input
+debug: "a" -> a -> a  [no key binding]
 ```
 
 ### Human readable keys
