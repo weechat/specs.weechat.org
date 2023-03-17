@@ -149,6 +149,11 @@ debug: "^[e" -> meta-e -> meta-e  [no key binding]
 
 # key: a
 debug: "a" -> a -> a  [no key binding]
+
+# click with mouse "button1" (30, 15)
+debug: "^[[M"  [mouse]
+debug: " ?0"  [mouse]
+debug: "#?0"  [mouse]
 ```
 
 ### Human readable keys
