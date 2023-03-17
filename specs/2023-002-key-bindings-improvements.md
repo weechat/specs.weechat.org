@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-03-14
+- Last updated: 2023-03-17
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
@@ -38,6 +38,82 @@ Keys specific to buffers (like on `/script` buffer) are not covered by this spec
 They may be improved in future by allowing easily the user to add, change or delete keys on specific buffers, and save these keys in configuration file.
 
 ## Changes
+
+### New key format
+
+New rules:
+
+- the key combos must be separated by a comma
+- the modifiers are `meta-`, `ctrl-` and `shift-` (see below)
+- the control keys are in lower case (eg `ctrl-a`, not `ctrl-A`)
+- the comma is `comma`
+- the space is `space`
+- keys that are not simple chars have aliases (see below), but the raw code is still valid and accepted by WeeChat, with higher priority (not recommended, but can be useful sometimes).
+
+Note: the keys are still case sensitive, so `meta-a` is different from `meta-A` (which is `alt` + `shift` + `a`).
+
+Modifiers are used in this order:
+
+1. `meta-`: usually `alt` key; zero, one or multiple are allowed
+2. `ctrl-`: zero or one allowed
+3. `shift-`: zero or one allowed, and it works only with the new aliases (see below).
+
+The mouse modifiers are user in this order:
+
+1. `alt-`: `alt` key; zero or one allowed
+2. `ctrl-`: zero or one allowed
+
+The legacy mouse keys were using `ctrl-` before `alt-`, so there's a change here.\
+For compatibility reasons, WeeChat will fix the key on-the-fly when it is created, for example:
+
+```text
+/key bindctxt mouse @chat:ctrl-alt-wheelup /test
+
+New key binding (context "mouse"): @chat:alt-ctrl-wheelup => /test
+```
+
+Legacy modifier `meta2-` is removed (it is converted to `meta-[` in raw key codes).
+
+Keys that are not simple chars are converted to aliases, the complete list is:
+
+Key alias   | Description
+----------- | ------------------
+`f0`        | Function key `F0`
+`f1`        | Function key `F1`
+`f2`        | Function key `F2`
+`f3`        | Function key `F3`
+`f4`        | Function key `F4`
+`f5`        | Function key `F5`
+`f6`        | Function key `F6`
+`f7`        | Function key `F7`
+`f8`        | Function key `F8`
+`f9`        | Function key `F9`
+`f10`       | Function key `F10`
+`f11`       | Function key `F11`
+`f12`       | Function key `F12`
+`f13`       | Function key `F13`
+`f14`       | Function key `F14`
+`f15`       | Function key `F15`
+`f16`       | Function key `F16`
+`f17`       | Function key `F17`
+`f18`       | Function key `F18`
+`f19`       | Function key `F19`
+`f20`       | Function key `F20`
+`home`      | Home key
+`insert`    | Insert key
+`delete`    | Delete key
+`end`       | End key
+`backspace` | Backspace key
+`pgup`      | Page Up
+`pgdn`      | Page Down
+`up`        | Up arrow
+`down`      | Down arrow
+`right`     | Right arrow
+`left`      | Left arrow
+`tab`       | Tab
+`return`    | Return
+`comma`     | A comma (`,`)
+`space`     | A space ("` `")
 
 ### Keyboard debug mode
 
@@ -78,9 +154,6 @@ debug: "a" -> a -> a (no key) -> insert into input
 ### Human readable keys
 
 A new function is added to convert a raw key code to a human readable key.
-
-The `meta2-` modifier is removed so the raw key code is kept as-is.\
-For example `meta2-A` (up) is now `meta-[A` as raw code.
 
 Here are some examples of raw keys and their human readable version that must be used to bind keys:
 
@@ -361,7 +434,7 @@ There are no changes on default keys in context "mouse".
 
 ### Backspace key
 
-The backspace key is a bit special (for historical reasons related to terminals), and now both raw keys `ctrl-?` and `ctrl-h` points to the new name `backspace`.
+The backspace key is a bit special (for historical reasons related to terminals), and both raw keys `ctrl-?` and `ctrl-h` points to the new name `backspace`.
 
 If you want to bind `ctrl` + `backspace`, you have to bind either `ctrl-h` or `ctrl-?` depending on the code returned by your terminal.
 
@@ -388,8 +461,7 @@ As raw codes have higher priority than names, this key will match before the def
 
 ### Keys as options
 
-Keys are now stored as standard options, that means they can be added, updated
-and deleted with `/set` and `/fset` commands.
+Keys are stored as standard options, that means they can be added, updated and deleted with `/set` and `/fset` commands.
 
 The recommended way to create new keys is still `/key` as it controls the validity of key name.
 
@@ -844,6 +916,7 @@ Some [official scripts](https://github.com/weechat/scripts) are using legacy key
 - "` `" (space) is automatically replaced with "space" (eg: `meta- ` becomes `meta-space`)
 - `ctrl-` + upper case letter is automatically converted to `ctrl-` + lower case letter (eg: `ctrl-A` becomes `ctrl-a`)
 - `meta2-` is automatically converted to `meta-[` (eg: `meta2-A` becomes `meta-[A`)
+- order of modifiers for mouse keys is `alt` then `ctrl` (eg: `@chat:ctrl-alt-wheelup` becomes `@chat:alt-ctrl-wheelup`)
 
 List of scripts using legacy keys:
 
