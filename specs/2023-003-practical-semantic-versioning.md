@@ -3,9 +3,9 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-03-11
-- Last updated: 2023-03-12
+- Last updated: 2023-03-18
 - Issue: [#1890](https://github.com/weechat/weechat/issues/1890): adopt a "practical" Semantic Versioning
-- Status: draft
+- Status: implemented
 - Target WeeChat version: 4.0.0
 
 ## Context
@@ -16,7 +16,7 @@ The numbers X and Y have same meaning, they are incremented in the same way.
 ## Goals
 
 Purpose of this specification is to adopt a "practical" [Semantic Versioning](https://semver.org).\
-As major breaking changes are introduced in version 3.9, the goal is to skip version 3.9 and rename it to 4.0.0.\
+As major breaking changes are introduced in version initially numbered 3.9, the goal is to bump to 4.0.0.\
 All subsequent releases will follow this "practical" semantic versioning.
 
 ## Out of scope
@@ -46,7 +46,7 @@ $ weechat -v
 4.0.0
 ```
 
-Same for output of command `/v` in WeeChat:
+Same for the output of command `/v` in WeeChat:
 
 ```text
 WeeChat 4.0.0 [compiled on Mar 11 2023 10:58:35]
@@ -56,9 +56,9 @@ WeeChat 4.0.0 [compiled on Mar 11 2023 10:58:35]
 
 Rules to increment the version number:
 
-- the **major version** number is incremented only when intentional breaking changes target feature areas that are actively consumed by users, scripts or C plugin API
-- the **minor version** number is incremented for any new release of WeeChat that includes new features and bug fixes
-- the **patch version** is reserved for releases that address severe bugs or security issues found after the release.
+- the **major version** number (`X`) is incremented only when intentional breaking changes target feature areas that are actively consumed by users, scripts or C plugin API
+- the **minor version** number (`Y`) is incremented for any new release of WeeChat that includes new features and bug fixes, possibly breaking API with low impact on users
+- the **patch version** number (`Z`) is reserved for releases that address severe bugs or security issues found after the release.
 
 As WeeChat is constantly changing, new releases increment at least minor and sometimes major version number.\
 The patch version is only made on maintenance branches (e.g. for releases done in past, not the future version).
