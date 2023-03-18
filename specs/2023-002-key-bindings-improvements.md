@@ -949,12 +949,12 @@ The fix would be something like this in Python:
 ```python
 version = weechat.info_get("version_number", "") or 0
 if int(version) >= 0x03090000:
-    # new keys (WeeChat ≥ 3.9)
+    # new keys (WeeChat ≥ 4.0.0)
     weechat.buffer_set(buffer, "key_bind_meta-c,1", "/test1")
     weechat.buffer_set(buffer, "key_bind_meta-c,2", "/test2")
     weechat.buffer_set(buffer, "key_bind_meta-c,3", "/test3")
 else:
-    # legacy keys (WeeChat < 3.9)
+    # legacy keys (WeeChat < 4.0.0)
     weechat.buffer_set(buffer, "key_bind_meta-c1", "/test1")
     weechat.buffer_set(buffer, "key_bind_meta-c2", "/test2")
     weechat.buffer_set(buffer, "key_bind_meta-c3", "/test3")
