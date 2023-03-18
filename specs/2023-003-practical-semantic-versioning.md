@@ -92,10 +92,6 @@ Examples of changes that should have bumped major version number if semantic ver
   - new parameters in function hdata_search
 - WeeChat 3.8:
   - lot of changes in string / UTF-8 functions
-- WeeChat 3.9:
-  - build with autotools removed
-  - case sensitive identifiers
-  - key bindings improvements
 
 ### Minor version number
 
