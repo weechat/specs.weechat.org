@@ -3,10 +3,10 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2022-12-21
-- Last updated: 2023-03-12
+- Last updated: 2023-03-18
 - Issue: [#1872](https://github.com/weechat/weechat/issues/1872): case sensitive identifiers
 - Status: implemented
-- Target WeeChat version: 3.9
+- Target WeeChat version: 4.0.0
 
 ## Context
 
