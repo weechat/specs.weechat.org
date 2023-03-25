@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-03-18
+- Last updated: 2023-03-25
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
@@ -58,7 +58,7 @@ Modifiers are used in this order:
 2. `ctrl-`: zero or one allowed
 3. `shift-`: zero or one allowed, and it works only with the new aliases (see below).
 
-The mouse modifiers are user in this order:
+The mouse modifiers are used in this order:
 
 1. `alt-`: `alt` key; zero or one allowed
 2. `ctrl-`: zero or one allowed
