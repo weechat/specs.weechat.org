@@ -213,9 +213,7 @@ Raw key          | Key name      | Comment
 `meta-[1;3D`     | `meta-left`   |
 `meta-meta-[D`   | `meta-left`   | urxvt
 `meta-[5~`       | `pgup`        |
-`meta-[I`        | `pgup`        |
 `meta-[6~`       | `pgdn`        |
-`meta-[G`        | `pgdn`        |
 `meta-meta-[5~`  | `meta-pgup`   |
 `meta-[5;3~`     | `meta-pgup`   |
 `meta-meta-[6~`  | `meta-pgdn`   |
@@ -762,9 +760,9 @@ Legacy key converted: "meta2-B" => "down"
 Legacy key converted: "meta2-C" => "right"
 Legacy key converted: "meta2-D" => "left"
 Legacy key converted: "meta2-F" => "end"
-Legacy key converted: "meta2-G" => "pgdn"
+Legacy key removed: "meta2-G"
 Legacy key converted: "meta2-H" => "home"
-Legacy key converted: "meta2-I" => "pgup"
+Legacy key removed: "meta2-I"
 Legacy key converted: "meta2-Z" => "shift-tab"
 Legacy key converted: "meta2-[E" => "f5"
 Legacy key converted: "meta-hmeta-R" => "meta-h,meta-R"
