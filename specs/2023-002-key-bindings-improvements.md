@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-03-25
+- Last updated: 2023-03-31
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
@@ -259,6 +259,18 @@ Raw key          | Key name      | Comment
 `meta-meta-[23~` | `meta-f11`    |
 `meta-[24;3~`    | `meta-f12`    |
 `meta-meta-[24~` | `meta-f12`    |
+
+### Manually convert a legacy key
+
+The option `legacy` is added in command `/key` to convert a legacy key to the new format using the alias.
+
+For example:
+
+```text
+/key legacy meta-meta-[A
+
+"meta-meta-[A" => "meta-up"
+```
 
 ### New default keys
 
