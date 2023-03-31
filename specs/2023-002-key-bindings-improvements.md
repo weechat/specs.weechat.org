@@ -489,7 +489,7 @@ Example of output with `/key` or `/fset weechat.key*`:
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│1/276 | Filter: weechat.key* | Sort: ~name | Key(input): alt+space=toggle bool│
+│1/285 | Filter: weechat.key* | Sort: ~name | Key(input): alt+space=toggle bool│
 │weechat.key.backspace: key "backspace" in context "default" [default: "/input │
 │delete_previous_char""]                                                       │
 │                                                                              │
