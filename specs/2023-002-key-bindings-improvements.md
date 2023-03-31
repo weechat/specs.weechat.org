@@ -163,7 +163,7 @@ A new function is added to convert a raw key code to a human readable key.
 Here are some examples of raw keys and their human readable version that must be used to bind keys:
 
 Raw key          | Key name      | Comment
----------------- | ------------- | -----------------------------------------------
+---------------- | ------------- | -------------
 "`,`" (comma)    | `comma`       |
 "` `" (space)    | `space`       |
 `ctrl-j`         | `return`      |
@@ -175,14 +175,12 @@ Raw key          | Key name      | Comment
 `meta-[H`        | `home`        |
 `meta-[1~`       | `home`        |
 `meta-[7~`       | `home`        | urxvt
-`meta-OH`        | `home`        | Added in 2011 for gnome-terminal, still needed?
 `meta-meta-[1~`  | `meta-home`   |
 `meta-meta-[7~`  | `meta-home`   | urxvt
 `meta-[1;3H`     | `meta-home`   |
 `meta-[F`        | `end`         |
 `meta-[4~`       | `end`         |
 `meta-[8~`       | `end`         | urxvt
-`meta-OF`        | `end`         | Added in 2011 for gnome-terminal, still needed?
 `meta-meta-[4~`  | `meta-end`    |
 `meta-meta-[8~`  | `meta-end`    | urxvt
 `meta-[1;3F`     | `meta-end`    |
@@ -193,16 +191,12 @@ Raw key          | Key name      | Comment
 `meta-[C`        | `right`       |
 `meta-[D`        | `left`        |
 `meta-Oa`        | `ctrl-up`     | urxvt
-`meta-OA`        | `ctrl-up`     | Still needed?
 `meta-[1;5A`     | `ctrl-up`     |
 `meta-Ob`        | `ctrl-down`   | urxvt
-`meta-OB`        | `ctrl-down`   | Still needed?
 `meta-[1;5B`     | `ctrl-down`   |
 `meta-Od`        | `ctrl-left`   | urxvt
-`meta-OD`        | `ctrl-left`   | Still needed?
 `meta-[1;5D`     | `ctrl-left`   |
 `meta-Oc`        | `ctrl-right`  | urxvt
-`meta-OC`        | `ctrl-right`  | Still needed?
 `meta-[1;5C`     | `ctrl-right`  |
 `meta-[1;3A`     | `meta-up`     |
 `meta-meta-[A`   | `meta-up`     | urxvt
