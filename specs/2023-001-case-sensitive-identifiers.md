@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2022-12-21
-- Last updated: 2023-03-18
+- Last updated: 2023-04-01
 - Issue: [#1872](https://github.com/weechat/weechat/issues/1872): case sensitive identifiers
 - Status: implemented
 - Target WeeChat version: 4.0.0
@@ -178,6 +178,44 @@ Regarding commands, a new alias `/AWAY` could be defined to be away on all serve
 So that `/away` and `/AWAY` (the new alias) are two separate commands,
 with separate completion: the completion of `/aw` is `/away` (only this one),
 and the completion of `/AW` is `/AWAY` (only this one).
+
+Default aliases are now in lower case by default.\
+WeeChat automatically converts all aliases from upper to lower case on upgrade, the following messages are displayed:
+
+```text
+Alias converted to lower case: "AAWAY" => "aaway"
+Alias converted to lower case: "ANICK" => "anick"
+Alias converted to lower case: "BEEP" => "beep"
+Alias converted to lower case: "BYE" => "bye"
+Alias converted to lower case: "C" => "c"
+Alias converted to lower case: "CHAT" => "chat"
+Alias converted to lower case: "CL" => "cl"
+Alias converted to lower case: "CLOSE" => "close"
+Alias converted to lower case: "EXIT" => "exit"
+Alias converted to lower case: "IG" => "ig"
+Alias converted to lower case: "J" => "j"
+Alias converted to lower case: "K" => "k"
+Alias converted to lower case: "KB" => "kb"
+Alias converted to lower case: "LEAVE" => "leave"
+Alias converted to lower case: "M" => "m"
+Alias converted to lower case: "MSGBUF" => "msgbuf"
+Alias converted to lower case: "MUB" => "mub"
+Alias converted to lower case: "N" => "n"
+Alias converted to lower case: "Q" => "q"
+Alias converted to lower case: "REDRAW" => "redraw"
+Alias converted to lower case: "SAY" => "say"
+Alias converted to lower case: "SIGNOFF" => "signoff"
+Alias converted to lower case: "T" => "t"
+Alias converted to lower case: "UB" => "ub"
+Alias converted to lower case: "UMODE" => "umode"
+Alias converted to lower case: "V" => "v"
+Alias converted to lower case: "W" => "w"
+Alias converted to lower case: "WC" => "wc"
+Alias converted to lower case: "WI" => "wi"
+Alias converted to lower case: "WII" => "wii"
+Alias converted to lower case: "WM" => "wm"
+Alias converted to lower case: "WW" => "ww"
+```
 
 Nick completion remains case insensitive, that means if there are nicks "Nick"
 and "Nick_away", typing "ni" with Tab will complete to partial completion "Nick"
