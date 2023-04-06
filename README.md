@@ -15,6 +15,7 @@ Specification                                                                   
 [Case sensitive identifiers](specs/2023-001-case-sensitive-identifiers.md)                   | implemented | 4.0.0
 [Key bindings improvements](specs/2023-002-key-bindings-improvements.md)                     | implemented | 4.0.0
 [Practical semantic versioning](specs/2023-003-practical-semantic-versioning.md)             | implemented | 4.0.0
+[TLS options and connections](specs/2023-004-tls-options-and-connections.md)                 | draft       | 4.0.0
 
 Specifications are visible on the GitHub pages: [https://specs.weechat.org](https://specs.weechat.org).
 
