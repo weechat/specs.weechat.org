@@ -15,7 +15,7 @@ TLS options are named "ssl".
 
 ## Goals
 
-Purpose of this specification is to rename `ssl` to `tls` everywhere: options, commands, documentation.
+Purpose of this specification is to rename `ssl` to `tls` everywhere: options, commands, documentation.\
 Connection to IRC servers must be with TLS and port 6697 by default.
 
 ## Out of scope
