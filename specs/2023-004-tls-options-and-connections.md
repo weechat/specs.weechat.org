@@ -3,9 +3,9 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-04-04
-- Last updated: 2023-04-06
+- Last updated: 2023-04-07
 - Issue: [#1903](https://github.com/weechat/weechat/issues/1903): rename "ssl" to "tls", connect to IRC servers with TLS and port 6697 by default
-- Status: draft
+- Status: in progress
 - Target WeeChat version: 4.0.0
 
 ## Context
