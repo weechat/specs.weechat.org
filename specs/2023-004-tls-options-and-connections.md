@@ -5,7 +5,7 @@
 - Created on: 2023-04-04
 - Last updated: 2023-04-07
 - Issue: [#1903](https://github.com/weechat/weechat/issues/1903): rename "ssl" to "tls", connect to IRC servers with TLS and port 6697 by default
-- Status: in progress
+- Status: implemented
 - Target WeeChat version: 4.0.0
 
 ## Context
