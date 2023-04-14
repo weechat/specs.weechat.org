@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-04-04
-- Last updated: 2023-04-07
+- Last updated: 2023-04-14
 - Issue: [#1903](https://github.com/weechat/weechat/issues/1903): rename "ssl" to "tls", connect to IRC servers with TLS and port 6697 by default
 - Status: implemented
 - Target WeeChat version: 4.0.0
@@ -121,7 +121,7 @@ Variable        | New name
 --------------- | ---------------
 `ssl_connected` | `tls_connected`
 
-The following scripts are affected and must be updated to check WeeChat version and use `ssl_connected` for WeeChat < 4.0.0 or `tls_connected` for WeeChat ≥ 4.0.0:
+The following script is affected and must be updated:
 
 - keepnick.py
 
@@ -134,6 +134,7 @@ The changes must be implemented in this order:
 3. Rename IRC options (bump version of `irc.conf`)
 4. Rename relay options (bump version of `relay.conf`) and protocol
 5. Make TLS and port 6697 default in IRC plugin
+6. Update script keepnick.py.
 
 ## References
 
