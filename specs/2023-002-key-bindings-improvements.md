@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-02-02
-- Last updated: 2023-03-31
+- Last updated: 2023-04-23
 - Issues:
   - [#1875](https://github.com/weechat/weechat/issues/1875): force Control keys to lower case
   - [#1238](https://github.com/weechat/weechat/issues/1238): add aliases for key bindings
@@ -620,6 +620,8 @@ Key                 | Availability    | Value
 `value`             | For option only | Value of the option (if not NULL)
 `value_null`        | For option only | Option has NULL value (value is always `1`)
 
+#### Upgrade of weechat.conf
+
 When upgrading WeeChat from an old release (with old keys), WeeChat converts all keys to the new format.
 
 Multiple legacy names may point to the same new name, for example `ctrl-M` and `ctrl-J` both point to new key `return`.
@@ -646,7 +648,27 @@ meta-w,meta-up = "/window up"
 (…)
 ```
 
-Keys converted or removed are display on first upgrade of config, like this:
+In addition, legacy commands (still there for compatibility) are automatically converted to the new command:
+
+Old command                                         | New command
+--------------------------------------------------- | -------------------------------------
+`/input jump_smart`                                 | `/buffer jump smart`
+`/input jump_last_buffer`                           | `/buffer +`
+`/window ${_window_number};/input jump_last_buffer` | `/window ${_window_number};/buffer +`
+`/input jump_last_buffer_displayed`                 | `/buffer jump last_displayed`
+`/input jump_previously_visited_buffer`             | `/buffer jump prev_visited`
+`/input jump_next_visited_buffer`                   | `/buffer jump next_visited`
+`/input hotlist_clear`                              | `/hotlist clear`
+`/input hotlist_remove_buffer`                      | `/hotlist remove`
+`/input hotlist_restore_buffer`                     | `/hotlist restore`
+`/input hotlist_restore_all`                        | `/hotlist restore -all`
+`/input set_unread_current_buffer`                  | `/buffer set unread`
+`/input set_unread`                                 | `/allbuf /buffer set unread`
+`/input switch_active_buffer`                       | `/buffer switch`
+`/input switch_active_buffer_previous`              | `/buffer switch -previous`
+`/input zoom_merged_buffer`                         | `/buffer zoom`
+
+Keys converted or removed are display on first upgrade of config, for example when upgrading from version 3.7 to 4.0.0:
 
 ```text
 Legacy key converted: "ctrl-?" => "backspace"
@@ -671,10 +693,12 @@ Legacy key converted: "ctrl-N" => "ctrl-n"
 Legacy key converted: "ctrl-P" => "ctrl-p"
 Legacy key converted: "ctrl-R" => "ctrl-r"
 Legacy key converted: "ctrl-Sctrl-U" => "ctrl-s,ctrl-u"
+Command converted for key "ctrl-s,ctrl-u": "/input set_unread" => "/allbuf /buffer set unread"
 Legacy key converted: "ctrl-T" => "ctrl-t"
 Legacy key converted: "ctrl-U" => "ctrl-u"
 Legacy key converted: "ctrl-W" => "ctrl-w"
 Legacy key converted: "ctrl-X" => "ctrl-x"
+Command converted for key "ctrl-x": "/input switch_active_buffer" => "/buffer switch"
 Legacy key converted: "ctrl-Y" => "ctrl-y"
 Legacy key converted: "meta-ctrl-?" => "meta-backspace"
 Legacy key converted: "meta-ctrl-M" => "meta-return"
@@ -694,6 +718,9 @@ Legacy key converted: "meta-meta2-A" => "meta-up"
 Legacy key converted: "meta-meta2-B" => "meta-down"
 Legacy key converted: "meta-meta2-C" => "meta-right"
 Legacy key converted: "meta-meta2-D" => "meta-left"
+Command converted for key "meta-/": "/input jump_last_buffer_displayed" => "/buffer jump last_displayed"
+Command converted for key "meta-<": "/input jump_previously_visited_buffer" => "/buffer jump prev_visited"
+Command converted for key "meta->": "/input jump_next_visited_buffer" => "/buffer jump next_visited"
 Legacy key converted: "meta-OA" => "up"
 Legacy key converted: "meta-OB" => "down"
 Legacy key converted: "meta-OC" => "right"
@@ -759,10 +786,15 @@ Legacy key converted: "meta2-H" => "home"
 Legacy key removed: "meta2-I"
 Legacy key converted: "meta2-Z" => "shift-tab"
 Legacy key converted: "meta2-[E" => "f5"
+Command converted for key "meta-a": "/input jump_smart" => "/buffer jump smart"
 Legacy key converted: "meta-hmeta-R" => "meta-h,meta-R"
+Command converted for key "meta-h,meta-R": "/input hotlist_restore_all" => "/hotlist restore -all"
 Legacy key converted: "meta-hmeta-c" => "meta-h,meta-c"
+Command converted for key "meta-h,meta-c": "/input hotlist_clear" => "/hotlist clear"
 Legacy key converted: "meta-hmeta-m" => "meta-h,meta-m"
+Command converted for key "meta-h,meta-m": "/input hotlist_remove_buffer" => "/hotlist remove"
 Legacy key converted: "meta-hmeta-r" => "meta-h,meta-r"
+Command converted for key "meta-h,meta-r": "/input hotlist_restore_buffer" => "/hotlist restore"
 Legacy key converted: "meta-jmeta-f" => "meta-j,meta-f"
 Legacy key converted: "meta-jmeta-l" => "meta-j,meta-l"
 Legacy key converted: "meta-jmeta-r" => "meta-j,meta-r"
@@ -876,6 +908,7 @@ Legacy key converted: "meta-wmeta2-1;3C" => "meta-w,meta-right"
 Legacy key converted: "meta-wmeta2-1;3D" => "meta-w,meta-left"
 Legacy key converted: "meta-wmeta-b" => "meta-w,meta-b"
 Legacy key converted: "meta-wmeta-s" => "meta-w,meta-s"
+Command converted for key "meta-x": "/input zoom_merged_buffer" => "/buffer zoom"
 Legacy key converted: "ctrl-I" => "tab"
 Legacy key converted: "ctrl-J" => "return"
 Legacy key converted: "ctrl-M" => "return"
@@ -897,6 +930,7 @@ Legacy key converted: "meta2-A" => "up"
 Legacy key converted: "meta2-B" => "down"
 Legacy key converted: "meta2-C" => "right"
 Legacy key converted: "meta2-D" => "left"
+Command converted for key "@chat:button1-gesture-right-long": "/window ${_window_number};/input jump_last_buffer" => "/window ${_window_number};/buffer +"
 ```
 
 ### Scripts using legacy keys
