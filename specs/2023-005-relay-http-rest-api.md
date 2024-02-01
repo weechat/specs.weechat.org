@@ -172,7 +172,7 @@ curl -L -u 'hash:sha256:1706431066:dfa1db3f6bb6445d18d9ec7427c10f6421274e3a4751e
 
 In case of error, a response `401 Unauthorized` is returned with a field `error` in JSON that describes the error.
 
-Response: missing paasword:
+Response: missing password:
 
 ```text
 HTTP/1.1 401 Unauthorized
@@ -193,6 +193,42 @@ HTTP/1.1 401 Unauthorized
 ```json
 {
     "error": "Invalid password"
+}
+```
+
+Response: invalid hash algorithm:
+
+```text
+HTTP/1.1 401 Unauthorized
+```
+
+```json
+{
+    "error": "Invalid hash algorithm (not found or not supported)"
+}
+```
+
+Response: invalid salt:
+
+```text
+HTTP/1.1 401 Unauthorized
+```
+
+```json
+{
+    "error": "Invalid salt"
+}
+```
+
+Response: invalid number of iterations:
+
+```text
+HTTP/1.1 401 Unauthorized
+```
+
+```json
+{
+    "error": "Invalid number of iterations"
 }
 ```
 
