@@ -153,7 +153,7 @@ The header `Authorization` is allowed in the first websocket request (see [Hands
 Request example with plain password:
 
 ```bash
-curl -L -u plain:secret_password' 'https://localhost:9000/api/version'
+curl -L -u 'plain:secret_password' 'https://localhost:9000/api/version'
 ```
 
 Request example with hashed password (SHA256):
