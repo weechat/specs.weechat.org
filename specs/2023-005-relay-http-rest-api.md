@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-02-01
+- Last updated: 2024-02-23
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -622,31 +622,36 @@ HTTP/1.1 200 OK
         {
             "name": "000|o",
             "color": "green",
+            "visible": true,
             "groups": [],
             "nicks": [
                 {
                     "prefix": "@",
                     "prefix_color": "lightgreen",
                     "name": "alice",
-                    "color": "default"
+                    "color": "default",
+                    "visible": true
                 }
             ]
         },
         {
             "name": "001|h",
             "color": "green",
+            "visible": true,
             "groups": [],
             "nicks": []
         },
         {
             "name": "002|v",
             "color": "green",
+            "visible": true,
             "groups": [],
             "nicks": []
         },
         {
             "name": "999|...",
             "color": "green",
+            "visible": true,
             "groups": [],
             "nicks": []
         }
@@ -1023,7 +1028,8 @@ Example: nick `bob` added as operator in channel `#weechat`:
         "prefix": "@",
         "prefix_color": "lightgreen",
         "name": "bob",
-        "color": "default"
+        "color": "default",
+        "visible": true
     }
 }
 ```
