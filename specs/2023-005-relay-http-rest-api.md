@@ -816,7 +816,7 @@ HTTP/1.1 403 Forbidden
 
 Websocket is used to make a persistent connection between the client and WeeChat and receive events in real-time if synchronization is enabled with [Sync resource](#resource-sync).
 
-Authentication must be done only one time when a websocket is used (see [Authentication](#authentication).
+Authentication must be done only one time when a websocket is used (see [Authentication](#authentication)).
 
 #### Handshake
 
