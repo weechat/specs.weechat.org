@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-02-23
+- Last updated: 2024-02-26
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -126,17 +126,17 @@ The password must be sent in the header `Authorization` with `Basic` authenticat
 The password can be sent as plain text or hashed, with one of these formats for user and password:
 
 - `plain:<password>`
-- `hash:sha256:<salt>:<hash>`
-- `hash:sha512:<salt>:<hash>`
-- `hash:pbkdf2+sha256:<salt>:<iterations>:<hash>`
-- `hash:pbkdf2+sha512:<salt>:<iterations>:<hash>`
+- `hash:sha256:<timestamp>:<hash>`
+- `hash:sha512:<timestamp>:<hash>`
+- `hash:pbkdf2+sha256:<timestamp>:<iterations>:<hash>`
+- `hash:pbkdf2+sha512:<timestamp>:<iterations>:<hash>`
 
 Where:
 
 - `<password>` is the password as plain text
-- `<salt>`: salt: the current timestamp as integer (number of seconds since the Unix Epoch); it is used to prevent replay attacks
-- `<iterations>`: number of iterations (for PBKDF2 algorithm only)
-- `<hash>`: the hashed salt + password (hexadecimal)
+- `<timestamp>` is the current timestamp as integer (number of seconds since the Unix Epoch); it is used to prevent replay attacks
+- `<iterations>` is the number of iterations (for PBKDF2 algorithm only)
+- `<hash>` is the hashed timestamp + password (hexadecimal)
 
 A new option `relay.network.time_window` is added in WeeChat to set the max number of seconds allowed before and after the received time (when password is sent hashed). Default value is 5.
 
@@ -208,7 +208,7 @@ HTTP/1.1 401 Unauthorized
 }
 ```
 
-Response: invalid salt:
+Response: invalid timestamp:
 
 ```text
 HTTP/1.1 401 Unauthorized
@@ -216,7 +216,7 @@ HTTP/1.1 401 Unauthorized
 
 ```json
 {
-    "error": "Invalid salt"
+    "error": "Invalid timestamp"
 }
 ```
 
