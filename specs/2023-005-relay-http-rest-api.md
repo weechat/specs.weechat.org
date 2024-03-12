@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-02-29
+- Last updated: 2024-03-12
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -374,11 +374,13 @@ Endpoints:
 
 ```http
 GET /api/buffers
+GET /api/buffers/{buffer_id}
 GET /api/buffers/{buffer_name}
 ```
 
 Path parameters:
 
+- `buffer_id` (integer, optional): buffer unique identifier (not to be confused with the buffer number, which is different)
 - `buffer_name` (string, optional): buffer name
 
 Query parameters:
@@ -408,6 +410,7 @@ HTTP/1.1 200 OK
 ```json
 [
     {
+        "id": 1709932823238637,
         "name": "core.weechat",
         "short_name": "weechat",
         "number": 1,
@@ -419,6 +422,7 @@ HTTP/1.1 200 OK
         }
     },
     {
+        "id": 1709932823423765,
         "name": "irc.server.libera",
         "short_name": "libera",
         "number": 2,
@@ -437,6 +441,7 @@ HTTP/1.1 200 OK
         }
     },
     {
+        "id": 1709932823649069,
         "name": "irc.libera.#weechat",
         "short_name": "#weechat",
         "number": 3,
@@ -470,6 +475,7 @@ HTTP/1.1 200 OK
 
 ```json
 {
+    "id": 1709932823238637,
     "name": "core.weechat",
     "short_name": "weechat",
     "number": 1,
@@ -501,12 +507,15 @@ Return lines in a buffer.
 Endpoints:
 
 ```http
+GET /api/buffers/{buffer_id}/lines
+GET /api/buffers/{buffer_id}/lines/{line_id}
 GET /api/buffers/{buffer_name}/lines
 GET /api/buffers/{buffer_name}/lines/{line_id}
 ```
 
 Path parameters:
 
+- `buffer_id` (integer, **required**): buffer unique identifier (not to be confused with the buffer number, which is different)
 - `buffer_name` (string, **required**): buffer name
 - `line_id` (integer, optional): return a single line with this identifier
 
@@ -594,11 +603,13 @@ Return nicks in a buffer.
 Endpoint:
 
 ```http
+GET /api/buffers/{buffer_id}/nicks
 GET /api/buffers/{buffer_name}/nicks
 ```
 
 Path parameters:
 
+- `buffer_id` (integer, **required**): buffer unique identifier (not to be confused with the buffer number, which is different)
 - `buffer_name` (string, **required**): buffer name
 
 Request example: get nicks of a buffer:
@@ -672,6 +683,7 @@ POST /api/input
 
 Body parameters:
 
+- `buffer_id` (integer, optional): buffer unique identifier (not to be confused with the buffer number, which is different)
 - `buffer` (string, optional, default: `core.weechat`): buffer name where the command is executed
 - `command` (string, **required**): command or text to send to the buffer
 
@@ -901,7 +913,7 @@ Request example: say "hello!" on channel #weechat:
 {
     "request": "POST /api/input",
     "body": {
-        "buffer": "irc.libera.#weechat",
+        "buffer_name": "irc.libera.#weechat",
         "command": "hello!"
     }
 }
@@ -922,35 +934,35 @@ The JSON sent has `code` set to `0`, `message` set to `Event` and an extra objec
 
 - `name` (string): the event name (name of signal or hsignal)
 - `type` (string): the object type returned in body (empty string if no body is returned)
-- `context` (string): the context for the object returned, set only for sub-objects, empty string in other cases (for example it contains the buffer name when line or nick is sent)
+- `buffer_id` (integer): the buffer unique identifier, set only for sub-objects, -1 in other cases
 
 The following events are sent to the client, according to synchronization options:
 
-Event                     | Type of body   | Body context | Description of data sent
-------------------------- | ---------------|--------------|-------------------------
-`buffer_opened`           | `buffer`       | N/A          | buffer with all lines
-`buffer_type_changed`     | `buffer`       | N/A          | buffer
-`buffer_moved`            | `buffer`       | N/A          | buffer
-`buffer_merged`           | `buffer`       | N/A          | buffer
-`buffer_unmerged`         | `buffer`       | N/A          | buffer
-`buffer_hidden`           | `buffer`       | N/A          | buffer
-`buffer_unhidden`         | `buffer`       | N/A          | buffer
-`buffer_renamed`          | `buffer`       | N/A          | buffer
-`buffer_title_changed`    | `buffer`       | N/A          | buffer
-`buffer_localvar_added`   | `buffer`       | N/A          | buffer
-`buffer_localvar_changed` | `buffer`       | N/A          | buffer
-`buffer_localvar_removed` | `buffer`       | N/A          | buffer
-`buffer_cleared`          | `buffer`       | N/A          | buffer
-`buffer_closing`          | `buffer`       | N/A          | buffer
-`buffer_line_added`       | `line`         | buffer name  | buffer line
-`upgrade`                 | (empty string) | N/A          | (no body)
-`upgrade_ended`           | (empty string) | N/A          | (no body)
-`nicklist_group_added`    | `nick_group`   | buffer name  | nick group
-`nicklist_group_changed`  | `nick_group`   | buffer name  | nick group
-`nicklist_group_removing` | `nick_group`   | buffer name  | nick group
-`nicklist_nick_added`     | `nick`         | buffer name  | nick
-`nicklist_nick_removing`  | `nick`         | buffer name  | nick
-`nicklist_nick_changed`   | `nick`         | buffer name  | nick
+Event                     | Type of body   | Buffer id | Description of data sent
+------------------------- | ---------------|-----------|-------------------------
+`buffer_opened`           | `buffer`       | -1        | buffer with all lines
+`buffer_type_changed`     | `buffer`       | -1        | buffer
+`buffer_moved`            | `buffer`       | -1        | buffer
+`buffer_merged`           | `buffer`       | -1        | buffer
+`buffer_unmerged`         | `buffer`       | -1        | buffer
+`buffer_hidden`           | `buffer`       | -1        | buffer
+`buffer_unhidden`         | `buffer`       | -1        | buffer
+`buffer_renamed`          | `buffer`       | -1        | buffer
+`buffer_title_changed`    | `buffer`       | -1        | buffer
+`buffer_localvar_added`   | `buffer`       | -1        | buffer
+`buffer_localvar_changed` | `buffer`       | -1        | buffer
+`buffer_localvar_removed` | `buffer`       | -1        | buffer
+`buffer_cleared`          | `buffer`       | -1        | buffer
+`buffer_closing`          | `buffer`       | -1        | buffer
+`buffer_line_added`       | `line`         | buffer id | buffer line
+`upgrade`                 | (empty string) | -1        | (no body)
+`upgrade_ended`           | (empty string) | -1        | (no body)
+`nicklist_group_changed`  | `nick_group`   | buffer id | nick group
+`nicklist_group_added`    | `nick_group`   | buffer id | nick group
+`nicklist_group_removing` | `nick_group`   | buffer id | nick group
+`nicklist_nick_added`     | `nick`         | buffer id | nick
+`nicklist_nick_removing`  | `nick`         | buffer id | nick
+`nicklist_nick_changed`   | `nick`         | buffer id | nick
 
 Example: new buffer: channel `#weechat` has been joined:
 
@@ -961,7 +973,7 @@ Example: new buffer: channel `#weechat` has been joined:
     "event": {
         "name": "buffer_opened",
         "type": "buffer",
-        "context": ""
+        "buffer_id": 1709932823649069
     },
     "body": {
         "name": "irc.libera.#test",
@@ -992,7 +1004,7 @@ Example: new line displayed on channel `#weechat`:
     "event": {
         "name": "buffer_line_added",
         "type": "line",
-        "context": "irc.libera.#weechat"
+        "buffer_id": 1709932823649069
     },
     "body": {
         "id": 5,
@@ -1024,7 +1036,7 @@ Example: nick `bob` added as operator in channel `#weechat`:
     "event": {
         "name": "nicklist_nick_added",
         "type": "nick",
-        "context": "irc.libera.#weechat"
+        "buffer_id": 1709932823649069
     },
     "body": {
         "prefix": "@",
@@ -1045,7 +1057,7 @@ Example: WeeChat is upgrading:
     "event": {
         "name": "upgrade",
         "type": "",
-        "context": ""
+        "buffer_id": -1
     }
 }
 ```
@@ -1059,7 +1071,7 @@ Example: upgrade has been done:
     "event": {
         "name": "upgrade_ended",
         "type": "",
-        "context": ""
+        "buffer_id": -1
     }
 }
 ```
