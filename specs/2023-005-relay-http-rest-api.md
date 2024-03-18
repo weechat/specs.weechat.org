@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-03-12
+- Last updated: 2024-03-18
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -70,6 +70,7 @@ The following methods and paths are available:
 - [`POST /api/handshake`](#resource-handshake): handshake with WeeChat (no authentication required)
 - [`GET /api/version`](#resource-version): get the WeeChat and relay API versions
 - [`GET /api/buffers`](#resource-buffers): get buffers, lines, nicks
+- [`GET /api/hotlist`](#resource-hotlist): get hotlist
 - [`POST /api/input`](#resource-input): send command or text to a buffer
 - [`POST /api/ping`](#resource-ping): send a "ping" request
 - [`POST /api/sync`](#resource-sync): synchronize with WeeChat
@@ -669,6 +670,66 @@ HTTP/1.1 200 OK
     ],
     "nicks": []
 }
+```
+
+### Resource: hotlist
+
+Return hotlist.
+
+Endpoints:
+
+```http
+GET /api/hotlist
+```
+
+Request example:
+
+```bash
+curl -L -u 'plain:secret_password' 'https://localhost:9000/api/hotlist'
+```
+
+Response:
+
+```text
+HTTP/1.1 200 OK
+```
+
+```json
+[
+    {
+        "priority": 0,
+        "date": "2024-03-17T16:38:51.572834Z",
+        "buffer_id": 1710693531508204,
+        "count": [
+            44,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "priority": 0,
+        "date": "2024-03-17T16:38:51.573028Z",
+        "buffer_id": 1710693530395959,
+        "count": [
+            14,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "priority": 0,
+        "date": "2024-03-17T16:38:51.611617Z",
+        "buffer_id": 1710693531529248,
+        "count": [
+            4,
+            0,
+            0,
+            0
+        ]
+    }
+]
 ```
 
 ### Resource: input
