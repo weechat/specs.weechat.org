@@ -1057,10 +1057,11 @@ Example: new buffer: channel `#weechat` has been joined:
     "message": "Event",
     "event": {
         "name": "buffer_opened",
-        "buffer_id": 1709932823649069
+        "buffer_id": -1
     },
     "body_type": "buffer",
     "body": {
+        "id": 1709932823649069,
         "name": "irc.libera.#test",
         "short_name": "",
         "number": 4,
