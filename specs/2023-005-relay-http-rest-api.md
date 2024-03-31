@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-03-18
+- Last updated: 2024-03-31
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -942,7 +942,24 @@ Responses to client are made with an object containing these fields:
 
 - `code` (integer): HTTP response code (example: `200`)
 - `message` (string): message for the code (example: `OK`)
+- `request` (string): the request (example: `GET /api/buffers?lines=-100`)
+- `request_body` (object): the request body, or `null` if the request had no body
+
+When the response has a body, these two extra fields are returned:
+
+- `body_type` (string): type of objects returned in body (see below)
 - `body` (object or array): the body returned
+
+Body types that can be returned:
+
+- `handshake`
+- `version`
+- `buffer`
+- `line`
+- `nick_group`
+- `nick`
+- `hotlist`
+- `ping`
 
 Request example: get version:
 
@@ -958,6 +975,9 @@ Response:
 {
     "code": 200,
     "message": "OK",
+    "request": "GET /api/version",
+    "request_body": null,
+    "body_type": "version",
     "body": {
         "weechat_version": "4.2.0-dev",
         "weechat_version_git": "v4.1.0-143-g0b1cda1c4",
@@ -985,7 +1005,12 @@ Response:
 ```json
 {
     "code": 204,
-    "message": "No Content"
+    "message": "No Content",
+    "request": "POST /api/input",
+    "request_body": {
+        "buffer_name": "irc.libera.#weechat",
+        "command": "hello!"
+    }
 }
 ```
 
@@ -994,36 +1019,35 @@ WeeChat pushes data to the client at any time on some events: when lines are dis
 The JSON sent has `code` set to `0`, `message` set to `Event` and an extra object `event` with the following data:
 
 - `name` (string): the event name (name of signal or hsignal)
-- `type` (string): the object type returned in body (empty string if no body is returned)
 - `buffer_id` (integer): the buffer unique identifier, set only for sub-objects, -1 in other cases
 
 The following events are sent to the client, according to synchronization options:
 
-Event                     | Type of body   | Buffer id | Description of data sent
-------------------------- | ---------------|-----------|-------------------------
-`buffer_opened`           | `buffer`       | -1        | buffer with all lines
-`buffer_type_changed`     | `buffer`       | -1        | buffer
-`buffer_moved`            | `buffer`       | -1        | buffer
-`buffer_merged`           | `buffer`       | -1        | buffer
-`buffer_unmerged`         | `buffer`       | -1        | buffer
-`buffer_hidden`           | `buffer`       | -1        | buffer
-`buffer_unhidden`         | `buffer`       | -1        | buffer
-`buffer_renamed`          | `buffer`       | -1        | buffer
-`buffer_title_changed`    | `buffer`       | -1        | buffer
-`buffer_localvar_added`   | `buffer`       | -1        | buffer
-`buffer_localvar_changed` | `buffer`       | -1        | buffer
-`buffer_localvar_removed` | `buffer`       | -1        | buffer
-`buffer_cleared`          | `buffer`       | -1        | buffer
-`buffer_closing`          | `buffer`       | -1        | buffer
-`buffer_line_added`       | `line`         | buffer id | buffer line
-`upgrade`                 | (empty string) | -1        | (no body)
-`upgrade_ended`           | (empty string) | -1        | (no body)
-`nicklist_group_changed`  | `nick_group`   | buffer id | nick group
-`nicklist_group_added`    | `nick_group`   | buffer id | nick group
-`nicklist_group_removing` | `nick_group`   | buffer id | nick group
-`nicklist_nick_added`     | `nick`         | buffer id | nick
-`nicklist_nick_removing`  | `nick`         | buffer id | nick
-`nicklist_nick_changed`   | `nick`         | buffer id | nick
+Event                     | Buffer id | Description of data sent
+------------------------- | --------- | ------------------------
+`buffer_opened`           | -1        | buffer with all lines
+`buffer_type_changed`     | -1        | buffer
+`buffer_moved`            | -1        | buffer
+`buffer_merged`           | -1        | buffer
+`buffer_unmerged`         | -1        | buffer
+`buffer_hidden`           | -1        | buffer
+`buffer_unhidden`         | -1        | buffer
+`buffer_renamed`          | -1        | buffer
+`buffer_title_changed`    | -1        | buffer
+`buffer_localvar_added`   | -1        | buffer
+`buffer_localvar_changed` | -1        | buffer
+`buffer_localvar_removed` | -1        | buffer
+`buffer_cleared`          | -1        | buffer
+`buffer_closing`          | -1        | buffer
+`buffer_line_added`       | buffer id | buffer line
+`upgrade`                 | -1        | (no body)
+`upgrade_ended`           | -1        | (no body)
+`nicklist_group_changed`  | buffer id | nick group
+`nicklist_group_added`    | buffer id | nick group
+`nicklist_group_removing` | buffer id | nick group
+`nicklist_nick_added`     | buffer id | nick
+`nicklist_nick_removing`  | buffer id | nick
+`nicklist_nick_changed`   | buffer id | nick
 
 Example: new buffer: channel `#weechat` has been joined:
 
@@ -1033,9 +1057,9 @@ Example: new buffer: channel `#weechat` has been joined:
     "message": "Event",
     "event": {
         "name": "buffer_opened",
-        "type": "buffer",
         "buffer_id": 1709932823649069
     },
+    "body_type": "buffer",
     "body": {
         "name": "irc.libera.#test",
         "short_name": "",
@@ -1064,9 +1088,9 @@ Example: new line displayed on channel `#weechat`:
     "message": "Event",
     "event": {
         "name": "buffer_line_added",
-        "type": "line",
         "buffer_id": 1709932823649069
     },
+    "body_type": "line",
     "body": {
         "id": 5,
         "index": -1,
@@ -1096,9 +1120,9 @@ Example: nick `bob` added as operator in channel `#weechat`:
     "message": "Event",
     "event": {
         "name": "nicklist_nick_added",
-        "type": "nick",
         "buffer_id": 1709932823649069
     },
+    "body_type": "nick",
     "body": {
         "prefix": "@",
         "prefix_color": "lightgreen",
@@ -1117,7 +1141,6 @@ Example: WeeChat is upgrading:
     "message": "Event",
     "event": {
         "name": "upgrade",
-        "type": "",
         "buffer_id": -1
     }
 }
@@ -1131,7 +1154,6 @@ Example: upgrade has been done:
     "message": "Event",
     "event": {
         "name": "upgrade_ended",
-        "type": "",
         "buffer_id": -1
     }
 }
