@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-03-31
+- Last updated: 2024-04-01
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -492,7 +492,9 @@ HTTP/1.1 200 OK
             "y": -1,
             "date": "2023-12-24T08:17:20.786538Z",
             "date_printed": "2023-12-24T08:17:20.786538Z",
+            "displayed": true,
             "highlight": false,
+            "notify_level": 0,
             "prefix": "",
             "message": "Plugins loaded: alias, buflist, charset, exec, fifo, fset, guile, irc, javascript, logger, lua, perl, php, python, relay, ruby, script, spell, tcl, trigger, typing, xfer",
             "tags": []
@@ -551,7 +553,9 @@ HTTP/1.1 200 OK
         "y": -1,
         "date": "2023-12-05T19:46:03.847625Z",
         "date_printed": "2023-12-05T19:46:03.847625Z",
+        "displayed": true,
         "highlight": false,
+        "notify_level": 0,
         "prefix": "-->",
         "message": "alice (~alice@example.com) has joined #test",
         "tags": [
@@ -568,7 +572,9 @@ HTTP/1.1 200 OK
         "y": -1,
         "date": "2023-12-05T19:46:03.986543Z",
         "date_printed": "2023-12-05T19:46:03.986543Z",
+        "displayed": true,
         "highlight": false,
+        "notify_level": 0,
         "prefix": "--",
         "message": "Mode #test [+Cnst] by zirconium.libera.chat",
         "tags": [
@@ -583,7 +589,9 @@ HTTP/1.1 200 OK
         "y": -1,
         "date": "2023-12-05T19:46:04.287546Z",
         "date_printed": "2023-12-05T19:46:04.287546Z",
+        "displayed": true,
         "highlight": false,
+        "notify_level": 0,
         "prefix": "--",
         "message": "Channel #test: 1 nick (1 op, 0 voiced, 0 regular)",
         "tags": [
@@ -1097,7 +1105,9 @@ Example: new line displayed on channel `#weechat`:
         "index": -1,
         "date": "2024-01-07T08:54:00.179483Z",
         "date_printed": "2024-01-07T08:54:00.179483Z",
+        "displayed": true,
         "highlight": false,
+        "notify_level": 0,
         "prefix": "alice",
         "message": "hello!",
         "tags": [
