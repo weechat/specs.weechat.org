@@ -637,16 +637,23 @@ HTTP/1.1 200 OK
 
 ```json
 {
+    "id": 0,
+    "parent_id": -1,
     "name": "root",
     "color": "",
+    "visible": false,
     "groups": [
         {
+            "id": 1709932823649181,
+            "parent_id": 0,
             "name": "000|o",
             "color": "green",
             "visible": true,
             "groups": [],
             "nicks": [
                 {
+                    "id": 1709932823649184,
+                    "group_id": 1709932823649181,
                     "prefix": "@",
                     "prefix_color": "lightgreen",
                     "name": "alice",
@@ -656,6 +663,8 @@ HTTP/1.1 200 OK
             ]
         },
         {
+            "id": 1709932823649189,
+            "parent_id": 0,
             "name": "001|h",
             "color": "green",
             "visible": true,
@@ -663,6 +672,8 @@ HTTP/1.1 200 OK
             "nicks": []
         },
         {
+            "id": 1709932823649203,
+            "parent_id": 0,
             "name": "002|v",
             "color": "green",
             "visible": true,
@@ -670,6 +681,8 @@ HTTP/1.1 200 OK
             "nicks": []
         },
         {
+            "id": 1709932823649210,
+            "parent_id": 0,
             "name": "999|...",
             "color": "green",
             "visible": true,
