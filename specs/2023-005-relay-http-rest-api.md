@@ -3,10 +3,11 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-04-01
+- Last updated: 2024-04-07
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
+  - [#369](https://github.com/weechat/weechat/issues/369): add connection to WeeChat remote relay
 - Status: draft
 - Target WeeChat version: 4.3.0
 
