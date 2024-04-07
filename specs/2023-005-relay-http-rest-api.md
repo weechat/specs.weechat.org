@@ -545,7 +545,7 @@ HTTP/1.1 200 OK
                 "id": 1709932823649181,
                 "parent_group_id": 0,
                 "name": "000|o",
-                "color": "green",
+                "color": "\u001b[32m",
                 "visible": true,
                 "groups": [],
                 "nicks": [
@@ -553,9 +553,9 @@ HTTP/1.1 200 OK
                         "id": 1709932823649184,
                         "parent_group_id": 1709932823649181,
                         "prefix": "@",
-                        "prefix_color": "lightgreen",
+                        "prefix_color": "\u001b[92m",
                         "name": "alice",
-                        "color": "default",
+                        "color": "",
                         "visible": true
                     }
                 ]
@@ -564,7 +564,7 @@ HTTP/1.1 200 OK
                 "id": 1709932823649189,
                 "parent_group_id": 0,
                 "name": "001|h",
-                "color": "green",
+                "color": "\u001b[32m",
                 "visible": true,
                 "groups": [],
                 "nicks": []
@@ -573,7 +573,7 @@ HTTP/1.1 200 OK
                 "id": 1709932823649203,
                 "parent_group_id": 0,
                 "name": "002|v",
-                "color": "green",
+                "color": "\u001b[32m",
                 "visible": true,
                 "groups": [],
                 "nicks": []
@@ -582,7 +582,7 @@ HTTP/1.1 200 OK
                 "id": 1709932823649210,
                 "parent_group_id": 0,
                 "name": "999|...",
-                "color": "green",
+                "color": "\u001b[32m",
                 "visible": true,
                 "groups": [],
                 "nicks": []
@@ -736,7 +736,7 @@ HTTP/1.1 200 OK
             "id": 1709932823649181,
             "parent_group_id": 0,
             "name": "000|o",
-            "color": "green",
+            "color": "\u001b[32m",
             "visible": true,
             "groups": [],
             "nicks": [
@@ -744,9 +744,9 @@ HTTP/1.1 200 OK
                     "id": 1709932823649184,
                     "parent_group_id": 1709932823649181,
                     "prefix": "@",
-                    "prefix_color": "lightgreen",
+                    "prefix_color": "\u001b[92m",
                     "name": "alice",
-                    "color": "default",
+                    "color": "",
                     "visible": true
                 }
             ]
@@ -755,7 +755,7 @@ HTTP/1.1 200 OK
             "id": 1709932823649189,
             "parent_group_id": 0,
             "name": "001|h",
-            "color": "green",
+            "color": "\u001b[32m",
             "visible": true,
             "groups": [],
             "nicks": []
@@ -764,7 +764,7 @@ HTTP/1.1 200 OK
             "id": 1709932823649203,
             "parent_group_id": 0,
             "name": "002|v",
-            "color": "green",
+            "color": "\u001b[32m",
             "visible": true,
             "groups": [],
             "nicks": []
@@ -773,7 +773,7 @@ HTTP/1.1 200 OK
             "id": 1709932823649210,
             "parent_group_id": 0,
             "name": "999|...",
-            "color": "green",
+            "color": "\u001b[32m",
             "visible": true,
             "groups": [],
             "nicks": []
@@ -1241,9 +1241,9 @@ Example: nick `bob` added as operator in channel `#weechat`:
         "id": 1709932823649902,
         "parent_group_id": 1709932823649181,
         "prefix": "@",
-        "prefix_color": "lightgreen",
+        "prefix_color": "\u001b[92m",
         "name": "bob",
-        "color": "default",
+        "color": "",
         "visible": true
     }
 }
