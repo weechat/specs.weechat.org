@@ -1238,6 +1238,8 @@ Example: nick `bob` added as operator in channel `#weechat`:
     },
     "body_type": "nick",
     "body": {
+        "id": 1709932823649902,
+        "parent_group_id": 1709932823649181,
         "prefix": "@",
         "prefix_color": "lightgreen",
         "name": "bob",
