@@ -504,6 +504,95 @@ HTTP/1.1 200 OK
 }
 ```
 
+Request example: get a channel buffers with nicks:
+
+```bash
+curl -L -u 'plain:secret_password' \
+  'https://localhost:9000/api/buffers/irc.libera.%23weechat?nicks=true'
+```
+
+Response:
+
+```text
+HTTP/1.1 200 OK
+```
+
+```json
+{
+    "id": 1709932823649069,
+    "name": "irc.libera.#weechat",
+    "short_name": "#weechat",
+    "number": 3,
+    "type": "formatted",
+    "title": "Welcome to the WeeChat official support channel",
+    "local_variables": {
+        "plugin": "irc",
+        "name": "libera.#weechat",
+        "type": "channel",
+        "server": "libera",
+        "channel": "#weechat",
+        "nick": "alice",
+        "host": "~alice@example.com"
+    },
+    "nicklist": {
+        "id": 0,
+        "parent_id": -1,
+        "name": "root",
+        "color": "",
+        "visible": false,
+        "groups": [
+            {
+                "id": 1709932823649181,
+                "parent_id": 0,
+                "name": "000|o",
+                "color": "green",
+                "visible": true,
+                "groups": [],
+                "nicks": [
+                    {
+                        "id": 1709932823649184,
+                        "group_id": 1709932823649181,
+                        "prefix": "@",
+                        "prefix_color": "lightgreen",
+                        "name": "alice",
+                        "color": "default",
+                        "visible": true
+                    }
+                ]
+            },
+            {
+                "id": 1709932823649189,
+                "parent_id": 0,
+                "name": "001|h",
+                "color": "green",
+                "visible": true,
+                "groups": [],
+                "nicks": []
+            },
+            {
+                "id": 1709932823649203,
+                "parent_id": 0,
+                "name": "002|v",
+                "color": "green",
+                "visible": true,
+                "groups": [],
+                "nicks": []
+            },
+            {
+                "id": 1709932823649210,
+                "parent_id": 0,
+                "name": "999|...",
+                "color": "green",
+                "visible": true,
+                "groups": [],
+                "nicks": []
+            }
+        ],
+        "nicks": []
+    }
+}
+```
+
 #### Sub-resource: buffers / lines
 
 Return lines in a buffer.
