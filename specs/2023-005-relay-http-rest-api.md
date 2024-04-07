@@ -1273,6 +1273,51 @@ Example: upgrade has been done:
 }
 ```
 
+### Remote
+
+A new `/remote` command is added to manage and connect to remotes. A remote is
+another WeeChat running with a relay "api".
+
+Each remote is defined by:
+
+- an URL, eg: `https://localhost:9000`
+- a proxy name (optional)
+- a password
+- a TOTP secret (required if the remote has TOTP enabled)
+
+#### Command /remote
+
+```text
+[relay]  /remote  list|listfull [<name>]
+                  add <name> <url> [-<option>[=<value>]]
+                  connect <name>
+                  send <name> <json>
+                  disconnect <name>
+                  rename <name> <new_name>
+                  del <name>
+
+control of remote relay servers
+
+      list: list remote relay servers
+  listfull: list remote relay servers (verbose)
+       add: add a remote relay server
+      name: name of remote relay server, for internal and display use; this name is used to connect to the server and to set server options: relay.remote.name.xxx
+       url: URL of the remote, format is https://example.com:9000 or http://example.com:9000 (plain-text connection, not recommended)
+    option: set option for remote: proxy, password or totp_secret
+   connect: connect to a remote relay server
+      send: send JSON data to a remote
+disconnect: disconnect from a remote relay server
+    rename: rename a remote relay server
+       del: delete a remote relay server
+
+Without argument, this command opens buffer with list of relay clients.
+
+Examples:
+  /remote add example https://localhost:9000 -password=my_secret_password -totp_secret=secrettotp
+  /remote connect example
+  /remote del example
+```
+
 ## Planning
 
 The changes must be implemented in this order:
@@ -1281,6 +1326,7 @@ The changes must be implemented in this order:
 2. Add support of websocket extension "permessage-deflate"
 3. Add support of hashed passwords (SHA and PBKDF2)
 4. Add "handshake" resource
+5. Add command `/remote` to manage and connect to remote WeeChat relay/api
 
 ## References
 
