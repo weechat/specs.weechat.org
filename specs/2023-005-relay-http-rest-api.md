@@ -1300,19 +1300,17 @@ Each remote is defined by:
 
 control of remote relay servers
 
-      list: list remote relay servers
+      list: list remote relay servers (without argument, this list is displayed)
   listfull: list remote relay servers (verbose)
        add: add a remote relay server
-      name: name of remote relay server, for internal and display use; this name is used to connect to the server and to set server options: relay.remote.name.xxx
-       url: URL of the remote, format is https://example.com:9000 or http://example.com:9000 (plain-text connection, not recommended)
-    option: set option for remote: proxy, password or totp_secret
+      name: name of remote relay server, for internal and display use; this name is used to connect to the remote relay and to set remote relay options: relay.remote.name.xxx
+       url: URL of the remote relay, format is https://example.com:9000 or http://example.com:9000 (plain-text connection, not recommended)
+    option: set option for remote relay: proxy, password or totp_secret
    connect: connect to a remote relay server
-      send: send JSON data to a remote
+      send: send JSON data to a remote relay server
 disconnect: disconnect from a remote relay server
     rename: rename a remote relay server
        del: delete a remote relay server
-
-Without argument, this command opens buffer with list of relay clients.
 
 Examples:
   /remote add example https://localhost:9000 -password=my_secret_password -totp_secret=secrettotp
