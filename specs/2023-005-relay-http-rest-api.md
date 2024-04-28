@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-04-07
+- Last updated: 2024-04-28
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -29,9 +29,7 @@ Purpose of this specification is to add a third relay protocol called `api`, wit
   - HTTP REST API exposed by WeeChat, can be used from command line (`curl`)
   - JSON format for input/output
   - automatic compression of responses (deflate, gzip, zstd and permessage-deflate for websocket)
-- data synchronization:
-  - optional JWT token to make multiple requests with a single authentication
-  - real-time sync with websocket or polling with HTTP requests
+- data synchronization: real-time sync with websocket or polling with HTTP requests
 - no internal structures are exposed:
   - color codes in messages can be converted to ANSI colors, kept as-is or stripped
   - no use of pointers
@@ -150,7 +148,7 @@ Example:
 - result hash is the SHA256 of string `1706431066secret_password` which is as hexadecimal: `dfa1db3f6bb6445d18d9ec7427c10f6421274e3a4751e6c1ffc7dd28c94eadf6`
 - the `Authorization` header is the base64 encoded string `hash:sha256:1706431066:dfa1db3f6bb6445d18d9ec7427c10f6421274e3a4751e6c1ffc7dd28c94eadf6`: `aGFzaDpzaGEyNTY6MTcwNjQzMTA2NjpkZmExZGIzZjZiYjY0NDVkMThkOWVjNzQyN2MxMGY2NDIxMjc0ZTNhNDc1MWU2YzFmZmM3ZGQyOGM5NGVhZGY2`.
 
-The header `Authorization` is allowed in the first websocket request (see [Handshake](#handshake)) or any HTTP request when websocket is not used and when a JWT token is not sent.
+The header `Authorization` is allowed in the first websocket request (see [Handshake](#handshake)) or any HTTP request when websocket is not used.
 
 Request example with plain password:
 
