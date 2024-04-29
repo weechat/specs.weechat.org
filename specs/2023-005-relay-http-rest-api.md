@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-04-28
+- Last updated: 2024-04-29
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -416,6 +416,9 @@ HTTP/1.1 200 OK
         "number": 1,
         "type": "formatted",
         "title": "WeeChat 4.2.0-dev (C) 2003-2023 - https://weechat.org/",
+        "nicklist": false,
+        "nicklist_case_sensitive": false,
+        "nicklist_display_groups": true,
         "local_variables": {
             "plugin": "core",
             "name": "weechat"
@@ -428,6 +431,9 @@ HTTP/1.1 200 OK
         "number": 2,
         "type": "formatted",
         "title": "IRC: irc.libera.chat/6697 (2001:4b7a:a008::6667)",
+        "nicklist": false,
+        "nicklist_case_sensitive": false,
+        "nicklist_display_groups": true,
         "local_variables": {
             "plugin": "irc",
             "name": "server.libera",
@@ -447,6 +453,9 @@ HTTP/1.1 200 OK
         "number": 3,
         "type": "formatted",
         "title": "Welcome to the WeeChat official support channel",
+        "nicklist": true,
+        "nicklist_case_sensitive": false,
+        "nicklist_display_groups": false,
         "local_variables": {
             "plugin": "irc",
             "name": "libera.#weechat",
@@ -481,6 +490,9 @@ HTTP/1.1 200 OK
     "number": 1,
     "type": "formatted",
     "title": "WeeChat 4.2.0-dev (C) 2003-2023 - https://weechat.org/",
+    "nicklist": false,
+    "nicklist_case_sensitive": false,
+    "nicklist_display_groups": true,
     "local_variables": {
         "plugin": "core",
         "name": "weechat"
@@ -523,6 +535,9 @@ HTTP/1.1 200 OK
     "number": 3,
     "type": "formatted",
     "title": "Welcome to the WeeChat official support channel",
+    "nicklist": true,
+    "nicklist_case_sensitive": false,
+    "nicklist_display_groups": false,
     "local_variables": {
         "plugin": "irc",
         "name": "libera.#weechat",
@@ -532,7 +547,7 @@ HTTP/1.1 200 OK
         "nick": "alice",
         "host": "~alice@example.com"
     },
-    "nicklist": {
+    "nicklist_root": {
         "id": 0,
         "parent_group_id": -1,
         "name": "root",
@@ -1176,6 +1191,9 @@ Example: new buffer: channel `#weechat` has been joined:
         "number": 4,
         "type": "formatted",
         "title": "",
+        "nicklist": true,
+        "nicklist_case_sensitive": false,
+        "nicklist_display_groups": false,
         "local_variables": {
             "plugin": "irc",
             "name": "libera.#test",
