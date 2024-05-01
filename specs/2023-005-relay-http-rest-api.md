@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-04-29
+- Last updated: 2024-05-01
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -422,7 +422,8 @@ HTTP/1.1 200 OK
         "local_variables": {
             "plugin": "core",
             "name": "weechat"
-        }
+        },
+        "keys": []
     },
     {
         "id": 1709932823423765,
@@ -444,7 +445,8 @@ HTTP/1.1 200 OK
             "nick": "alice",
             "tls_version": "TLS1.3",
             "host": "~alice@example.com"
-        }
+        },
+        "keys": []
     },
     {
         "id": 1709932823649069,
@@ -464,7 +466,8 @@ HTTP/1.1 200 OK
             "channel": "#weechat",
             "nick": "alice",
             "host": "~alice@example.com"
-        }
+        },
+        "keys": []
     }
 ]
 ```
@@ -497,6 +500,7 @@ HTTP/1.1 200 OK
         "plugin": "core",
         "name": "weechat"
     },
+    "keys": [],
     "lines": [
         {
             "id": 10,
@@ -547,6 +551,7 @@ HTTP/1.1 200 OK
         "nick": "alice",
         "host": "~alice@example.com"
     },
+    "keys": [],
     "nicklist_root": {
         "id": 0,
         "parent_group_id": -1,
@@ -610,6 +615,133 @@ HTTP/1.1 200 OK
         ],
         "nicks": []
     }
+}
+```
+
+Request example: get fset buffer with its local keys:
+
+```bash
+curl -L -u 'plain:secret_password' \
+  'https://localhost:9000/api/buffers/fset.fset'
+```
+
+Response:
+
+```text
+HTTP/1.1 200 OK
+```
+
+```json
+{
+    "id": 1709932823897200,
+    "name": "fset.fset",
+    "short_name": "",
+    "number": 4,
+    "type": "free",
+    "title": "\u001b[96m1/\u001b[36m3565 | Filter: \u001b[93m* | Sort: \u001b[97m~name | Key(input): alt+space=toggle boolean, alt+'-'(-)=subtract 1 or set, alt+'+'(+)=add 1 or append, alt+f,alt+r(r)=reset, alt+f,alt+u(u)=unset, alt+enter(s)=set, alt+f,alt+n(n)=set new value, alt+f,alt+a(a)=append, alt+','=mark/unmark, shift+down=mark and move down, shift+up=move up and mark, ($)=refresh, ($$)=unmark/refresh, (m)=mark matching options, (u)=unmark matching options, alt+p(p)=toggle plugins desc, alt+v(v)=toggle help bar, ctrl+x(x)=switch format, (q)=close buffer",
+    "nicklist": false,
+    "nicklist_case_sensitive": false,
+    "nicklist_display_groups": true,
+    "local_variables": {
+        "plugin": "fset",
+        "name": "fset",
+        "type": "option",
+        "filter": "*"
+    },
+    "keys": [
+        {
+            "key": "ctrl-l",
+            "command": "/fset -refresh"
+        },
+        {
+            "key": "ctrl-n",
+            "command": "/eval ${if:${weechat.bar.buflist.hidden}?/fset -down:/buffer +1}"
+        },
+        {
+            "key": "ctrl-x",
+            "command": "/fset -format"
+        },
+        {
+            "key": "down",
+            "command": "/fset -down"
+        },
+        {
+            "key": "f11",
+            "command": "/fset -left"
+        },
+        {
+            "key": "f12",
+            "command": "/fset -right"
+        },
+        {
+            "key": "meta-+",
+            "command": "/fset -add 1"
+        },
+        {
+            "key": "meta--",
+            "command": "/fset -add -1"
+        },
+        {
+            "key": "meta-comma",
+            "command": "/fset -mark"
+        },
+        {
+            "key": "meta-end",
+            "command": "/fset -go end"
+        },
+        {
+            "key": "meta-f,meta-a",
+            "command": "/fset -append"
+        },
+        {
+            "key": "meta-f,meta-n",
+            "command": "/fset -setnew"
+        },
+        {
+            "key": "meta-f,meta-r",
+            "command": "/fset -reset"
+        },
+        {
+            "key": "meta-f,meta-u",
+            "command": "/fset -unset"
+        },
+        {
+            "key": "meta-home",
+            "command": "/fset -go 0"
+        },
+        {
+            "key": "meta-p",
+            "command": "/mute /set fset.look.show_plugins_desc toggle"
+        },
+        {
+            "key": "meta-q",
+            "command": "/input insert meta-q fset ${property}"
+        },
+        {
+            "key": "meta-return",
+            "command": "/fset -set"
+        },
+        {
+            "key": "meta-space",
+            "command": "/fset -toggle"
+        },
+        {
+            "key": "meta-v",
+            "command": "/bar toggle fset"
+        },
+        {
+            "key": "shift-down",
+            "command": "/fset -mark; /fset -down"
+        },
+        {
+            "key": "shift-up",
+            "command": "/fset -up; /fset -mark"
+        },
+        {
+            "key": "up",
+            "command": "/fset -up"
+        }
+    ]
 }
 ```
 
@@ -1217,6 +1349,7 @@ Example: new buffer: channel `#weechat` has been joined:
             "server": "libera",
             "channel": "#test"
         },
+        "keys": [],
         "lines": []
     }
 }
