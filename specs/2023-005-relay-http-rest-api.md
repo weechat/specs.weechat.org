@@ -1294,8 +1294,8 @@ The JSON sent has `code` set to `0`, `message` set to `Event` and an extra objec
 The following events are sent to the client, according to synchronization options:
 
 Event                     | Buffer id | Body type     | Body
-------------------------- | --------- | ------------- | ---------------------
-`buffer_opened`           | buffer id | `buffer`      | buffer with all lines
+------------------------- | --------- | ------------- | -------------------------------
+`buffer_opened`           | buffer id | `buffer`      | buffer with all lines and nicks
 `buffer_type_changed`     | buffer id | `buffer`      | buffer
 `buffer_moved`            | buffer id | `buffer`      | buffer
 `buffer_merged`           | buffer id | `buffer`      | buffer
