@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-05-01
+- Last updated: 2024-05-04
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -1293,31 +1293,37 @@ The JSON sent has `code` set to `0`, `message` set to `Event` and an extra objec
 
 The following events are sent to the client, according to synchronization options:
 
-Event                     | Buffer id | Description of data sent
-------------------------- | --------- | ------------------------
-`buffer_opened`           | -1        | buffer with all lines
-`buffer_type_changed`     | -1        | buffer
-`buffer_moved`            | -1        | buffer
-`buffer_merged`           | -1        | buffer
-`buffer_unmerged`         | -1        | buffer
-`buffer_hidden`           | -1        | buffer
-`buffer_unhidden`         | -1        | buffer
-`buffer_renamed`          | -1        | buffer
-`buffer_title_changed`    | -1        | buffer
-`buffer_localvar_added`   | -1        | buffer
-`buffer_localvar_changed` | -1        | buffer
-`buffer_localvar_removed` | -1        | buffer
-`buffer_cleared`          | -1        | buffer
-`buffer_closing`          | -1        | buffer
-`buffer_line_added`       | buffer id | buffer line
-`upgrade`                 | -1        | (no body)
-`upgrade_ended`           | -1        | (no body)
-`nicklist_group_changed`  | buffer id | nick group
-`nicklist_group_added`    | buffer id | nick group
-`nicklist_group_removing` | buffer id | nick group
-`nicklist_nick_added`     | buffer id | nick
-`nicklist_nick_removing`  | buffer id | nick
-`nicklist_nick_changed`   | buffer id | nick
+Event                     | Buffer id | Body type     | Body
+------------------------- | --------- | ------------- | ---------------------
+`buffer_opened`           | buffer id | `buffer`      | buffer with all lines
+`buffer_type_changed`     | buffer id | `buffer`      | buffer
+`buffer_moved`            | buffer id | `buffer`      | buffer
+`buffer_merged`           | buffer id | `buffer`      | buffer
+`buffer_unmerged`         | buffer id | `buffer`      | buffer
+`buffer_hidden`           | buffer id | `buffer`      | buffer
+`buffer_unhidden`         | buffer id | `buffer`      | buffer
+`buffer_renamed`          | buffer id | `buffer`      | buffer
+`buffer_title_changed`    | buffer id | `buffer`      | buffer
+`buffer_localvar_added`   | buffer id | `buffer`      | buffer
+`buffer_localvar_changed` | buffer id | `buffer`      | buffer
+`buffer_localvar_removed` | buffer id | `buffer`      | buffer
+`buffer_cleared`          | buffer id | `buffer`      | buffer
+`buffer_closing`          | buffer id | `buffer`      | buffer
+`buffer_closed`           | buffer id | (not defined) | (not defined)
+`buffer_line_added`       | buffer id | `line`        | buffer line
+`upgrade`                 | -1        | (not defined) | (not defined)
+`upgrade_ended`           | -1        | (not defined) | (not defined)
+`nicklist_group_changed`  | buffer id | `nick_group`  | nick group
+`nicklist_group_added`    | buffer id | `nick_group`  | nick group
+`nicklist_group_removing` | buffer id | `nick_group`  | nick group
+`nicklist_nick_added`     | buffer id | `nick`        | nick
+`nicklist_nick_removing`  | buffer id | `nick`        | nick
+`nicklist_nick_changed`   | buffer id | `nick`        | nick
+
+Note: the `upgrade` and `upgrade_ended` events are sent only if the client
+is connected with plain text (no TLS), because with TLS the client is
+disconnected before the upgrade is done (upgrade of TLS connections is not
+supported).
 
 Example: new buffer: channel `#weechat` has been joined:
 
@@ -1327,7 +1333,7 @@ Example: new buffer: channel `#weechat` has been joined:
     "message": "Event",
     "event": {
         "name": "buffer_opened",
-        "buffer_id": -1
+        "buffer_id": 1709932823649069
     },
     "body_type": "buffer",
     "body": {
@@ -1410,6 +1416,19 @@ Example: nick `bob` added as operator in channel `#weechat`:
         "color_name": "bar_fg",
         "color": "",
         "visible": true
+    }
+}
+```
+
+Example: channel buffer `#weechat` has been closed:
+
+```json
+{
+    "code": 0,
+    "message": "Event",
+    "event": {
+        "name": "buffer_closed",
+        "buffer_id": 1709932823649069
     }
 }
 ```
