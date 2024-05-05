@@ -66,6 +66,7 @@ All resources start with `/api/`, followed by the resource name.
 
 The following methods and paths are available:
 
+- [`OPTIONS /api/xxx`](#preflight-request): preflight request (CORS) (no authentication required)
 - [`POST /api/handshake`](#resource-handshake): handshake with WeeChat (no authentication required)
 - [`GET /api/version`](#resource-version): get the WeeChat and relay API versions
 - [`GET /api/buffers`](#resource-buffers): get buffers, lines, nicks
