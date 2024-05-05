@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-05-04
+- Last updated: 2024-05-05
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -286,6 +286,40 @@ Content-Length: 77
 ```
 
 Note: with websocket connection, the extension `permessage-deflate` allows to compress messages with zlib.
+
+### Preflight request
+
+The preflight request with HTTP method `OPTIONS` is used by browsers to check that the server (WeeChat) will permit the actual request.
+
+Request example:
+
+```http
+OPTIONS /api/version HTTP/1.1
+Host: localhost:9000
+Connection: keep-alive
+Accept: */*
+Access-Control-Request-Method: GET
+Access-Control-Request-Headers: authorization
+Origin: http://localhost
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-site
+Sec-Fetch-Dest: empty
+Referer: http://localhost/
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9,fr;q=0.8
+```
+
+Response:
+
+```http
+HTTP/1.1 204 No Content
+Access-Control-Allow-Methods: GET, POST, PUT, DELETE
+Access-Control-Allow-Headers: origin, content-type, accept, authorization
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 0
+```
 
 ### Resource: handshake
 
