@@ -420,10 +420,14 @@ Path parameters:
 
 Query parameters:
 
-- `lines` (integer, optional, default: `0`): number of lines in buffer to return:
+- `lines` (integer, optional, default: `0`): number of lines to return in buffers with formatted content:
   - negative number: return N lines from the end of buffer (newest lines)
   - `0`: do not return any line
   - positive number: return N lines from the beginning of buffer (oldest lines)
+- `lines_free` (integer, optional, default: `0` if `lines` is `0`, otherwise all lines): number of lines to return in buffers with free content:
+  - negative number: return N lines from the end of buffer
+  - `0`: do not return any line
+  - positive number: return N lines from the beginning of buffer
 - `nicks` (boolean, optional, default: `false`): return nicks in buffer
 - `colors` (string, optional, default: `ansi`): how to return strings with color codes:
   - `ansi`: return ANSI color codes
@@ -801,7 +805,7 @@ Path parameters:
 
 Query parameters:
 
-- `lines` (integer, optional, default: `-100`): number of lines in buffer to return:
+- `lines` (integer, optional, default: all lines): number of lines to return:
   - negative number: return N lines from the end of buffer (newest lines)
   - `0`: do not return any line (allowed but doesn't make sense with this resource)
   - positive number: return N lines from the beginning of buffer (oldest lines)
