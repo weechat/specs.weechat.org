@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-05-05
+- Last updated: 2024-05-06
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -1368,6 +1368,8 @@ Event                     | Buffer id | Body type     | Body
 `buffer_closing`          | buffer id | `buffer`      | buffer
 `buffer_closed`           | buffer id | (not defined) | (not defined)
 `buffer_line_added`       | buffer id | `line`        | buffer line
+`input_text_changed`      | buffer id | `buffer`      | buffer
+`input_text_cursor_moved` | buffer id | `buffer`      | buffer
 `upgrade`                 | -1        | (not defined) | (not defined)
 `upgrade_ended`           | -1        | (not defined) | (not defined)
 `nicklist_group_changed`  | buffer id | `nick_group`  | nick group
