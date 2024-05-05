@@ -1167,6 +1167,7 @@ Body parameters:
 
 - `sync` (boolean, optional, default: `true`): `true` to enable synchronization with WeeChat
 - `nicks` (boolean, optional, default: `true`): `true` to receive nick updates in buffers (used only if `sync` is `true`)
+- `input` (boolean, optional, default: `true`): `true` to synchronize input from remote to local (used only if `sync` is `true`)
 - `colors` (string, optional, default: `ansi`): how to return strings with color codes (used only if `sync` is `true`):
   - `ansi`: return ANSI color codes
   - `weechat`: return WeeChat internal color codes
