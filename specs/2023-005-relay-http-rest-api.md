@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-05-06
+- Last updated: 2024-05-12
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -455,6 +455,8 @@ HTTP/1.1 200 OK
         "number": 1,
         "type": "formatted",
         "title": "WeeChat 4.2.0-dev (C) 2003-2023 - https://weechat.org/",
+        "modes": "",
+        "input_prompt": "",
         "input": "",
         "input_position": 0,
         "input_multiline": false,
@@ -474,6 +476,8 @@ HTTP/1.1 200 OK
         "number": 2,
         "type": "formatted",
         "title": "IRC: irc.libera.chat/6697 (2001:4b7a:a008::6667)",
+        "modes": "",
+        "input_prompt": "",
         "input": "",
         "input_position": 0,
         "input_multiline": false,
@@ -500,6 +504,8 @@ HTTP/1.1 200 OK
         "number": 3,
         "type": "formatted",
         "title": "Welcome to the WeeChat official support channel",
+        "modes": "+nt",
+        "input_prompt": "\u001b[92m@\u001b[96malice\u001b[48;5;22m(\u001b[39mi\u001b[48;5;22m)",
         "input": "",
         "input_position": 0,
         "input_multiline": false,
@@ -541,6 +547,8 @@ HTTP/1.1 200 OK
     "number": 1,
     "type": "formatted",
     "title": "WeeChat 4.2.0-dev (C) 2003-2023 - https://weechat.org/",
+    "modes": "",
+    "input_prompt": "",
     "input": "",
     "input_position": 0,
     "input_multiline": false,
@@ -590,6 +598,8 @@ HTTP/1.1 200 OK
     "number": 3,
     "type": "formatted",
     "title": "Welcome to the WeeChat official support channel",
+    "modes": "+nt",
+    "input_prompt": "\u001b[92m@\u001b[96malice\u001b[48;5;22m(\u001b[39mi\u001b[48;5;22m)",
     "input": "",
     "input_position": 0,
     "input_multiline": false,
@@ -693,6 +703,8 @@ HTTP/1.1 200 OK
     "number": 4,
     "type": "free",
     "title": "\u001b[96m1/\u001b[36m3565 | Filter: \u001b[93m* | Sort: \u001b[97m~name | Key(input): alt+space=toggle boolean, alt+'-'(-)=subtract 1 or set, alt+'+'(+)=add 1 or append, alt+f,alt+r(r)=reset, alt+f,alt+u(u)=unset, alt+enter(s)=set, alt+f,alt+n(n)=set new value, alt+f,alt+a(a)=append, alt+','=mark/unmark, shift+down=mark and move down, shift+up=move up and mark, ($)=refresh, ($$)=unmark/refresh, (m)=mark matching options, (u)=unmark matching options, alt+p(p)=toggle plugins desc, alt+v(v)=toggle help bar, ctrl+x(x)=switch format, (q)=close buffer",
+    "modes": "",
+    "input_prompt": "",
     "input": "",
     "input_position": 0,
     "input_multiline": false,
@@ -1403,6 +1415,8 @@ Example: new buffer: channel `#weechat` has been joined:
         "number": 4,
         "type": "formatted",
         "title": "",
+        "modes": "+nt",
+        "input_prompt": "\u001b[92m@\u001b[96malice\u001b[48;5;22m(\u001b[39mi\u001b[48;5;22m)",
         "input": "",
         "input_position": 0,
         "input_multiline": false,
