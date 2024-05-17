@@ -8,7 +8,7 @@
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
   - [#369](https://github.com/weechat/weechat/issues/369): add connection to WeeChat remote relay
-- Status: in progress
+- Status: implemented
 - Target WeeChat version: 4.3.0
 
 ## Context
