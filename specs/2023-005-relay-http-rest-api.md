@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-05-12
+- Last updated: 2024-05-17
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -1541,12 +1541,16 @@ Example: upgrade has been done:
 A new `/remote` command is added to manage and connect to remotes. A remote is
 another WeeChat running with a relay "api".
 
-Each remote is defined by:
+Each remote has these options:
 
-- an URL, eg: `https://localhost:9000`
-- a proxy name (optional)
-- a password
-- a TOTP secret (required if the remote has TOTP enabled)
+Name            | Required | Description                          | Example
+--------------- | -------- | ------------------------------------ | ------------------------
+`autoconnect`   | **Yes**  | Auto-connect when WeeChat starts     | `on`
+`password`      | **Yes**  | Password of remote relay             | `secret`
+`proxy`         | No       | Name of proxy used to connect        | `my_proxy`
+`tls_verify`    | **Yes**  | Verify TLS certificate (recommended) | `on`
+`totp_secret`   | No       | TOTP secret of remote relay          | `secretbase32`
+`url`           | **Yes**  | URL of remote                        | `https://localhost:9000`
 
 #### Command /remote
 
@@ -1566,7 +1570,7 @@ control of remote relay servers
        add: add a remote relay server
       name: name of remote relay server, for internal and display use; this name is used to connect to the remote relay and to set remote relay options: relay.remote.name.xxx
        url: URL of the remote relay, format is https://example.com:9000 or http://example.com:9000 (plain-text connection, not recommended)
-    option: set option for remote relay: proxy, password or totp_secret
+    option: set option for remote relay
    connect: connect to a remote relay server
       send: send JSON data to a remote relay server
 disconnect: disconnect from a remote relay server
