@@ -1592,6 +1592,7 @@ The changes must be implemented in this order:
 3. Add support of hashed passwords (SHA and PBKDF2)
 4. Add "handshake" resource
 5. Add command `/remote` to manage and connect to remote WeeChat relay/api
+6. Add OpenAPI document with tests using [schemathesis](https://github.com/schemathesis/schemathesis)
 
 ## References
 
