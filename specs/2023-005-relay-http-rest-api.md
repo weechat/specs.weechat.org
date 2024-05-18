@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-05-17
+- Last updated: 2024-05-18
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -1261,8 +1261,8 @@ Sec-WebSocket-Accept: PaY9vRflWeOKuD0/F7e5gD9At9U=
 Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
 ```
 
-Note: the `Sec-WebSocket-Accept` value returned is the SHA-1 hash of the value received, concatenated to the GUID "258EAFA5-E914-47DA-95CA-C5AB0DC85B11" (the SHA-1 is encoded in base64). \
-In the example above, the SHA-1 of "2XE8VAJktqi3Tpw5QnfxVQ==258EAFA5-E914-47DA-95CA-C5AB0DC85B11" is "PaY9vRflWeOKuD0/F7e5gD9At9U=" (in base64).
+Note: the `Sec-WebSocket-Accept` value returned is the SHA-1 hash of the value received, concatenated to the GUID `258EAFA5-E914-47DA-95CA-C5AB0DC85B11` (the SHA-1 is encoded in base64). \
+In the example above, the SHA-1 of `2XE8VAJktqi3Tpw5QnfxVQ==258EAFA5-E914-47DA-95CA-C5AB0DC85B11` is `PaY9vRflWeOKuD0/F7e5gD9At9U=` (in base64).
 
 The support of `permessage-deflate` is added, that's why WeeChat includes it in the handshake reply.
 
