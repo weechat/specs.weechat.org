@@ -3,7 +3,7 @@
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-12-05
-- Last updated: 2024-05-18
+- Last updated: 2024-06-16
 - Issues:
   - [#2066](https://github.com/weechat/weechat/issues/2066): new relay "api": HTTP REST API
   - [#1549](https://github.com/weechat/weechat/issues/1549): add support of websocket extension "permessage-deflate"
@@ -40,8 +40,9 @@ Purpose of this specification is to add a third relay protocol called `api`, wit
 
 Existing relay protocols `irc` and `weechat` are unchanged.
 
-Protocol `weechat` will benefit of websocket extension `permessage-deflate` (compression of messages exchanged with the client, in both directions). \
-This is transparent for existing clients: if they do not support this extension, WeeChat will still send uncompressed messages to the client.
+~~Protocol `weechat` will benefit of websocket extension `permessage-deflate` (compression of messages exchanged with the client, in both directions).~~ \
+~~This is transparent for existing clients: if they do not support this extension, WeeChat will still send uncompressed messages to the client.~~\
+**Update on 2024-06-06**: as the extension `permessage-deflate` is causing troubles with some browsers like Safari (see this glowing-bear [issue](https://github.com/glowing-bear/glowing-bear/issues/1280)), it is now enabled only with "api" relay (WeeChat ≥ 4.3.2).
 
 ## Changes
 
