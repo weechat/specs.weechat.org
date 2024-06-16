@@ -348,7 +348,7 @@ The response has the following fields:
 
 - `password_hash_algo` (string): the hash algorithm to use (`null` if no algorithm is compatible)
 - `password_hash_iterations` (integer): the number of iterations to use if hash PBKDF2 is used
-- `totp` (boolean): `true` if TOTP is enabled in WeeChat (then the client must sent TOTP in specific header), `false` otherwise
+- `totp` (boolean): `true` if TOTP is enabled in WeeChat (then the client must send TOTP in specific header), `false` otherwise
 
 Request example:
 
