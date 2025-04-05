@@ -1,5 +1,8 @@
 # TLS options and connections
 
+<!-- SPDX-FileCopyrightText: 2023 Sébastien Helleu <flashcode@flashtux.org> -->
+<!-- SPDX-License-Identifier: CC-BY-NC-SA-4.0 -->
+
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2023-04-04

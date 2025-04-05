@@ -1,5 +1,8 @@
 # Follow XDG Base Directory Specifications
 
+<!-- SPDX-FileCopyrightText: 2021 Sébastien Helleu <flashcode@flashtux.org> -->
+<!-- SPDX-License-Identifier: CC-BY-NC-SA-4.0 -->
+
 - Author: [Sébastien Helleu](https://github.com/flashcode)
 - License: CC BY-NC-SA 4.0
 - Created on: 2021-03-28
