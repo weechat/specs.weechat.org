@@ -1,5 +1,7 @@
 # WeeChat specifications
 
+[![REUSE status](https://api.reuse.software/badge/github.com/weechat/specs.weechat.org)](https://api.reuse.software/info/github.com/weechat/specs.weechat.org)
+
 This is a collection of specifications for [WeeChat](https://weechat.org),
 written for the development of new major features that have lot of impacts
 in the WeeChat code.
