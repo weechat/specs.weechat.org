@@ -22,7 +22,7 @@ Specifications are visible on the GitHub pages: [https://specs.weechat.org](http
 
 ## Copyright
 
-Copyright © 2021-2024 [Sébastien Helleu](https://github.com/flashcode)
+Copyright © 2021-2025 [Sébastien Helleu](https://github.com/flashcode)
 
 WeeChat specifications are distributed under the
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.\
