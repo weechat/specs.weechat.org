@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021-2025 Sébastien Helleu <flashcode@flashtux.org>
+
+SPDX-License-Identifier: CC-BY-NC-SA-4.0
+-->
+
 # WeeChat specifications
 
 [![REUSE status](https://api.reuse.software/badge/github.com/weechat/specs.weechat.org)](https://api.reuse.software/info/github.com/weechat/specs.weechat.org)
@@ -24,8 +30,10 @@ Specifications are visible on the GitHub pages: [https://specs.weechat.org](http
 
 ## Copyright
 
+<!-- REUSE-IgnoreStart -->
 Copyright © 2021-2025 [Sébastien Helleu](https://github.com/flashcode)
 
 WeeChat specifications are distributed under the
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.\
 See the [LICENSE](LICENSE) file for more information.
+<!-- REUSE-IgnoreEnd -->
